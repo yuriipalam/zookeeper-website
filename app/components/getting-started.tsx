@@ -28,13 +28,13 @@ export function GettingStartedSection() {
     },
     {
       title: "2. Read the Guide",
-      desc: "Walk through cluster setup, schema design, and operations.",
-      to: "/docs/getting-started#get-started-with-hbase"
+      desc: "Walk through installation, configuration, and cluster setup.",
+      to: "/docs"
     },
     {
       title: "3. Connect a Client",
-      desc: "Use the Java API, REST, or Thrift to start building.",
-      to: "/docs/hbase-apis"
+      desc: "Use the Java client or CLI to start building distributed applications.",
+      to: "/docs"
     }
   ];
   return (
@@ -43,7 +43,7 @@ export function GettingStartedSection() {
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Getting Started</h2>
           <p className="text-muted-foreground mt-2">
-            From download to production in a few simple steps.
+            Up and running with ZooKeeper in a few simple steps.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

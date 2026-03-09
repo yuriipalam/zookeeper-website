@@ -16,20 +16,20 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/home";
-import { HomePage } from "@/pages/_landing/home";
+import type { Route } from "./+types/powered-by-zookeeper";
+import { PoweredByZooKeeperPage } from "@/pages/_landing/powered-by-zookeeper";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Apache ZooKeeper" },
+    { title: "Powered by ZooKeeper - Apache ZooKeeper" },
     {
       name: "description",
       content:
-        "Apache ZooKeeper is a high-performance coordination service for distributed applications."
+        "Companies and organizations using Apache ZooKeeper in production for distributed coordination."
     }
   ];
 }
 
-export default function Home() {
-  return <HomePage />;
+export default function PoweredByZooKeeper() {
+  return <PoweredByZooKeeperPage />;
 }

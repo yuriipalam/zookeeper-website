@@ -21,28 +21,28 @@ import { FeatureCard } from "@/pages/_landing/home/feature-card";
 export function FeaturesSection() {
   const features = [
     {
-      title: "Billions of Rows",
-      desc: "Host massive tables with billions of rows and millions of columns on commodity clusters."
+      title: "High Performance",
+      desc: "In-memory messaging with sub-millisecond latency; handles tens of thousands of requests per second."
     },
     {
-      title: "Real-time Access",
-      desc: "Get random, realtime read/write access with strictly consistent operations."
+      title: "Simple & Reliable",
+      desc: "A clean hierarchical namespace modeled after a file system makes coordination logic easy to reason about."
     },
     {
-      title: "Built on Hadoop",
-      desc: "Bigtable-like capabilities on top of Hadoop and HDFS with automatic failover and sharding."
+      title: "Ordered Operations",
+      desc: "Every update is stamped with a monotonically increasing zxid, giving clients a total ordering guarantee."
     },
     {
-      title: "Flexible APIs",
-      desc: "Java client, REST and Thrift gateways, server-side filters, Bloom filters, and more."
+      title: "Fault-Tolerant",
+      desc: "Replicated across an ensemble of servers; survives node failures automatically with no data loss."
     }
   ];
   return (
     <section id="features" className="container mx-auto px-4 py-12 md:py-16">
       <div className="mb-8 text-center">
-        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Why HBase</h2>
+        <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Why ZooKeeper</h2>
         <p className="text-muted-foreground mt-2">
-          Linearly scalable, consistent, and proven for large-scale workloads.
+          A proven coordination kernel trusted by Kafka, Hadoop, HBase, and more.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

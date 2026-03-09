@@ -26,29 +26,30 @@ export function Hero() {
         <div className="flex flex-col items-center text-center">
           <img
             src="/images/large-logo.svg"
-            alt="Apache HBase logo"
+            alt="Apache ZooKeeper logo"
             width={450}
-            height={115}
+            height={243}
             className="px-4 sm:px-0 dark:hidden"
           />
           <img
             src="/images/dark-theme-large-logo.svg"
-            alt="Apache HBase logo"
+            alt="Apache ZooKeeper logo"
             width={450}
-            height={115}
+            height={243}
             className="hidden px-4 sm:px-0 dark:block"
           />
 
           <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance md:text-6xl">
-            The Hadoop Database
+            Distributed Coordination Service
           </h1>
           <p className="text-muted-foreground mt-4 max-w-2xl text-lg text-pretty md:text-xl">
-            A distributed, scalable, big data store for random, realtime read/write access.
+            Naming, configuration management, synchronization, and group services — battle-tested
+            coordination primitives in a simple interface.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg">
-              <Link to="/downloads">Download HBase</Link>
+              <Link to="/downloads">Download ZooKeeper</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link to="/docs">Read Documentation</Link>

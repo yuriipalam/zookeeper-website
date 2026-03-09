@@ -16,7 +16,6 @@
 // limitations under the License.
 //
 
-import { fileNameVariants } from "@/lib/export-pdf/export-pdf-types";
 
 interface LinkType {
   label: string;
@@ -51,11 +50,11 @@ export const projectLinks: LinkType[] = [
     to: "/team"
   },
   {
-    label: "Powered by HBase",
-    to: "/powered-by-hbase"
+    label: "Powered by ZooKeeper",
+    to: "/powered-by-zookeeper"
   },
   {
-    label: "HBase Sponsors",
+    label: "ZooKeeper Sponsors",
     to: "/sponsors"
   },
   {
@@ -74,32 +73,21 @@ export const projectLinks: LinkType[] = [
 
 export const documentationLinks: (LinkType | NestedLinkType)[] = [
   {
-    label: "Reference Guide",
+    label: "Documentation",
     to: "/docs"
   },
   {
-    label: "Reference Guide (PDF)",
-    to: `/books/${fileNameVariants.light}`,
-    external: true
-  },
-  {
-    label: "Reference Guide (Dark PDF)",
-    to: `/books/${fileNameVariants.dark}`,
-    external: true
-  },
-  {
-    label: "中文参考指南(单页)",
-    to: "https://abloz.com/hbase/book.html",
-    external: true
+    label: "Getting Started",
+    to: "/docs"
   },
   {
     label: "Release Notes",
-    to: "https://issues.apache.org/jira/browse/HBASE?report=com.atlassian.jira.plugin.system.project:changelog-panel#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel",
+    to: "https://zookeeper.apache.org/releases.html",
     external: true
   },
   {
     label: "Issue Tracking",
-    to: "https://issues.apache.org/jira/browse/HBASE",
+    to: "https://issues.apache.org/jira/browse/ZOOKEEPER",
     external: true
   },
   {
@@ -110,20 +98,18 @@ export const documentationLinks: (LinkType | NestedLinkType)[] = [
     label: "Resources",
     links: [
       {
-        label: "Video/Presentations",
-        to: "/docs/other-info"
+        label: "Wiki",
+        to: "https://cwiki.apache.org/confluence/display/ZOOKEEPER",
+        external: true
       },
       {
-        label: "ACID Semantics",
-        to: "/acid-semantics"
+        label: "FAQ",
+        to: "https://cwiki.apache.org/confluence/display/ZOOKEEPER/FAQ",
+        external: true
       },
       {
-        label: "Bulk Loads",
-        to: "/docs/architecture/bulk-loading"
-      },
-      {
-        label: "Metrics",
-        to: "/docs/operational-management/metrics-and-monitoring"
+        label: "Recipes",
+        to: "/docs"
       }
     ]
   }
@@ -162,57 +148,36 @@ export const asfLinks: LinkType[] = [
   }
 ];
 
-type DocumentationOptions =
-  | "ref"
-  | "refPdf"
-  | "refPdfOld"
-  | "userApi"
-  | "userApiTest"
-  | "devApi"
-  | "devApiTest";
+type ZkDocOption = "ref" | "api";
 
-const documentationOptionLabels: Record<DocumentationOptions, string> = {
-  ref: "Reference Guide",
-  refPdf: "Reference Guide (PDF)",
-  refPdfOld: "Reference Guide (PDF)",
-  userApi: "User API",
-  userApiTest: "User API (Test)",
-  devApi: "Developer API",
-  devApiTest: "Developer API (Test)"
+const zkDocLabels: Record<ZkDocOption, string> = {
+  ref: "Documentation",
+  api: "API Docs"
 };
 
-function getDocsURL(version: string, option: DocumentationOptions): string {
-  const baseUrl = "https://hbase.apache.org/";
+function getZkDocsURL(version: string, option: ZkDocOption): string {
+  const baseUrl = "https://zookeeper.apache.org/doc/";
   switch (option) {
     case "ref":
-      return `${baseUrl}${version}/book.html`;
-    case "refPdf":
-      return `${baseUrl}${version}/apache_hbase_reference_guide.pdf`;
-    case "refPdfOld":
-      return `${baseUrl}${version}/book.pdf`;
-    case "userApi":
-      return `${baseUrl}${version}/apidocs/index.html`;
-    case "userApiTest":
-      return `${baseUrl}${version}/testapidocs/index.html`;
-    case "devApi":
-      return `${baseUrl}${version}/devapidocs/index.html`;
-    case "devApiTest":
-      return `${baseUrl}${version}/testdevapidocs/index.html`;
+      return `${baseUrl}r${version}/`;
+    case "api":
+      return `${baseUrl}r${version}/apidocs/zookeeper-server/index.html`;
   }
 }
 
-const docsItems: Record<string, DocumentationOptions[]> = {
-  "1.4": ["ref", "refPdfOld", "userApi", "devApi"],
-  "2.3": ["ref", "refPdf", "userApi", "userApiTest", "devApi", "devApiTest"],
-  "2.4": ["ref", "refPdf", "userApi", "userApiTest", "devApi", "devApiTest"],
-  "2.5": ["userApi", "userApiTest", "devApi", "devApiTest"],
-  "2.6": ["userApi", "userApiTest", "devApi", "devApiTest"]
+const zkDocsItems: Record<string, ZkDocOption[]> = {
+  "3.9.3": ["ref", "api"],
+  "3.8.4": ["ref", "api"],
+  "3.7.3": ["ref", "api"],
+  "3.6.4": ["ref", "api"],
+  "3.5.10": ["ref", "api"]
 };
 
-export const docsLinks: NestedLinkType[] = Object.keys(docsItems).map((version) => ({
+export const docsLinks: NestedLinkType[] = Object.keys(zkDocsItems).map((version) => ({
   label: `${version} Documentation`,
-  links: docsItems[version].map((option) => ({
-    label: documentationOptionLabels[option],
-    to: getDocsURL(version, option)
+  links: zkDocsItems[version].map((option) => ({
+    label: zkDocLabels[option],
+    to: getZkDocsURL(version, option),
+    external: true
   }))
 }));

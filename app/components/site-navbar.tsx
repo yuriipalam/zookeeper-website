@@ -68,9 +68,9 @@ export function SiteNavbar() {
       )}
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="relative z-50 flex items-center gap-3" aria-label="HBase Home">
-          <img src="/images/logo.svg" alt="Apache HBase logo" width={120} />
-          <span className="sr-only">Apache HBase</span>
+        <Link to="/" className="relative z-50 flex items-center gap-3" aria-label="ZooKeeper Home">
+          <img src="/images/logo.svg" alt="Apache ZooKeeper logo" width={40} height={40} />
+          <span className="sr-only">Apache ZooKeeper</span>
         </Link>
 
         {/* Desktop menus */}
@@ -124,7 +124,7 @@ function ProjectMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={`${navLinkClass} inline-flex cursor-pointer items-center`}>
-          Apache HBase Project <ChevronDown className="ml-1 h-4 w-4" />
+          Apache ZooKeeper Project <ChevronDown className="ml-1 h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
@@ -313,7 +313,7 @@ function MobileMenu() {
             <div className="px-6 pt-24 pb-8">
               <nav className="space-y-4">
                 <MobileMenuSection
-                  title="Apache HBase Project"
+                  title="Apache ZooKeeper Project"
                   links={projectLinks}
                   onLinkClick={() => setIsOpen(false)}
                 />
@@ -447,8 +447,8 @@ function NoJSProjectMenu() {
   return (
     <details className="group relative">
       <summary className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}>
-        Apache HBase Project <ChevronDown className="ml-1 h-4 w-4" />
-      </summary>
+      Apache ZooKeeper Project <ChevronDown className="ml-1 h-4 w-4" />
+    </summary>
       <div className="bg-popover text-popover-foreground absolute top-full left-1/2 z-50 mt-1.5 min-w-[12rem] -translate-x-1/2 rounded-md border p-1 shadow-md">
         {projectLinks.map((item) => (
           <Link
@@ -572,7 +572,7 @@ function NoJSMobileMenu() {
       </summary>
       <div className="bg-background fixed inset-x-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto border-t p-6">
         <nav className="space-y-4">
-          <NoJSMobileMenuSection title="Apache HBase Project" links={projectLinks} />
+          <NoJSMobileMenuSection title="Apache ZooKeeper Project" links={projectLinks} />
           <NoJSMobileDocsSection />
           <NoJSMobileMenuSection title="ASF" links={asfLinks} />
         </nav>

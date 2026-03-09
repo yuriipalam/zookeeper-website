@@ -16,39 +16,39 @@
 // limitations under the License.
 //
 
-import { ChartNoAxesCombined, Dna, Radio, ScrollText, ShieldCheck, Target } from "lucide-react";
+import { Crown, Database, GitBranch, Lock, Network, Waypoints } from "lucide-react";
 
 export function UseCasesSection() {
   const items = [
     {
-      title: "Time-Series & Metrics",
-      desc: "High-ingest, append-mostly workloads with predictable access patterns.",
-      Icon: ChartNoAxesCombined
+      title: "Leader Election",
+      desc: "Elect a single master among distributed workers reliably using ephemeral znodes and watches.",
+      Icon: Crown
     },
     {
-      title: "IoT Telemetry",
-      desc: "Massive device streams stored by time and entity with scalable reads.",
-      Icon: Radio
+      title: "Distributed Locking",
+      desc: "Implement mutexes and read/write locks across cluster nodes without a single point of failure.",
+      Icon: Lock
     },
     {
-      title: "AdTech & Personalization",
-      desc: "Low-latency serving of profiles, events, and counters at scale.",
-      Icon: Target
+      title: "Service Discovery",
+      desc: "Register and look up live service instances dynamically as nodes join or leave the cluster.",
+      Icon: Network
     },
     {
-      title: "Message & Audit Logs",
-      desc: "Immutable logs and audit trails with efficient range scans.",
-      Icon: ScrollText
+      title: "Configuration Management",
+      desc: "Propagate config changes to all nodes instantly with watches — no polling required.",
+      Icon: Database
     },
     {
-      title: "Security Analytics",
-      desc: "Store and query security events for investigation and alerting.",
-      Icon: ShieldCheck
+      title: "Cluster Membership",
+      desc: "Track which nodes are alive in real time using ephemeral nodes and group membership recipes.",
+      Icon: Waypoints
     },
     {
-      title: "Genomics & Research",
-      desc: "Columnar, sparse data sets with large key spaces.",
-      Icon: Dna
+      title: "Barrier Synchronization",
+      desc: "Coordinate phased computations so all workers start and finish a phase together.",
+      Icon: GitBranch
     }
   ];
   return (
@@ -56,7 +56,9 @@ export function UseCasesSection() {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Use Cases</h2>
-          <p className="text-muted-foreground mt-2">Battle-tested patterns where HBase excels.</p>
+          <p className="text-muted-foreground mt-2">
+            Common patterns where ZooKeeper excels.
+          </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map(({ title, desc, Icon }) => (

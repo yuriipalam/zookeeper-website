@@ -27,10 +27,9 @@ export default [
     route("mailing-lists", "routes/_landing/mailing-lists.tsx"),
     route("team", "routes/_landing/team.tsx"),
     route("sponsors", "routes/_landing/sponsors.tsx"),
-    route("powered-by-hbase", "routes/_landing/powered-by-hbase.tsx"),
+    route("powered-by-zookeeper", "routes/_landing/powered-by-zookeeper.tsx"),
     route("other-resources", "routes/_landing/other-resources.tsx"),
     route("source-repository", "routes/_landing/source-repository.tsx"),
-    route("acid-semantics", "routes/_landing/acid-semantics.tsx"),
     route("news", "routes/_landing/news.tsx"),
     route("export-control", "routes/_landing/export-control.tsx")
   ]),
