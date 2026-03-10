@@ -27,7 +27,10 @@ import type { ReactNode } from "react";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const SINGLE_PAGE_MDX = resolve(__dirname, "../app/pages/_docs/docs/_mdx/single-page/index.mdx");
+const SINGLE_PAGE_MDX = resolve(
+  __dirname,
+  "../app/pages/_docs/docs/_mdx/single-page/index.mdx"
+);
 
 function reactNodeToString(node: ReactNode): string {
   if (node == null || typeof node === "boolean") return "";
@@ -110,7 +113,9 @@ describe("MDX Heading ID Uniqueness Validation", () => {
 
     // Report duplicates with improved logging
     if (duplicates.length > 0) {
-      console.error("\n❌ Duplicate heading IDs found across different pages:\n");
+      console.error(
+        "\n❌ Duplicate heading IDs found across different pages:\n"
+      );
 
       duplicates.forEach(({ id, occurrences }) => {
         console.error(`\n  Heading ID: "${id}"`);
@@ -130,7 +135,9 @@ describe("MDX Heading ID Uniqueness Validation", () => {
         });
       });
 
-      console.error(`\n💡 To fix: Rename these headings to be unique across all pages\n`);
+      console.error(
+        `\n💡 To fix: Rename these headings to be unique across all pages\n`
+      );
     }
 
     expect(duplicates.length).toBe(0);
@@ -143,7 +150,9 @@ describe("MDX Heading ID Uniqueness Validation", () => {
 
     const singlePageIds = parseSinglePageIds();
 
-    const pages = source.getPages().filter((p) => !p.url.includes("single-page"));
+    const pages = source
+      .getPages()
+      .filter((p) => !p.url.includes("single-page"));
 
     interface Conflict {
       singlePageId: string;
@@ -170,13 +179,22 @@ describe("MDX Heading ID Uniqueness Validation", () => {
     }
 
     if (conflicts.length > 0) {
-      console.error("\n❌ Heading ID conflicts between single-page and multi-page docs:\n");
+      console.error(
+        "\n❌ Heading ID conflicts between single-page and multi-page docs:\n"
+      );
 
       conflicts.forEach(
-        ({ singlePageId, singlePageHeading, multiPageUrl, multiPageHeadingTitle }) => {
+        ({
+          singlePageId,
+          singlePageHeading,
+          multiPageUrl,
+          multiPageHeadingTitle
+        }) => {
           console.error(`  ID: #${singlePageId}`);
           console.error(`    single-page/index.mdx: "${singlePageHeading}"`);
-          console.error(`    conflicts with "${multiPageHeadingTitle}" in ${multiPageUrl}`);
+          console.error(
+            `    conflicts with "${multiPageHeadingTitle}" in ${multiPageUrl}`
+          );
           console.error();
         }
       );

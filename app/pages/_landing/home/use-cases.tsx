@@ -16,7 +16,14 @@
 // limitations under the License.
 //
 
-import { Crown, Database, GitBranch, Lock, Network, Waypoints } from "lucide-react";
+import {
+  Crown,
+  Database,
+  GitBranch,
+  Lock,
+  Network,
+  Waypoints
+} from "lucide-react";
 
 export function UseCasesSection() {
   const items = [
@@ -55,7 +62,9 @@ export function UseCasesSection() {
     <section id="use-cases" className="border-border/60 bg-muted/30 border-y">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="mb-8 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Use Cases</h2>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            Use Cases
+          </h2>
           <p className="text-muted-foreground mt-2">
             Common patterns where ZooKeeper excels.
           </p>
@@ -67,10 +76,17 @@ export function UseCasesSection() {
               className="group border-border/60 bg-card rounded-xl border p-5 shadow-sm"
             >
               <div className="flex items-start gap-2">
-                <Icon className="text-primary mt-0.5 size-[26px] shrink-0" aria-hidden />
+                <Icon
+                  className="text-primary mt-0.5 size-[26px] shrink-0"
+                  aria-hidden
+                />
                 <div>
-                  <h3 className="text-foreground text-lg font-semibold">{title}</h3>
-                  <p className="text-muted-foreground mt-1 text-sm leading-6">{desc}</p>
+                  <h3 className="text-foreground text-lg font-semibold">
+                    {title}
+                  </h3>
+                  <p className="text-muted-foreground mt-1 text-sm leading-6">
+                    {desc}
+                  </p>
                 </div>
               </div>
             </div>

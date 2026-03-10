@@ -23,7 +23,9 @@ import { useI18n } from "fumadocs-ui/contexts/i18n";
 import { type ButtonProps, buttonVariants } from "../../../ui/button";
 import { cn } from "@/lib/utils";
 
-interface SearchToggleProps extends Omit<ComponentProps<"button">, "color">, ButtonProps {
+interface SearchToggleProps
+  extends Omit<ComponentProps<"button">, "color">,
+    ButtonProps {
   hideIfDisabled?: boolean;
 }
 

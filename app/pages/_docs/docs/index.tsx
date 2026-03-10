@@ -68,11 +68,14 @@ const renderer = toClientRenderer(
   docs.doc,
   ({ toc, default: Mdx, frontmatter }, { tree }: { tree: PageTree.Root }) => {
     const route = useParams()["*"];
-    const baseGithubPath = "hbase-website/app/pages/_docs/docs/_mdx/(multi-page)/";
+    const baseGithubPath =
+      "hbase-website/app/pages/_docs/docs/_mdx/(multi-page)/";
 
     // Filter TOC: only H1 (depth: 1) for single-page, all headings for other pages
     const isSinglePage = route?.startsWith("single-page");
-    const filteredToc = isSinglePage ? toc.filter((item: any) => item.depth === 1) : toc;
+    const filteredToc = isSinglePage
+      ? toc.filter((item: any) => item.depth === 1)
+      : toc;
 
     // Handle hash navigation for single-page after content loads
     useEffect(() => {
@@ -122,7 +125,8 @@ const renderer = toClientRenderer(
     ];
     const trimmedRoute = route?.endsWith("/") ? route?.slice(0, -1) : route;
     const mdxFileRoute = `${isSinglePage ? "" : `${trimmedRoute === "" ? "index" : trimmedRoute}.mdx`}`;
-    const isGrouppedRoute = !!trimmedRoute && grouppedRoutes.includes(trimmedRoute);
+    const isGrouppedRoute =
+      !!trimmedRoute && grouppedRoutes.includes(trimmedRoute);
 
     // Custom link component that transforms /docs/ links to anchors on single-page
     const CustomLink = ({ href, children, ...rest }: any) => {
@@ -164,7 +168,8 @@ const renderer = toClientRenderer(
 
     const renderPdfTocItems = (items: TOCItemType[]) => {
       const groups: { parent: TOCItemType; children: TOCItemType[] }[] = [];
-      let current: { parent: TOCItemType; children: TOCItemType[] } | null = null;
+      let current: { parent: TOCItemType; children: TOCItemType[] } | null =
+        null;
       for (const item of items) {
         if (item.depth === 1) {
           current = { parent: item, children: [] };
@@ -220,13 +225,20 @@ const renderer = toClientRenderer(
               <h1 className="text-4xl font-semibold tracking-wide">
                 Apache HBase® Reference Guide
               </h1>
-              <p className="text-fd-muted-foreground text-sm">Version {hbaseVersion.version}</p>
-              <p className="text-fd-muted-foreground text-base">Apache HBase Team</p>
+              <p className="text-fd-muted-foreground text-sm">
+                Version {hbaseVersion.version}
+              </p>
+              <p className="text-fd-muted-foreground text-base">
+                Apache HBase Team
+              </p>
             </div>
           </section>
         )}
         {isSinglePage && printToc.length > 0 && (
-          <nav className="print-only break-after-page" aria-label="Table of contents">
+          <nav
+            className="print-only break-after-page"
+            aria-label="Table of contents"
+          >
             <h2 className="text-2xl font-semibold tracking-wide">Contents</h2>
             {renderPdfTocItems(printToc)}
           </nav>
@@ -283,8 +295,9 @@ export function DocsPage({ loaderData }: { loaderData: DocsLoaderData }) {
           banner: (
             <div className="px-4 py-2">
               <p className="text-fd-muted-foreground text-center text-xs leading-relaxed">
-                You're viewing a single-page documentation. All content is merged into one
-                continuous page. You can switch to a multi-page version by using the dropdown above.
+                You're viewing a single-page documentation. All content is
+                merged into one continuous page. You can switch to a multi-page
+                version by using the dropdown above.
               </p>
             </div>
           )

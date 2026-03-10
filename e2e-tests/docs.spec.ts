@@ -43,7 +43,9 @@ test.describe("Documentation Page - Basic Loading", () => {
     await page.waitForLoadState("networkidle");
 
     // Check for header link
-    const headerLink = page.getByRole("link", { name: /Apache HBase/i }).first();
+    const headerLink = page
+      .getByRole("link", { name: /Apache HBase/i })
+      .first();
     await expect(headerLink).toBeVisible();
   });
 });
@@ -85,7 +87,9 @@ test.describe("Documentation Page - Sidebar Navigation", () => {
     await page.waitForLoadState("networkidle");
 
     // Look for collapse button (use .first() for desktop version)
-    const collapseButton = page.getByRole("button", { name: /Collapse Sidebar/i }).first();
+    const collapseButton = page
+      .getByRole("button", { name: /Collapse Sidebar/i })
+      .first();
 
     if ((await collapseButton.count()) > 0) {
       await expect(collapseButton).toBeVisible();
@@ -169,7 +173,9 @@ test.describe("Documentation Page - Search Functionality", () => {
     await page.waitForLoadState("networkidle");
 
     // Press Cmd+K (or Ctrl+K)
-    await page.keyboard.press(process.platform === "darwin" ? "Meta+k" : "Control+k");
+    await page.keyboard.press(
+      process.platform === "darwin" ? "Meta+k" : "Control+k"
+    );
     await page.waitForTimeout(500);
 
     // Verify dialog opened
@@ -261,7 +267,9 @@ test.describe("Documentation Page - Mobile Responsiveness", () => {
     await page.waitForLoadState("networkidle");
 
     // Look for search button
-    const searchButton = page.getByRole("button", { name: /Open Search|Search/i }).first();
+    const searchButton = page
+      .getByRole("button", { name: /Open Search|Search/i })
+      .first();
     await expect(searchButton).toBeVisible();
   });
 });

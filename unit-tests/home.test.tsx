@@ -41,7 +41,9 @@ describe("HomePage", () => {
   it("shows the main description text", () => {
     renderWithProviders(<HomePage />);
 
-    const description = screen.getByText(/A distributed, scalable, big data store/i);
+    const description = screen.getByText(
+      /A distributed, scalable, big data store/i
+    );
     expect(description).toBeInTheDocument();
   });
 
@@ -84,6 +86,8 @@ describe("HomePage", () => {
     renderWithProviders(<HomePage />);
 
     // Look for a heading specific to the community section
-    expect(screen.getByRole("heading", { name: /Vibrant Community/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Vibrant Community/i })
+    ).toBeInTheDocument();
   });
 });

@@ -110,7 +110,9 @@ describe("MDX Components", () => {
       const components = getMDXComponents();
       const A = components.a as React.ComponentType<any>;
 
-      renderWithProviders(<A href="https://hbase.apache.org/docs">Apache Link</A>);
+      renderWithProviders(
+        <A href="https://hbase.apache.org/docs">Apache Link</A>
+      );
 
       const link = screen.getByRole("link", { name: "Apache Link" });
       expect(link).not.toHaveAttribute("target", "_blank");
@@ -145,7 +147,9 @@ describe("MDX Components", () => {
 
       renderWithProviders(<MdLayout Content={MockContent} />);
 
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Test Title");
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+        "Test Title"
+      );
       expect(screen.getByText("Test content")).toBeInTheDocument();
     });
 
@@ -160,15 +164,21 @@ describe("MDX Components", () => {
     });
 
     it("passes overrides to getMDXComponents", () => {
-      const CustomH1 = ({ children }: any) => <h1 data-testid="custom-h1">{children}</h1>;
+      const CustomH1 = ({ children }: any) => (
+        <h1 data-testid="custom-h1">{children}</h1>
+      );
       const MockContent = ({ components }: any) => {
         const H1 = components.h1 as React.ComponentType<any>;
         return <H1>Custom Heading</H1>;
       };
 
-      renderWithProviders(<MdLayout Content={MockContent} overrides={{ h1: CustomH1 }} />);
+      renderWithProviders(
+        <MdLayout Content={MockContent} overrides={{ h1: CustomH1 }} />
+      );
 
-      expect(screen.getByTestId("custom-h1")).toHaveTextContent("Custom Heading");
+      expect(screen.getByTestId("custom-h1")).toHaveTextContent(
+        "Custom Heading"
+      );
     });
   });
 });

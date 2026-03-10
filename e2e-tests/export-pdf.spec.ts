@@ -33,7 +33,11 @@ const variants = [
   { name: fileNameVariants.dark, theme: "dark" }
 ];
 
-async function postProcess(pdfPath: string, darkMode?: boolean, startPage: number = 0) {
+async function postProcess(
+  pdfPath: string,
+  darkMode?: boolean,
+  startPage: number = 0
+) {
   const pdfBytes = await fs.readFile(pdfPath);
   const pdfDoc = await PDFDocument.load(pdfBytes);
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -119,7 +123,10 @@ async function postProcess(pdfPath: string, darkMode?: boolean, startPage: numbe
 }
 
 test("export documentation pdfs", async ({ browser, browserName }) => {
-  test.skip(browserName !== "chromium", "PDF export only supported in Chromium.");
+  test.skip(
+    browserName !== "chromium",
+    "PDF export only supported in Chromium."
+  );
   test.setTimeout(3 * 60 * 1000);
 
   await fs.mkdir(outDir, { recursive: true });

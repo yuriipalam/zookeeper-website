@@ -48,11 +48,18 @@ function CollapsibleTrigger({
 function CollapsibleContent({
   ...props
 }: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
-  return <CollapsiblePrimitive.CollapsibleContent data-slot="collapsible-content" {...props} />;
+  return (
+    <CollapsiblePrimitive.CollapsibleContent
+      data-slot="collapsible-content"
+      {...props}
+    />
+  );
 }
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
 
 export type CollapsibleProps = CollapsiblePrimitive.CollapsibleProps;
-export type CollapsibleContentProps = CollapsiblePrimitive.CollapsibleContentProps;
-export type CollapsibleTriggerProps = CollapsiblePrimitive.CollapsibleTriggerProps;
+export type CollapsibleContentProps =
+  CollapsiblePrimitive.CollapsibleContentProps;
+export type CollapsibleTriggerProps =
+  CollapsiblePrimitive.CollapsibleTriggerProps;

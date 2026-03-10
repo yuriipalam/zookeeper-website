@@ -43,8 +43,9 @@ export function Hero() {
             Distributed Coordination Service
           </h1>
           <p className="text-muted-foreground mt-4 max-w-2xl text-lg text-pretty md:text-xl">
-            Naming, configuration management, synchronization, and group services — battle-tested
-            coordination primitives in a simple interface.
+            Naming, configuration management, synchronization, and group
+            services — battle-tested coordination primitives in a simple
+            interface.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

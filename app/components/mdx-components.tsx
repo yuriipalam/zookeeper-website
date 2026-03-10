@@ -38,18 +38,29 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
       />
     ),
     h3: (props) => (
-      <h3 className="mt-8 mb-1 scroll-mt-28 text-xl font-semibold tracking-tight" {...props} />
+      <h3
+        className="mt-8 mb-1 scroll-mt-28 text-xl font-semibold tracking-tight"
+        {...props}
+      />
     ),
-    p: (props) => <p className="mb-4 text-base leading-7 wrap-anywhere" {...props} />,
-    ol: (props) => <ol className="mb-4 ml-6 list-decimal space-y-2" {...props} />,
+    p: (props) => (
+      <p className="mb-4 text-base leading-7 wrap-anywhere" {...props} />
+    ),
+    ol: (props) => (
+      <ol className="mb-4 ml-6 list-decimal space-y-2" {...props} />
+    ),
     ul: (props) => <ul className="mb-4 ml-6 list-disc space-y-2" {...props} />,
     li: (props) => <li className="leading-7" {...props} />,
 
     a: ({ href, children, ...rest }) => {
-      const isExternal = href?.startsWith("http") && !href?.startsWith("https://hbase.apache.org/");
+      const isExternal =
+        href?.startsWith("http") &&
+        !href?.startsWith("https://hbase.apache.org/");
       if (isExternal) {
         const onlyImg = Array.isArray(children)
-          ? children.every((c: any) => c?.type === "img" || typeof c === "object")
+          ? children.every(
+              (c: any) => c?.type === "img" || typeof c === "object"
+            )
           : typeof children === "object";
         return (
           <a
@@ -84,10 +95,19 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
       );
     },
     blockquote: (props) => (
-      <blockquote className="border-border my-6 border-l-4 pl-6 italic" {...props} />
+      <blockquote
+        className="border-border my-6 border-l-4 pl-6 italic"
+        {...props}
+      />
     ),
     img: ({ src = "", alt = "", ...rest }) => (
-      <img src={src} alt={alt} loading="lazy" className="my-6 max-w-full rounded-lg" {...rest} />
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="my-6 max-w-full rounded-lg"
+        {...rest}
+      />
     ),
     table: (props) => (
       <div className="border-border my-8 w-full overflow-x-auto rounded-lg border">
@@ -96,10 +116,20 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
     ),
     thead: (props) => <thead className="bg-muted" {...props} />,
     tr: (props) => (
-      <tr className="border-border hover:bg-muted/50 border-b transition-colors" {...props} />
+      <tr
+        className="border-border hover:bg-muted/50 border-b transition-colors"
+        {...props}
+      />
     ),
-    th: (props) => <th className="border-none px-4 py-3 text-left font-semibold" {...props} />,
-    td: (props) => <td className="border-none px-4 py-3 align-top" {...props} />,
+    th: (props) => (
+      <th
+        className="border-none px-4 py-3 text-left font-semibold"
+        {...props}
+      />
+    ),
+    td: (props) => (
+      <td className="border-none px-4 py-3 align-top" {...props} />
+    ),
 
     ...overrides
   };

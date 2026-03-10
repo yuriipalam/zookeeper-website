@@ -16,7 +16,6 @@
 // limitations under the License.
 //
 
-
 interface LinkType {
   label: string;
   to: string;
@@ -56,7 +55,7 @@ export const projectLinks: LinkType[] = [
   {
     label: "Bylaws",
     to: "/bylaws"
-  },
+  }
 ];
 
 export const documentationLinks: (LinkType | NestedLinkType)[] = [
@@ -149,11 +148,13 @@ const zkDocsItems: Record<string, ZkDocOption[]> = {
   "3.7.2": ["ref", "api"]
 };
 
-export const docsLinks: NestedLinkType[] = Object.keys(zkDocsItems).map((version) => ({
-  label: `${version} Documentation`,
-  links: zkDocsItems[version].map((option) => ({
-    label: zkDocLabels[option],
-    to: getZkDocsURL(version, option),
-    external: true
-  }))
-}));
+export const docsLinks: NestedLinkType[] = Object.keys(zkDocsItems).map(
+  (version) => ({
+    label: `${version} Documentation`,
+    links: zkDocsItems[version].map((option) => ({
+      label: zkDocLabels[option],
+      to: getZkDocsURL(version, option),
+      external: true
+    }))
+  })
+);

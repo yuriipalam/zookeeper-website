@@ -67,7 +67,9 @@ export function SearchDialog(props: SharedProps) {
             query.data !== "empty"
               ? query.data?.map((i) => ({
                   ...i,
-                  breadcrumbs: i.breadcrumbs?.filter((k) => k !== "Multi-Page Documentation")
+                  breadcrumbs: i.breadcrumbs?.filter(
+                    (k) => k !== "Multi-Page Documentation"
+                  )
                 }))
               : null
           }

@@ -26,7 +26,10 @@ import {
   getByID
 } from "@orama/orama";
 import { type AdvancedDocument, type advancedSchema } from "./create-db";
-import { createContentHighlighter, type SortedResult } from "fumadocs-core/search";
+import {
+  createContentHighlighter,
+  type SortedResult
+} from "fumadocs-core/search";
 import type { ExportedData } from "fumadocs-core/search/server";
 import { removeUndefined } from "./utils";
 
@@ -223,7 +226,9 @@ export async function searchAdvanced(
     if (!page) continue;
 
     // Find the page hit to get its Orama score
-    const pageHit = item.result.find((hit: any) => hit.document.type === "page");
+    const pageHit = item.result.find(
+      (hit: any) => hit.document.type === "page"
+    );
     const pageScore = pageHit?.score || 0;
 
     // Check for phrase matches in ALL hits (page title + all content sections)

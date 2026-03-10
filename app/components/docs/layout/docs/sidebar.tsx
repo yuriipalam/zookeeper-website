@@ -71,7 +71,9 @@ export function SidebarContent({
             data-sidebar-placeholder=""
             className="pointer-events-none sticky top-(--fd-docs-row-1) z-20 h-[calc(var(--fd-docs-height)-var(--fd-docs-row-1))] [grid-area:sidebar] *:pointer-events-auto max-md:hidden"
           >
-            {collapsed && <div className="absolute inset-y-0 start-0 w-4" {...rest} />}
+            {collapsed && (
+              <div className="absolute inset-y-0 start-0 w-4" {...rest} />
+            )}
             <aside
               id="nd-sidebar"
               ref={mergeRefs(ref, refProp, asideRef)}
@@ -86,7 +88,8 @@ export function SidebarContent({
                     : "-translate-x-(--fd-sidebar-width) rtl:translate-x-full"
                 ],
                 ref.current &&
-                  (ref.current.getAttribute("data-collapsed") === "true") !== collapsed &&
+                  (ref.current.getAttribute("data-collapsed") === "true") !==
+                    collapsed &&
                   "transition-[width,inset-block,translate,background-color]",
                 className
               )}
@@ -114,7 +117,9 @@ export function SidebarContent({
             >
               <SidebarIcon />
             </Base.SidebarCollapseTrigger>
-            {isSearchToggleEnabled && <SearchToggle className="rounded-lg" hideIfDisabled />}
+            {isSearchToggleEnabled && (
+              <SearchToggle className="rounded-lg" hideIfDisabled />
+            )}
           </div>
         </>
       )}
@@ -143,7 +148,12 @@ export function SidebarDrawer({
   );
 }
 
-export function SidebarSeparator({ className, style, children, ...props }: ComponentProps<"p">) {
+export function SidebarSeparator({
+  className,
+  style,
+  children,
+  ...props
+}: ComponentProps<"p">) {
   const depth = Base.useFolderDepth();
 
   return (
@@ -170,7 +180,10 @@ export function SidebarItem({
 
   return (
     <Base.SidebarItem
-      className={cn(itemVariants({ variant: "link", highlight: depth >= 1 }), className)}
+      className={cn(
+        itemVariants({ variant: "link", highlight: depth >= 1 }),
+        className
+      )}
       style={{
         paddingInlineStart: getItemOffset(depth),
         ...style
@@ -191,7 +204,11 @@ export function SidebarFolderTrigger({
 
   return (
     <Base.SidebarFolderTrigger
-      className={cn(itemVariants({ variant: collapsible ? "button" : null }), "w-full", className)}
+      className={cn(
+        itemVariants({ variant: collapsible ? "button" : null }),
+        "w-full",
+        className
+      )}
       style={{
         paddingInlineStart: getItemOffset(depth - 1),
         ...style
@@ -212,7 +229,11 @@ export function SidebarFolderLink({
 
   return (
     <Base.SidebarFolderLink
-      className={cn(itemVariants({ variant: "link", highlight: depth > 1 }), "w-full", className)}
+      className={cn(
+        itemVariants({ variant: "link", highlight: depth > 1 }),
+        "w-full",
+        className
+      )}
       style={{
         paddingInlineStart: getItemOffset(depth - 1),
         ...style

@@ -16,7 +16,12 @@
 // limitations under the License.
 //
 
-import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
+import {
+  type RouteConfig,
+  index,
+  layout,
+  route
+} from "@react-router/dev/routes";
 
 export default [
   // Landing
@@ -33,7 +38,9 @@ export default [
     route("version-control", "routes/_landing/version-control.tsx")
   ]),
   // Docs
-  layout("./pages/_docs/docs-layout.tsx", [route("docs/*", "routes/_docs/docs.tsx")]),
+  layout("./pages/_docs/docs-layout.tsx", [
+    route("docs/*", "routes/_docs/docs.tsx")
+  ]),
   // API (Rendered at build time)
   route("llms-full.txt", "routes/_api/llms-full.ts"),
   route("api/search", "routes/_api/search.ts")

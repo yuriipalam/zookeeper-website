@@ -27,7 +27,11 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger
 } from "@/ui/dropdown-menu";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from "@/ui/collapsible";
 import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -68,8 +72,17 @@ export function SiteNavbar() {
       )}
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="relative z-50 flex items-center gap-3" aria-label="ZooKeeper Home">
-          <img src="/images/logo.svg" alt="Apache ZooKeeper logo" width={40} height={40} />
+        <Link
+          to="/"
+          className="relative z-50 flex items-center gap-3"
+          aria-label="ZooKeeper Home"
+        >
+          <img
+            src="/images/logo.svg"
+            alt="Apache ZooKeeper logo"
+            width={40}
+            height={40}
+          />
           <span className="sr-only">Apache ZooKeeper</span>
         </Link>
 
@@ -123,7 +136,9 @@ function ProjectMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className={`${navLinkClass} inline-flex cursor-pointer items-center`}>
+        <button
+          className={`${navLinkClass} inline-flex cursor-pointer items-center`}
+        >
           Apache ZooKeeper Project <ChevronDown className="ml-1 h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
@@ -145,7 +160,9 @@ function DocsMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className={`${navLinkClass} inline-flex cursor-pointer items-center`}>
+        <button
+          className={`${navLinkClass} inline-flex cursor-pointer items-center`}
+        >
           Documentation <ChevronDown className="ml-1 h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
@@ -218,7 +235,11 @@ function AsfMenu() {
       <DropdownMenuContent align="center">
         {asfLinks.map((item) => (
           <DropdownMenuItem key={item.label} asChild>
-            <Link to={item.to} target={item.external ? "_blank" : "_self"} aria-label={item.label}>
+            <Link
+              to={item.to}
+              target={item.external ? "_blank" : "_self"}
+              aria-label={item.label}
+            >
               {item.label}
               {item.external && <ExternalLink className="size-4" />}
             </Link>
@@ -307,7 +328,9 @@ function MobileMenu() {
           <div
             className={cn(
               "bg-background fixed inset-0 z-40 overflow-y-auto transition-all duration-300",
-              isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+              isOpen
+                ? "pointer-events-auto opacity-100"
+                : "pointer-events-none opacity-0"
             )}
           >
             <div className="px-6 pt-24 pb-8">
@@ -421,7 +444,9 @@ function MobileMenuSection({
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
       <CollapsibleTrigger className="flex w-full items-center justify-between py-2 text-left font-medium">
         {title}
-        <ChevronRight className={cn("h-4 w-4 transition-transform", isOpen && "rotate-90")} />
+        <ChevronRight
+          className={cn("h-4 w-4 transition-transform", isOpen && "rotate-90")}
+        />
       </CollapsibleTrigger>
       <CollapsibleContent className="w-full space-y-2 pl-4">
         {links.map((link) => (
@@ -446,9 +471,11 @@ function MobileMenuSection({
 function NoJSProjectMenu() {
   return (
     <details className="group relative">
-      <summary className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}>
-      Apache ZooKeeper Project <ChevronDown className="ml-1 h-4 w-4" />
-    </summary>
+      <summary
+        className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}
+      >
+        Apache ZooKeeper Project <ChevronDown className="ml-1 h-4 w-4" />
+      </summary>
       <div className="bg-popover text-popover-foreground absolute top-full left-1/2 z-50 mt-1.5 min-w-[12rem] -translate-x-1/2 rounded-md border p-1 shadow-md">
         {projectLinks.map((item) => (
           <Link
@@ -469,7 +496,9 @@ function NoJSProjectMenu() {
 function NoJSDocsMenu() {
   return (
     <details className="group relative">
-      <summary className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}>
+      <summary
+        className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}
+      >
         Documentation <ChevronDown className="ml-1 h-4 w-4" />
       </summary>
       <div className="bg-popover text-popover-foreground absolute top-full left-1/2 z-50 mt-1.5 min-w-[12rem] -translate-x-1/2 rounded-md border p-1 shadow-md">
@@ -539,7 +568,9 @@ function NoJSDocsMenu() {
 function NoJSAsfMenu() {
   return (
     <details className="group relative">
-      <summary className={`${navLinkClass} inline-flex cursor-pointer list-none`}>
+      <summary
+        className={`${navLinkClass} inline-flex cursor-pointer list-none`}
+      >
         ASF <ChevronDown className="ml-1 h-4 w-4" />
       </summary>
       <div className="bg-popover text-popover-foreground absolute top-full left-1/2 z-50 mt-1.5 min-w-[12rem] -translate-x-1/2 rounded-md border p-1 shadow-md">
@@ -572,7 +603,10 @@ function NoJSMobileMenu() {
       </summary>
       <div className="bg-background fixed inset-x-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto border-t p-6">
         <nav className="space-y-4">
-          <NoJSMobileMenuSection title="Apache ZooKeeper Project" links={projectLinks} />
+          <NoJSMobileMenuSection
+            title="Apache ZooKeeper Project"
+            links={projectLinks}
+          />
           <NoJSMobileDocsSection />
           <NoJSMobileMenuSection title="ASF" links={asfLinks} />
         </nav>
@@ -581,7 +615,13 @@ function NoJSMobileMenu() {
   );
 }
 
-function NoJSMobileMenuSection({ title, links }: { title: string; links: typeof projectLinks }) {
+function NoJSMobileMenuSection({
+  title,
+  links
+}: {
+  title: string;
+  links: typeof projectLinks;
+}) {
   return (
     <details className="w-full">
       <summary className="flex w-full cursor-pointer items-center justify-between py-2 text-left font-medium">

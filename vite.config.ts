@@ -29,8 +29,14 @@ const logger = createLogger();
 const originalWarn = logger.warn;
 logger.warn = (msg, options) => {
   // Suppress public directory warnings - these are informational only
-  if (msg.includes("Files in the public directory are served at the root path")) return;
-  if (msg.includes("Assets in public directory cannot be imported from JavaScript")) return;
+  if (msg.includes("Files in the public directory are served at the root path"))
+    return;
+  if (
+    msg.includes(
+      "Assets in public directory cannot be imported from JavaScript"
+    )
+  )
+    return;
   // Suppress Babel deoptimization warnings for large MDX files (expected for single-page docs)
   if (msg.includes("deoptimised the styling")) return;
   // Log all other warnings

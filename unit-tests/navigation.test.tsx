@@ -83,9 +83,15 @@ describe("SiteNavbar", () => {
     await user.click(projectMenus[0]);
 
     // Check that first few project links from links.ts are present
-    expect(screen.getByRole("menuitem", { name: projectLinks[0].label })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: projectLinks[1].label })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: projectLinks[3].label })).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: projectLinks[0].label })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: projectLinks[1].label })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: projectLinks[3].label })
+    ).toBeInTheDocument();
   });
 
   it("opens documentation dropdown menu", async () => {
@@ -110,8 +116,12 @@ describe("SiteNavbar", () => {
     await user.click(asfMenus[0]);
 
     // Check first two ASF links from asfLinks
-    expect(screen.getByRole("menuitem", { name: asfLinks[0].label })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: asfLinks[1].label })).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: asfLinks[0].label })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: asfLinks[1].label })
+    ).toBeInTheDocument();
   });
 
   it("includes theme toggle", () => {

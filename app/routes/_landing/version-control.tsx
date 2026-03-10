@@ -24,7 +24,8 @@ export function meta({}: Route.MetaArgs) {
     { title: "Version Control - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Access the Apache ZooKeeper source code on GitHub and Apache Gitbox."
+      content:
+        "Access the Apache ZooKeeper source code on GitHub and Apache Gitbox."
     }
   ];
 }

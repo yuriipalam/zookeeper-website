@@ -28,7 +28,8 @@ export function SiteFooter() {
           <div>
             <p className="text-foreground font-medium">Apache ZooKeeper</p>
             <p className="mt-2">
-              Open-source coordination service for distributed applications — naming, synchronization, and group services made simple.
+              Open-source coordination service for distributed applications —
+              naming, synchronization, and group services made simple.
             </p>
           </div>
           <div>
@@ -42,7 +43,9 @@ export function SiteFooter() {
                     className="hover:text-foreground inline-flex items-center"
                   >
                     {link.label}
-                    {link.external && <ExternalLink className="ml-1 size-3 shrink-0" />}
+                    {link.external && (
+                      <ExternalLink className="ml-1 size-3 shrink-0" />
+                    )}
                   </Link>
                 </li>
               ))}
@@ -60,7 +63,9 @@ export function SiteFooter() {
                       className="hover:text-foreground inline-flex items-center"
                     >
                       {link.label}
-                      {link.external && <ExternalLink className="ml-1 size-3 shrink-0" />}
+                      {link.external && (
+                        <ExternalLink className="ml-1 size-3 shrink-0" />
+                      )}
                     </Link>
                   </li>
                 ) : (
@@ -72,7 +77,9 @@ export function SiteFooter() {
                         className="hover:text-foreground inline-flex items-center"
                       >
                         {link.label}
-                        {link.external && <ExternalLink className="ml-1 size-3 shrink-0" />}
+                        {link.external && (
+                          <ExternalLink className="ml-1 size-3 shrink-0" />
+                        )}
                       </Link>
                     </li>
                   ))
@@ -91,7 +98,9 @@ export function SiteFooter() {
                     className="hover:text-foreground inline-flex items-center"
                   >
                     {link.label}
-                    {link.external && <ExternalLink className="ml-1 size-3 shrink-0" />}
+                    {link.external && (
+                      <ExternalLink className="ml-1 size-3 shrink-0" />
+                    )}
                   </Link>
                 </li>
               ))}
@@ -102,10 +111,11 @@ export function SiteFooter() {
         <hr className="border-border/60 my-8" />
 
         <p className="text-xs leading-6">
-          Copyright ©2007-2026 The Apache Software Foundation. All rights reserved. Apache
-          ZooKeeper, ZooKeeper, Apache, the Apache ZooKeeper logo and the ASF logo are either
-          registered trademarks or trademarks of the Apache Software Foundation. All other marks
-          mentioned may be trademarks or registered trademarks of their respective owners.
+          Copyright ©2007-2026 The Apache Software Foundation. All rights
+          reserved. Apache ZooKeeper, ZooKeeper, Apache, the Apache ZooKeeper
+          logo and the ASF logo are either registered trademarks or trademarks
+          of the Apache Software Foundation. All other marks mentioned may be
+          trademarks or registered trademarks of their respective owners.
         </p>
       </div>
     </footer>

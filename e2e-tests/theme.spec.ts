@@ -24,7 +24,9 @@ test.describe("Theme Toggle Functionality", () => {
     await page.waitForLoadState("load");
 
     // Look for theme toggle button
-    const themeButton = page.getByRole("button", { name: /Toggle theme/i }).first();
+    const themeButton = page
+      .getByRole("button", { name: /Toggle theme/i })
+      .first();
     await expect(themeButton).toBeVisible();
   });
 
@@ -38,7 +40,9 @@ test.describe("Theme Toggle Functionality", () => {
     });
 
     // Find and click the theme toggle button
-    const themeButton = page.getByRole("button", { name: /Toggle theme/i }).first();
+    const themeButton = page
+      .getByRole("button", { name: /Toggle theme/i })
+      .first();
     await themeButton.click();
 
     // Wait for theme change
@@ -58,7 +62,9 @@ test.describe("Theme Toggle Functionality", () => {
     await page.waitForLoadState("load");
 
     // Toggle theme
-    const themeButton = page.getByRole("button", { name: /Toggle theme/i }).first();
+    const themeButton = page
+      .getByRole("button", { name: /Toggle theme/i })
+      .first();
     await themeButton.click();
     await page.waitForTimeout(300);
 
@@ -79,7 +85,9 @@ test.describe("Theme Toggle Functionality", () => {
       });
 
       // Theme should be similar (may have additional classes but core theme should persist)
-      expect(themeOnNewPage).toContain(themeAfterToggle.includes("dark") ? "dark" : "light");
+      expect(themeOnNewPage).toContain(
+        themeAfterToggle.includes("dark") ? "dark" : "light"
+      );
     }
   });
 
@@ -87,7 +95,9 @@ test.describe("Theme Toggle Functionality", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
-    const themeButton = page.getByRole("button", { name: /Toggle theme/i }).first();
+    const themeButton = page
+      .getByRole("button", { name: /Toggle theme/i })
+      .first();
 
     // Get initial state
     const initialClass = await page.evaluate(() => {

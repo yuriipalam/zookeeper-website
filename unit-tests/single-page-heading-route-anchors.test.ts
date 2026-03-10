@@ -20,7 +20,10 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 
-const singlePagePath = path.join(process.cwd(), "app/pages/_docs/docs/_mdx/single-page/index.mdx");
+const singlePagePath = path.join(
+  process.cwd(),
+  "app/pages/_docs/docs/_mdx/single-page/index.mdx"
+);
 
 interface HeadingMatch {
   lineNumber: number;
@@ -89,7 +92,10 @@ function collectHeadingMatches(mdx: string) {
     }
 
     let includeEnd = includeStart;
-    while (includeEnd < lines.length && !lines[includeEnd].includes("</include>")) {
+    while (
+      includeEnd < lines.length &&
+      !lines[includeEnd].includes("</include>")
+    ) {
       includeEnd++;
     }
 

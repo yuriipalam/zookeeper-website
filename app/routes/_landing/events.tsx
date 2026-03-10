@@ -24,7 +24,8 @@ export function meta({}: Route.MetaArgs) {
     { title: "Events - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Latest Apache ZooKeeper release announcements and project events."
+      content:
+        "Latest Apache ZooKeeper release announcements and project events."
     }
   ];
 }

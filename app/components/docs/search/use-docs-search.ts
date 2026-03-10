@@ -50,7 +50,8 @@ function isDeepEqual(a: unknown, b: unknown): boolean {
       aKeys.length === bKeys.length &&
       aKeys.every(
         (key) =>
-          Object.hasOwn(b, key) && isDeepEqual(a[key as keyof object], b[key as keyof object])
+          Object.hasOwn(b, key) &&
+          isDeepEqual(a[key as keyof object], b[key as keyof object])
       )
     );
   }

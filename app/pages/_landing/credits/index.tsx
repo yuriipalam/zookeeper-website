@@ -50,7 +50,9 @@ function MemberTable({ members }: { members: Member[] }) {
             >
               <td className="px-4 py-3 align-top">{member.id}</td>
               <td className="px-4 py-3 align-top">{member.name || "-"}</td>
-              <td className="px-4 py-3 align-top">{member.organization || "-"}</td>
+              <td className="px-4 py-3 align-top">
+                {member.organization || "-"}
+              </td>
               <td className="px-4 py-3 align-top">{member.timezone || "-"}</td>
             </tr>
           ))}
@@ -71,8 +73,9 @@ export function CreditsPage() {
         </h1>
 
         <p className="mb-4 text-base leading-7">
-          A successful project requires many people to play many roles. Some members write code or
-          documentation, while others are valuable as testers, submitting patches and suggestions.
+          A successful project requires many people to play many roles. Some
+          members write code or documentation, while others are valuable as
+          testers, submitting patches and suggestions.
         </p>
 
         <h2 className="mt-12 mb-4 scroll-mt-28 text-3xl font-semibold tracking-tight md:text-4xl">
@@ -100,7 +103,8 @@ export function CreditsPage() {
         </h2>
 
         <p className="mb-4 text-base leading-7">
-          A list of ZooKeeper contributors and their contributions is available from{" "}
+          A list of ZooKeeper contributors and their contributions is available
+          from{" "}
           <a
             href="https://issues.apache.org/jira/browse/ZOOKEEPER"
             target="_blank"

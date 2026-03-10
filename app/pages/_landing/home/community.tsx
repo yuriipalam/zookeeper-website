@@ -26,10 +26,13 @@ export function CommunitySection() {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight">A Vibrant Community</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">
+              A Vibrant Community
+            </h2>
             <p className="text-muted-foreground mt-3">
-              ZooKeeper is a top-level Apache project with an active community of users and
-              contributors. Join discussions, read the documentation, and help shape the roadmap.
+              ZooKeeper is a top-level Apache project with an active community
+              of users and contributors. Join discussions, read the
+              documentation, and help shape the roadmap.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
@@ -51,8 +54,10 @@ export function CommunitySection() {
                 to="/news"
                 className="border-border/60 bg-background hover:border-primary focus-visible:ring-primary block rounded-lg border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
-                <span className="text-foreground font-medium">News &amp; Events</span>
-                <p className="text-muted-foreground">ZooKeeper release announcements and project news.</p>
+                <span className="text-foreground font-medium">News</span>
+                <p className="text-muted-foreground">
+                  ZooKeeper release announcements and project news.
+                </p>
                 <ArrowUpRight className="text-muted-foreground absolute top-2.5 right-2.5 size-4" />
               </Link>
             </li>
@@ -74,7 +79,9 @@ export function CommunitySection() {
                 className="border-border/60 bg-background hover:border-primary focus-visible:ring-primary block rounded-lg border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
                 <span className="text-foreground font-medium">Security</span>
-                <p className="text-muted-foreground">Report vulnerabilities and review known CVEs.</p>
+                <p className="text-muted-foreground">
+                  Report vulnerabilities and review known CVEs.
+                </p>
                 <ArrowUpRight className="text-muted-foreground absolute top-2.5 right-2.5 size-4" />
               </Link>
             </li>

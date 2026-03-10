@@ -76,7 +76,9 @@ function defaultBuildIndex<C extends LoaderConfig>(
     }
 
     return {
-      title: page.data.title ?? PathUtils.basename(page.path, PathUtils.extname(page.path)),
+      title:
+        page.data.title ??
+        PathUtils.basename(page.path, PathUtils.extname(page.path)),
       breadcrumbs,
       description: page.data.description,
       url: page.url,
@@ -87,13 +89,16 @@ function defaultBuildIndex<C extends LoaderConfig>(
   };
 }
 
-interface Options<C extends LoaderConfig> extends Omit<AdvancedOptions, "indexes"> {
+interface Options<C extends LoaderConfig>
+  extends Omit<AdvancedOptions, "indexes"> {
   localeMap?: {
     [K in C["i18n"] extends I18nConfig<infer Languages> ? Languages : string]?:
       | Partial<AdvancedOptions>
       | Language;
   };
-  buildIndex?: (page: Page<C["source"]["pageData"]>) => Awaitable<AdvancedIndex>;
+  buildIndex?: (
+    page: Page<C["source"]["pageData"]>
+  ) => Awaitable<AdvancedIndex>;
   tag?: (pageUrl: string) => string;
 }
 

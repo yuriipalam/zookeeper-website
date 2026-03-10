@@ -53,7 +53,9 @@ export function SidebarTabsDropdown({
 
   const item = selected ? (
     <>
-      <div className="size-9 shrink-0 empty:hidden md:size-5">{selected.icon}</div>
+      <div className="size-9 shrink-0 empty:hidden md:size-5">
+        {selected.icon}
+      </div>
       <div>
         <p className="text-sm font-medium">{selected.title}</p>
         <p className="text-fd-muted-foreground text-sm empty:hidden md:hidden">
@@ -95,7 +97,9 @@ export function SidebarTabsDropdown({
                 item.props?.className
               )}
             >
-              <div className="size-9 shrink-0 empty:hidden md:mb-auto md:size-5">{item.icon}</div>
+              <div className="size-9 shrink-0 empty:hidden md:mb-auto md:size-5">
+                {item.icon}
+              </div>
               <div>
                 <p className="text-sm leading-none font-medium">{item.title}</p>
                 <p className="text-fd-muted-foreground mt-1 text-[0.8125rem] empty:hidden">

@@ -35,25 +35,35 @@ test.describe("Landing Page Navigation", () => {
     await expect(logo).toBeVisible();
 
     // Check for logo image (use .first() since there are multiple)
-    const logoImage = page.getByRole("img", { name: /Apache HBase logo/i }).first();
+    const logoImage = page
+      .getByRole("img", { name: /Apache HBase logo/i })
+      .first();
     await expect(logoImage).toBeVisible();
   });
 
-  test("navigation menu - Apache HBase Project dropdown exists", async ({ page }) => {
+  test("navigation menu - Apache HBase Project dropdown exists", async ({
+    page
+  }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
     // Find the "Apache HBase Project" button (use .first() for desktop version)
-    const projectButton = page.getByRole("button", { name: /Apache HBase Project/i }).first();
+    const projectButton = page
+      .getByRole("button", { name: /Apache HBase Project/i })
+      .first();
     await expect(projectButton).toBeVisible();
   });
 
-  test("navigation menu - Documentation and API dropdown exists", async ({ page }) => {
+  test("navigation menu - Documentation and API dropdown exists", async ({
+    page
+  }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
     // Find the "Documentation and API" button (use .first() for desktop version)
-    const docsButton = page.getByRole("button", { name: /Documentation and API/i }).first();
+    const docsButton = page
+      .getByRole("button", { name: /Documentation and API/i })
+      .first();
     await expect(docsButton).toBeVisible();
   });
 
@@ -123,7 +133,9 @@ test.describe("Landing Page Navigation", () => {
     await page.waitForLoadState("load");
 
     // Check for hero section with large logo or heading
-    const heroElements = page.locator("section, div").filter({ hasText: /Hadoop|Database/i });
+    const heroElements = page
+      .locator("section, div")
+      .filter({ hasText: /Hadoop|Database/i });
     const count = await heroElements.count();
     expect(count).toBeGreaterThan(0);
   });
@@ -133,12 +145,16 @@ test.describe("Landing Page Navigation", () => {
     await page.waitForLoadState("load");
 
     // Click Documentation and API dropdown
-    const docsButton = page.getByRole("button", { name: /Documentation and API/i }).first();
+    const docsButton = page
+      .getByRole("button", { name: /Documentation and API/i })
+      .first();
     await docsButton.click();
     await page.waitForTimeout(300);
 
     // Find Reference Guide link and click it
-    const refGuideLink = page.getByRole("link", { name: /Reference Guide/i }).first();
+    const refGuideLink = page
+      .getByRole("link", { name: /Reference Guide/i })
+      .first();
 
     if ((await refGuideLink.count()) > 0 && (await refGuideLink.isVisible())) {
       await refGuideLink.click();
