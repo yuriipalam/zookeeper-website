@@ -16,19 +16,9 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/news";
-import { NewsPage } from "@/pages/_landing/news";
+import { MdLayout } from "@/components/mdx-components";
+import Content from "./content.md";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "News - Apache ZooKeeper" },
-    {
-      name: "description",
-      content: "Apache ZooKeeper release notes and migration guides."
-    }
-  ];
-}
-
-export default function News() {
-  return <NewsPage />;
+export function SecurityPage() {
+  return <MdLayout Content={Content} className="mt-12" />;
 }

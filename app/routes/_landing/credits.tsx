@@ -16,19 +16,20 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/news";
-import { NewsPage } from "@/pages/_landing/news";
+import type { Route } from "./+types/credits";
+import { CreditsPage } from "@/pages/_landing/credits";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "News - Apache ZooKeeper" },
+    { title: "Credits - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Apache ZooKeeper release notes and migration guides."
+      content:
+        "Meet the Apache ZooKeeper PMC members and committers who develop and maintain the project."
     }
   ];
 }
 
-export default function News() {
-  return <NewsPage />;
+export default function Credits() {
+  return <CreditsPage />;
 }

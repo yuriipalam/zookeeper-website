@@ -41,7 +41,7 @@ export function CommunitySection() {
                 </Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link to="/code-of-conduct">Code of Conduct</Link>
+                <Link to="/credits">Credits</Link>
               </Button>
             </div>
           </div>
@@ -52,29 +52,29 @@ export function CommunitySection() {
                 className="border-border/60 bg-background hover:border-primary focus-visible:ring-primary block rounded-lg border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
                 <span className="text-foreground font-medium">News &amp; Events</span>
-                <p className="text-muted-foreground">ZooKeeper releases, talks, and community meetups.</p>
+                <p className="text-muted-foreground">ZooKeeper release announcements and project news.</p>
                 <ArrowUpRight className="text-muted-foreground absolute top-2.5 right-2.5 size-4" />
               </Link>
             </li>
-            <li id="sponsors" className="relative p-0">
+            <li id="irc" className="relative p-0">
               <Link
-                to="/sponsors"
+                to="/irc"
                 className="border-border/60 bg-background hover:border-primary focus-visible:ring-primary block rounded-lg border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
-                <span className="text-foreground font-medium">Sponsors</span>
+                <span className="text-foreground font-medium">IRC Channel</span>
                 <p className="text-muted-foreground">
-                  Thanks to organizations supporting the project.
+                  Chat with the community on #zookeeper at irc.libera.chat.
                 </p>
                 <ArrowUpRight className="text-muted-foreground absolute top-2.5 right-2.5 size-4" />
               </Link>
             </li>
             <li id="security" className="relative p-0">
               <Link
-                to="/docs/security"
+                to="/security"
                 className="border-border/60 bg-background hover:border-primary focus-visible:ring-primary block rounded-lg border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
                 <span className="text-foreground font-medium">Security</span>
-                <p className="text-muted-foreground">See the Administrator's Guide security section.</p>
+                <p className="text-muted-foreground">Report vulnerabilities and review known CVEs.</p>
                 <ArrowUpRight className="text-muted-foreground absolute top-2.5 right-2.5 size-4" />
               </Link>
             </li>

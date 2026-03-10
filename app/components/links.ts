@@ -34,41 +34,29 @@ export const projectLinks: LinkType[] = [
     to: "/"
   },
   {
-    label: "Downloads",
-    to: "/downloads"
+    label: "Releases",
+    to: "/releases"
   },
   {
-    label: "Mailing Lists",
-    to: "/mailing-lists"
+    label: "Events",
+    to: "/events"
   },
   {
     label: "News",
     to: "/news"
   },
   {
-    label: "Team",
-    to: "/team"
+    label: "Mailing Lists",
+    to: "/mailing-lists"
   },
   {
-    label: "Powered by ZooKeeper",
-    to: "/powered-by-zookeeper"
+    label: "Credits",
+    to: "/credits"
   },
   {
-    label: "ZooKeeper Sponsors",
-    to: "/sponsors"
+    label: "Bylaws",
+    to: "/bylaws"
   },
-  {
-    label: "Code of Conduct",
-    to: "/code-of-conduct"
-  },
-  {
-    label: "Export Control",
-    to: "/export-control"
-  },
-  {
-    label: "Other Resources",
-    to: "/other-resources"
-  }
 ];
 
 export const documentationLinks: (LinkType | NestedLinkType)[] = [
@@ -77,22 +65,17 @@ export const documentationLinks: (LinkType | NestedLinkType)[] = [
     to: "/docs"
   },
   {
-    label: "Getting Started",
-    to: "/docs"
-  },
-  {
-    label: "Release Notes",
-    to: "https://zookeeper.apache.org/releases.html",
-    external: true
-  },
-  {
     label: "Issue Tracking",
     to: "https://issues.apache.org/jira/browse/ZOOKEEPER",
     external: true
   },
   {
-    label: "Source Repository",
-    to: "/source-repository"
+    label: "Security",
+    to: "/security"
+  },
+  {
+    label: "Version Control",
+    to: "/version-control"
   },
   {
     label: "Resources",
@@ -103,13 +86,8 @@ export const documentationLinks: (LinkType | NestedLinkType)[] = [
         external: true
       },
       {
-        label: "FAQ",
-        to: "https://cwiki.apache.org/confluence/display/ZOOKEEPER/FAQ",
-        external: true
-      },
-      {
-        label: "Recipes",
-        to: "/docs"
+        label: "IRC Channel",
+        to: "/irc"
       }
     ]
   }
@@ -166,11 +144,9 @@ function getZkDocsURL(version: string, option: ZkDocOption): string {
 }
 
 const zkDocsItems: Record<string, ZkDocOption[]> = {
-  "3.9.3": ["ref", "api"],
-  "3.8.4": ["ref", "api"],
-  "3.7.3": ["ref", "api"],
-  "3.6.4": ["ref", "api"],
-  "3.5.10": ["ref", "api"]
+  "3.9.5": ["ref", "api"],
+  "3.8.6": ["ref", "api"],
+  "3.7.2": ["ref", "api"]
 };
 
 export const docsLinks: NestedLinkType[] = Object.keys(zkDocsItems).map((version) => ({

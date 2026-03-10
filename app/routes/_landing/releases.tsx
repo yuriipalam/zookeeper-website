@@ -16,19 +16,20 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/news";
-import { NewsPage } from "@/pages/_landing/news";
+import type { Route } from "./+types/releases";
+import { ReleasesPage } from "@/pages/_landing/releases";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "News - Apache ZooKeeper" },
+    { title: "Releases - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Apache ZooKeeper release notes and migration guides."
+      content:
+        "Download Apache ZooKeeper releases. Includes current, stable, and archived versions with verification hashes and signatures."
     }
   ];
 }
 
-export default function News() {
-  return <NewsPage />;
+export default function Releases() {
+  return <ReleasesPage />;
 }

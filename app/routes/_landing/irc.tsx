@@ -16,19 +16,19 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/news";
-import { NewsPage } from "@/pages/_landing/news";
+import type { Route } from "./+types/irc";
+import { IrcPage } from "@/pages/_landing/irc";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "News - Apache ZooKeeper" },
+    { title: "IRC Channel - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Apache ZooKeeper release notes and migration guides."
+      content: "Connect with the Apache ZooKeeper community on IRC."
     }
   ];
 }
 
-export default function News() {
-  return <NewsPage />;
+export default function Irc() {
+  return <IrcPage />;
 }

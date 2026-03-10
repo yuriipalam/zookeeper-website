@@ -16,15 +16,64 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Apache HBase™ Mailing Lists
+# ZooKeeper Mailing Lists
 
-For each list, links are provided to subscribe, unsubscribe, and view archives.
+## Users
 
-| Name           | Subscribe                                              | Unsubscribe                                                | Post                                    | Archive                                                                         | Other Archives                                                            |
-| -------------- | ------------------------------------------------------ | ---------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| User List      | [Subscribe](mailto:user-subscribe@hbase.apache.org)    | [Unsubscribe](mailto:user-unsubscribe@hbase.apache.org)    | [Post](mailto:user@hbase.apache.org)    | [lists.apache.org](https://lists.apache.org/list.html?user@hbase.apache.org)    | [dir.gmane.org](https://dir.gmane.org/gmane.comp.java.hadoop.hbase.user)  |
-| Developer List | [Subscribe](mailto:dev-subscribe@hbase.apache.org)     | [Unsubscribe](mailto:dev-unsubscribe@hbase.apache.org)     | [Post](mailto:dev@hbase.apache.org)     | [lists.apache.org](https://lists.apache.org/list.html?dev@hbase.apache.org)     | [dir.gmane.org](https://dir.gmane.org/gmane.comp.java.hadoop.hbase.devel) |
-| Commits List   | [Subscribe](mailto:commits-subscribe@hbase.apache.org) | [Unsubscribe](mailto:commits-unsubscribe@hbase.apache.org) | -                                       | [lists.apache.org](https://lists.apache.org/list.html?commits@hbase.apache.org) | -                                                                         |
-| Issues List    | [Subscribe](mailto:issues-subscribe@hbase.apache.org)  | [Unsubscribe](mailto:issues-unsubscribe@hbase.apache.org)  | -                                       | [lists.apache.org](https://lists.apache.org/list.html?issues@hbase.apache.org)  | -                                                                         |
-| Builds List    | [Subscribe](mailto:builds-subscribe@hbase.apache.org)  | [Unsubscribe](mailto:builds-unsubscribe@hbase.apache.org)  | -                                       | [lists.apache.org](https://lists.apache.org/list.html?builds@hbase.apache.org)  | -                                                                         |
-| User (ZH) List | [Subscribe](mailto:user-zh-subscribe@hbase.apache.org) | [Unsubscribe](mailto:user-zh-unsubscribe@hbase.apache.org) | [Post](mailto:user-zh@hbase.apache.org) | [lists.apache.org](https://lists.apache.org/list.html?user-zh@hbase.apache.org) | -                                                                         |
+If you use ZooKeeper, please subscribe to the ZooKeeper user mailing list.
+
+The ZooKeeper user mailing list is: [user@zookeeper.apache.org](mailto:user@zookeeper.apache.org)
+
+- [Archives](https://mail-archives.apache.org/mod_mbox/zookeeper-user/)
+- [Alternative Archives](https://lists.apache.org/list.html?user@zookeeper.apache.org)
+- [Older Archives (Hadoop, pre-TLP)](https://mail-archives.apache.org/mod_mbox/hadoop-zookeeper-user/)
+- [Subscribe to List](mailto:user-subscribe@zookeeper.apache.org)
+- [Unsubscribe from List](mailto:user-unsubscribe@zookeeper.apache.org)
+
+> In order to post to the list, it is necessary to first subscribe to it.
+
+## Developers
+
+If you'd like to contribute to ZooKeeper, please subscribe to the ZooKeeper developer mailing list.
+
+This mailing list is for general developer chat and announcements. All notifications are sent to other mailing lists (see below). The only exception are new Jira issues which will still be sent to this list.
+
+The ZooKeeper developer mailing list is: [dev@zookeeper.apache.org](mailto:dev@zookeeper.apache.org)
+
+- [Archives](https://mail-archives.apache.org/mod_mbox/zookeeper-dev/)
+- [Alternative Archives](https://lists.apache.org/list.html?dev@zookeeper.apache.org)
+- [Older Archives (Hadoop, pre-TLP)](https://mail-archives.apache.org/mod_mbox/hadoop-zookeeper-dev/)
+- [Subscribe to List](mailto:dev-subscribe@zookeeper.apache.org)
+- [Unsubscribe from List](mailto:dev-unsubscribe@zookeeper.apache.org)
+
+> In order to post to the list, it is necessary to first subscribe to it.
+
+## Commits
+
+If you'd like to see changes made in ZooKeeper's version control system then subscribe to the ZooKeeper commit mailing list.
+
+- [Archives](https://mail-archives.apache.org/mod_mbox/zookeeper-commits/)
+- [Alternative Archives](https://lists.apache.org/list.html?commits@zookeeper.apache.org)
+- [Older Archives (Hadoop, pre-TLP)](https://mail-archives.apache.org/mod_mbox/hadoop-zookeeper-commits/)
+- [Subscribe to List](mailto:commits-subscribe@zookeeper.apache.org)
+- [Unsubscribe from List](mailto:commits-unsubscribe@zookeeper.apache.org)
+
+## Jira Notifications
+
+If you'd like to see notification mails for all changes made to Jira tickets then subscribe to the ZooKeeper issues mailing list.
+
+> Notifications for the creation of new issues will also be sent to the `dev` mailing list.
+
+- [Archives](https://lists.apache.org/list.html?issues@zookeeper.apache.org)
+- [Alternative Archives](https://mail-archives.apache.org/mod_mbox/zookeeper-issues/)
+- [Subscribe to List](mailto:issues-subscribe@zookeeper.apache.org)
+- [Unsubscribe from List](mailto:issues-unsubscribe@zookeeper.apache.org)
+
+## Git Notifications
+
+If you'd like to see notification mails for all non-commit related Git things (e.g. Pull Request comments) then subscribe to the ZooKeeper notifications mailing list.
+
+- [Archives](https://lists.apache.org/list.html?notifications@zookeeper.apache.org)
+- [Alternative Archives](https://mail-archives.apache.org/mod_mbox/zookeeper-notifications/)
+- [Subscribe to List](mailto:notifications-subscribe@zookeeper.apache.org)
+- [Unsubscribe from List](mailto:notifications-unsubscribe@zookeeper.apache.org)

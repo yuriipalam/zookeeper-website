@@ -16,19 +16,19 @@
 // limitations under the License.
 //
 
-import type { Route } from "./+types/news";
-import { NewsPage } from "@/pages/_landing/news";
+import type { Route } from "./+types/bylaws";
+import { BylawsPage } from "@/pages/_landing/bylaws";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "News - Apache ZooKeeper" },
+    { title: "Bylaws - Apache ZooKeeper" },
     {
       name: "description",
-      content: "Apache ZooKeeper release notes and migration guides."
+      content: "The bylaws under which the Apache ZooKeeper project operates."
     }
   ];
 }
 
-export default function News() {
-  return <NewsPage />;
+export default function Bylaws() {
+  return <BylawsPage />;
 }

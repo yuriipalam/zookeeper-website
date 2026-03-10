@@ -22,16 +22,15 @@ export default [
   // Landing
   layout("./pages/_landing/landing-layout.tsx", [
     index("routes/_landing/home.tsx"),
-    route("code-of-conduct", "routes/_landing/code-of-conduct.tsx"),
-    route("downloads", "routes/_landing/downloads.tsx"),
-    route("mailing-lists", "routes/_landing/mailing-lists.tsx"),
-    route("team", "routes/_landing/team.tsx"),
-    route("sponsors", "routes/_landing/sponsors.tsx"),
-    route("powered-by-zookeeper", "routes/_landing/powered-by-zookeeper.tsx"),
-    route("other-resources", "routes/_landing/other-resources.tsx"),
-    route("source-repository", "routes/_landing/source-repository.tsx"),
+    route("releases", "routes/_landing/releases.tsx"),
+    route("events", "routes/_landing/events.tsx"),
     route("news", "routes/_landing/news.tsx"),
-    route("export-control", "routes/_landing/export-control.tsx")
+    route("credits", "routes/_landing/credits.tsx"),
+    route("bylaws", "routes/_landing/bylaws.tsx"),
+    route("mailing-lists", "routes/_landing/mailing-lists.tsx"),
+    route("security", "routes/_landing/security.tsx"),
+    route("irc", "routes/_landing/irc.tsx"),
+    route("version-control", "routes/_landing/version-control.tsx")
   ]),
   // Docs
   layout("./pages/_docs/docs-layout.tsx", [route("docs/*", "routes/_docs/docs.tsx")]),

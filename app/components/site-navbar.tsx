@@ -146,7 +146,7 @@ function DocsMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={`${navLinkClass} inline-flex cursor-pointer items-center`}>
-          Documentation and API <ChevronDown className="ml-1 h-4 w-4" />
+          Documentation <ChevronDown className="ml-1 h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
@@ -336,7 +336,7 @@ function MobileDocsSection({ onLinkClick }: { onLinkClick: () => void }) {
   return (
     <Collapsible className="w-full">
       <CollapsibleTrigger className="flex w-full items-center justify-between py-2 text-left font-medium">
-        Documentation and API
+        Documentation
         <ChevronRight className="h-4 w-4 rotate-90 transition-transform group-data-[state=closed]:rotate-0" />
       </CollapsibleTrigger>
       <CollapsibleContent className="w-full space-y-2 pl-4">
@@ -470,7 +470,7 @@ function NoJSDocsMenu() {
   return (
     <details className="group relative">
       <summary className={`${navLinkClass} inline-flex cursor-pointer list-none items-center`}>
-        Documentation and API <ChevronDown className="ml-1 h-4 w-4" />
+        Documentation <ChevronDown className="ml-1 h-4 w-4" />
       </summary>
       <div className="bg-popover text-popover-foreground absolute top-full left-1/2 z-50 mt-1.5 min-w-[12rem] -translate-x-1/2 rounded-md border p-1 shadow-md">
         {documentationLinks.map((item) =>
@@ -609,7 +609,7 @@ function NoJSMobileDocsSection() {
   return (
     <details className="w-full">
       <summary className="flex w-full cursor-pointer items-center justify-between py-2 text-left font-medium">
-        Documentation and API
+        Documentation
         <ChevronRight className="h-4 w-4" />
       </summary>
       <div className="w-full space-y-2 pt-2 pl-4">

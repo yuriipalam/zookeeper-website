@@ -24,7 +24,7 @@ export function GettingStartedSection() {
     {
       title: "1. Download",
       desc: "Grab the latest stable release and verify checksums.",
-      to: "/downloads"
+      to: "/releases"
     },
     {
       title: "2. Read the Guide",

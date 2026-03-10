@@ -49,7 +49,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg">
-              <Link to="/downloads">Download ZooKeeper</Link>
+              <Link to="/releases">Download ZooKeeper</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link to="/docs">Read Documentation</Link>
