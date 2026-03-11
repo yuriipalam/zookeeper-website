@@ -74,7 +74,7 @@ export function SiteNavbar() {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link
           to="/"
-          className="relative z-50 flex items-center gap-3 transition-opacity hover:opacity-90"
+          className="relative z-50 flex items-center gap-2 transition-opacity hover:opacity-90"
           aria-label="ZooKeeper Home"
         >
           <img
@@ -83,7 +83,9 @@ export function SiteNavbar() {
             width={36}
             height={36}
           />
-          <span className="font-bold tracking-tight text-lg hidden sm:inline-block">ZooKeeper</span>
+          <span className="hidden text-lg font-medium tracking-tight sm:inline-block">
+            ZooKeeper
+          </span>
         </Link>
 
         {/* Desktop menus */}
