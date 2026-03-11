@@ -61,12 +61,13 @@ export function UseCasesSection() {
   return (
     <section id="use-cases" className="border-border/60 bg-muted/20 border-y">
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="mb-12 text-center max-w-3xl mx-auto">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Use Cases
           </h2>
           <p className="text-muted-foreground mt-4 text-lg">
-            Common patterns and distributed systems problems where ZooKeeper excels.
+            Common patterns and distributed systems problems where ZooKeeper
+            excels.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -76,11 +77,8 @@ export function UseCasesSection() {
               className="border-border/60 bg-card/80 rounded-2xl border p-6 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="bg-background rounded-lg p-2.5 border border-border/50 shadow-sm shrink-0">
-                  <Icon
-                    className="text-primary size-6"
-                    aria-hidden
-                  />
+                <div className="bg-background border-border/50 shrink-0 rounded-lg border p-2.5 shadow-sm">
+                  <Icon className="text-primary size-6" aria-hidden />
                 </div>
                 <div>
                   <h3 className="text-foreground text-lg font-semibold">

@@ -44,13 +44,13 @@ export function FeaturesSection() {
   ];
   return (
     <section id="features" className="container mx-auto px-4 py-16 md:py-24">
-      <div className="mb-12 text-center max-w-3xl mx-auto">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
           Why ZooKeeper
         </h2>
         <p className="text-muted-foreground mt-4 text-lg">
-          A proven coordination kernel trusted by Kafka, Hadoop, HBase, and
-          many other distributed systems.
+          A proven coordination kernel trusted by Kafka, Hadoop, HBase, and many
+          other distributed systems.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

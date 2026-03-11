@@ -23,9 +23,9 @@ import { Link } from "@/components/link";
 export function CommunitySection() {
   return (
     <section id="community" className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background"></div>
+      <div className="from-primary/10 via-background to-background absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))]"></div>
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <div>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
               A Vibrant Community
@@ -53,9 +53,11 @@ export function CommunitySection() {
             <li id="news" className="relative p-0">
               <Link
                 to="/news"
-                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 transition-all duration-200 focus-visible:ring-2 focus-visible:outline-none shadow-sm hover:shadow-md"
+                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 shadow-sm transition-all duration-200 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
               >
-                <span className="text-foreground text-lg font-semibold">News</span>
+                <span className="text-foreground text-lg font-semibold">
+                  News
+                </span>
                 <p className="text-muted-foreground mt-1 text-base">
                   ZooKeeper release announcements and project news.
                 </p>
@@ -65,9 +67,11 @@ export function CommunitySection() {
             <li id="irc" className="relative p-0">
               <Link
                 to="/irc"
-                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 transition-all duration-200 focus-visible:ring-2 focus-visible:outline-none shadow-sm hover:shadow-md"
+                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 shadow-sm transition-all duration-200 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
               >
-                <span className="text-foreground text-lg font-semibold">IRC Channel</span>
+                <span className="text-foreground text-lg font-semibold">
+                  IRC Channel
+                </span>
                 <p className="text-muted-foreground mt-1 text-base">
                   Chat with the community on #zookeeper at irc.libera.chat.
                 </p>
@@ -77,9 +81,11 @@ export function CommunitySection() {
             <li id="security" className="relative p-0">
               <Link
                 to="/security"
-                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 transition-all duration-200 focus-visible:ring-2 focus-visible:outline-none shadow-sm hover:shadow-md"
+                className="group border-border/60 bg-card/50 hover:bg-card hover:border-primary/50 focus-visible:ring-primary block rounded-2xl border p-6 shadow-sm transition-all duration-200 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
               >
-                <span className="text-foreground text-lg font-semibold">Security</span>
+                <span className="text-foreground text-lg font-semibold">
+                  Security
+                </span>
                 <p className="text-muted-foreground mt-1 text-base">
                   Report vulnerabilities and review known CVEs.
                 </p>

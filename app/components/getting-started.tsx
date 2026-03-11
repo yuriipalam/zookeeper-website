@@ -16,7 +16,6 @@
 // limitations under the License.
 //
 
-import { Button } from "@/ui/button";
 import { Link } from "@/components/link";
 import { ArrowRight } from "lucide-react";
 
@@ -44,7 +43,7 @@ export function GettingStartedSection() {
       className="border-border/60 bg-muted/20 border-y"
     >
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="mb-12 text-center max-w-3xl mx-auto">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Getting Started
           </h2>
@@ -57,7 +56,7 @@ export function GettingStartedSection() {
             <Link
               key={s.title}
               to={s.to}
-              className="group border-border/60 bg-card/80 hover:bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200 flex flex-col rounded-2xl border p-6 shadow-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              className="group border-border/60 bg-card/80 hover:bg-card hover:border-primary/50 focus-visible:ring-primary flex flex-col rounded-2xl border p-6 shadow-sm transition-all duration-200 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
             >
               <h3 className="text-foreground text-xl font-semibold">
                 {s.title}
@@ -65,8 +64,9 @@ export function GettingStartedSection() {
               <p className="text-muted-foreground mt-2 text-base leading-relaxed">
                 {s.desc}
               </p>
-              <div className="mt-auto pt-6 flex items-center text-primary font-medium text-sm">
-                Learn more <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <div className="text-primary mt-auto flex items-center pt-6 text-sm font-medium">
+                Learn more{" "}
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           ))}

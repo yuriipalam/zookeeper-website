@@ -39,12 +39,14 @@ export function FeatureCard({
       )}
     >
       {Icon && (
-        <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+        <div className="bg-primary/10 text-primary mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl">
           <Icon className="h-6 w-6" />
         </div>
       )}
       <h3 className="text-foreground mb-3 text-xl font-semibold">{title}</h3>
-      <p className="text-muted-foreground text-base leading-relaxed">{children}</p>
+      <p className="text-muted-foreground text-base leading-relaxed">
+        {children}
+      </p>
     </div>
   );
 }
