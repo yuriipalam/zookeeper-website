@@ -18,6 +18,7 @@
 
 import { Button } from "@/ui/button";
 import { Link } from "@/components/link";
+import { ArrowRight } from "lucide-react";
 
 export function GettingStartedSection() {
   const steps = [
@@ -40,35 +41,34 @@ export function GettingStartedSection() {
   return (
     <section
       id="getting-started"
-      className="border-border/60 bg-muted/30 border-y"
+      className="border-border/60 bg-muted/20 border-y"
     >
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Getting Started
           </h2>
-          <p className="text-muted-foreground mt-2">
+          <p className="text-muted-foreground mt-4 text-lg">
             Up and running with ZooKeeper in a few simple steps.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {steps.map((s) => (
-            <div
+            <Link
               key={s.title}
-              className="border-border/60 bg-card flex flex-col rounded-xl border p-5 shadow-sm"
+              to={s.to}
+              className="group border-border/60 bg-card/80 hover:bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200 flex flex-col rounded-2xl border p-6 shadow-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
-              <h3 className="text-foreground text-lg font-semibold">
+              <h3 className="text-foreground text-xl font-semibold">
                 {s.title}
               </h3>
-              <p className="text-muted-foreground mt-1 text-sm leading-6">
+              <p className="text-muted-foreground mt-2 text-base leading-relaxed">
                 {s.desc}
               </p>
-              <div className="mt-auto">
-                <Button asChild size="sm" variant="link" className="p-0">
-                  <Link to={s.to}>Learn more →</Link>
-                </Button>
+              <div className="mt-auto pt-6 flex items-center text-primary font-medium text-sm">
+                Learn more <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

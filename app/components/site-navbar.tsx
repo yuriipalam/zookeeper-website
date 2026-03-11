@@ -67,23 +67,23 @@ export function SiteNavbar() {
   return (
     <header
       className={cn(
-        isScrolled ? "border-border/60" : "border-border/0",
-        "bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur transition-[border] duration-200"
+        isScrolled ? "border-border/60 shadow-sm" : "border-transparent",
+        "bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-md transition-all duration-300"
       )}
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link
           to="/"
-          className="relative z-50 flex items-center gap-3"
+          className="relative z-50 flex items-center gap-3 transition-opacity hover:opacity-90"
           aria-label="ZooKeeper Home"
         >
           <img
             src="/images/logo.svg"
             alt="Apache ZooKeeper logo"
-            width={40}
-            height={40}
+            width={36}
+            height={36}
           />
-          <span className="sr-only">Apache ZooKeeper</span>
+          <span className="font-bold tracking-tight text-lg hidden sm:inline-block">ZooKeeper</span>
         </Link>
 
         {/* Desktop menus */}

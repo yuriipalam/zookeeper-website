@@ -18,25 +18,33 @@
 
 import type React from "react";
 import { cn } from "@/lib/utils";
+import type { LucideIcon } from "lucide-react";
 
 export function FeatureCard({
   title,
   children,
+  icon: Icon,
   className
 }: {
   title: string;
   children: React.ReactNode;
+  icon?: LucideIcon;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "border-border/60 bg-card rounded-xl border p-5 text-left shadow-sm",
+        "border-border/60 bg-card/50 rounded-2xl border p-8 text-left shadow-sm backdrop-blur-sm",
         className
       )}
     >
-      <h3 className="text-primary mb-2 text-lg font-semibold">{title}</h3>
-      <p className="text-muted-foreground text-sm leading-6">{children}</p>
+      {Icon && (
+        <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <Icon className="h-6 w-6" />
+        </div>
+      )}
+      <h3 className="text-foreground mb-3 text-xl font-semibold">{title}</h3>
+      <p className="text-muted-foreground text-base leading-relaxed">{children}</p>
     </div>
   );
 }
