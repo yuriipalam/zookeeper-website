@@ -1,0 +1,17 @@
+{
+  "title": "Admin & Ops",
+  "pages": [
+    "administrators-guide",
+    "quota-guide",
+    "snapshot-and-restore-guide",
+    "jmx",
+    "hierarchical-quorums",
+    "oracle-quorum",
+    "observers-guide",
+    "dynamic-reconfiguration",
+    "zookeeper-cli",
+    "zookeeper-tools",
+    "zookeeper-monitor",
+    "audit-logs"
+  ]
+}

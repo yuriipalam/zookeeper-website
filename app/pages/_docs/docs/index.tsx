@@ -32,18 +32,20 @@ import { useParams } from "react-router";
 import { useEffect } from "react";
 import { getPageTreePeers } from "fumadocs-core/page-tree";
 import { Card, Cards } from "fumadocs-ui/components/card";
+import { Callout } from "fumadocs-ui/components/callout";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Link } from "@/components/link";
 import type { MDXComponents } from "mdx/types";
 import type { TOCItemType } from "fumadocs-core/toc";
 import hbaseVersion from "@/lib/export-pdf/hbase-version.json";
 
-// Extend default MDX components to include Steps globally
+// Extend default MDX components to include shared UI blocks globally.
 // Note: We'll override the 'a' component in the renderer to handle route-specific logic
 const baseMdxComponents: MDXComponents = {
   ...defaultMdxComponents,
   p: (props) => <p className="wrap-anywhere" {...props} />,
   h1: (props) => <h1 className="font-bold" {...props} />,
+  Callout,
   Step,
   Steps
 };
@@ -69,7 +71,7 @@ const renderer = toClientRenderer(
   ({ toc, default: Mdx, frontmatter }, { tree }: { tree: PageTree.Root }) => {
     const route = useParams()["*"];
     const baseGithubPath =
-      "hbase-website/app/pages/_docs/docs/_mdx/(multi-page)/";
+      "zookeeper-website/app/pages/_docs/docs/_mdx/(multi-page)/";
 
     // Filter TOC: only H1 (depth: 1) for single-page, all headings for other pages
     const isSinglePage = route?.startsWith("single-page");
@@ -148,7 +150,7 @@ const renderer = toClientRenderer(
           }
           transformedHref = `#${anchor}`;
         } else if (href?.startsWith("/")) {
-          transformedHref = "https://hbase.apache.org" + href;
+          transformedHref = "https://zookeeper.apache.org" + href;
         }
       }
 
