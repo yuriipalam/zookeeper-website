@@ -3,7 +3,7 @@
   "description": "Apache ZooKeeper multi-page reference",
   "root": true,
   "pages": [
-    "---Overview---",
+    "---Getting Started---",
     "index",
     "...overview",
     "---Developer---",

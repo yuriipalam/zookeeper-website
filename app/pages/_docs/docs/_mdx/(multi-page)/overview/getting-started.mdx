@@ -3,20 +3,9 @@ title: "Quick Start"
 description: "This document contains information to get you started quickly with ZooKeeper."
 ---
 
-* [Getting Started: Coordinating Distributed Applications with ZooKeeper](#getting-started-coordinating-distributed-applications-with-zooKeeper)
-    * [Pre-requisites](#sc_Prerequisites)
-    * [Download](#sc_Download)
-    * [Standalone Operation](#sc_InstallingSingleMode)
-    * [Managing ZooKeeper Storage](#sc_FileManagement)
-    * [Connecting to ZooKeeper](#sc_ConnectingToZooKeeper)
-    * [Programming to ZooKeeper](#sc_ProgrammingToZooKeeper)
-    * [Running Replicated ZooKeeper](#sc_RunningReplicatedZooKeeper)
-    * [Other Optimizations](#other-optimizations)
+## Coordinating Distributed Applications with ZooKeeper
 
-## Getting Started: Coordinating Distributed Applications with ZooKeeper
-
-This document contains information to get you started quickly with
-ZooKeeper. It is aimed primarily at developers hoping to try it out, and
+The document is aimed primarily at developers hoping to try it out, and
 contains simple installation instructions for a single ZooKeeper server, a
 few commands to verify that it is running, and a simple programming
 example. Finally, as a convenience, there are a few sections regarding
@@ -51,41 +40,31 @@ create it in **conf/zoo.cfg**:
 tickTime=2000
 dataDir=/var/lib/zookeeper
 clientPort=2181
-
 ```
 
 This file can be called anything, but for the sake of this
 discussion call
 it **conf/zoo.cfg**. Change the
 value of **dataDir** to specify an
-existing (empty to start with) directory.  Here are the meanings
+existing (empty to start with) directory. Here are the meanings
 for each of the fields:
 
-* ***tickTime*** :
-    the basic time unit in milliseconds used by ZooKeeper. It is
-```
-used to do heartbeats and the minimum session timeout will be
-twice the tickTime.
-
-```
-
-* ***dataDir*** :
-    the location to store the in-memory database snapshots and,
-```
-unless specified otherwise, the transaction log of updates to the
-database.
-
-```
-
-* ***clientPort*** :
-    the port to listen for client connections
+- **_tickTime_** :
+  the basic time unit in milliseconds used by ZooKeeper. It is
+  used to do heartbeats and the minimum session timeout will be
+  twice the tickTime.
+- **_dataDir_** :
+  the location to store the in-memory database snapshots and,
+  unless specified otherwise, the transaction log of updates to the
+  database.
+- **_clientPort_** :
+  the port to listen for client connections
 
 Now that you created the configuration file, you can start
 ZooKeeper:
 
 ```bash
 bin/zkServer.sh start
-
 ```
 
 ZooKeeper logs messages using _logback_ -- more detail
@@ -111,14 +90,16 @@ more details.
 ### Connecting to ZooKeeper
 
 <Steps>
-<Step>Start `zkCli.sh` and connect to your ZooKeeper server.</Step>
-<Step>Run `help` to list commands and verify client connectivity.</Step>
-<Step>Create, inspect, update, and delete a test znode to validate end-to-end operation.</Step>
+  <Step>Start `zkCli.sh` and connect to your ZooKeeper server.</Step>
+  <Step>Run `help` to list commands and verify client connectivity.</Step>
+  <Step>
+    Create, inspect, update, and delete a test znode to validate end-to-end
+    operation.
+  </Step>
 </Steps>
 
 ```bash
 $ bin/zkCli.sh -server 127.0.0.1:2181
-
 ```
 
 This lets you perform simple, file-like operations.
@@ -131,7 +112,6 @@ Connecting to localhost:2181
 Welcome to ZooKeeper!
 JLine support is enabled
 [zkshell: 0]
-
 ```
 
 From the shell, type `help` to get a listing of commands that can be executed from the client, as in:
@@ -164,25 +144,21 @@ setAcl [-s] [-v version] [-R] path acl
 setquota -n|-b val path
 stat [-w] path
 sync path
-
 ```
 
-From here, you can try a few simple commands to get a feel for this simple command line interface.  First, start by issuing the list command, as
+From here, you can try a few simple commands to get a feel for this simple command line interface. First, start by issuing the list command, as
 in `ls`, yielding:
 
 ```
 [zkshell: 8] ls /
 [zookeeper]
-
 ```
 
 Next, create a new znode by running `create /zk_test my_data`. This creates a new znode and associates the string "my_data" with the node.
 You should see:
-
 ```
 [zkshell: 9] create /zk_test my_data
 Created /zk_test
-
 ```
 
 Issue another `ls /` command to see what the directory looks like:
@@ -190,7 +166,6 @@ Issue another `ls /` command to see what the directory looks like:
 ```
 [zkshell: 11] ls /
 [zookeeper, zk_test]
-
 ```
 
 Notice that the zk_test directory has now been created.
@@ -211,7 +186,6 @@ aclVersion = 0
 ephemeralOwner = 0
 dataLength = 7
 numChildren = 0
-
 ```
 
 We can change the data associated with zk_test by issuing the `set` command, as in:
@@ -242,7 +216,6 @@ aclVersion = 0
 ephemeralOwner = 0
 dataLength = 4
 numChildren = 0
-
 ```
 
 (Notice we did a `get` after setting the data and it did, indeed, change.
@@ -254,7 +227,6 @@ Finally, let's `delete` the node by issuing:
 [zkshell: 17] ls /
 [zookeeper]
 [zkshell: 18]
-
 ```
 
 That's it for now. To explore more, see the [Zookeeper CLI](/docs/admin-ops/zookeeper-cli).
@@ -278,7 +250,7 @@ mode, all servers in the quorum have copies of the same configuration
 file.
 
 <Callout type="info">
-For replicated mode, a minimum of three servers are required,
+  For replicated mode, a minimum of three servers are required,
 </Callout>
 
 and it is strongly recommended that you have an odd number of
@@ -302,7 +274,6 @@ syncLimit=2
 server.1=zoo1:2888:3888
 server.2=zoo2:2888:3888
 server.3=zoo3:2888:3888
-
 ```
 
 The new entry, **initLimit** is
@@ -333,38 +304,32 @@ currently require another port for leader election. This is the
 second port in the server entry.
 
 <Callout type="info">
-If you want to test multiple servers on a single
+  If you want to test multiple servers on a single machine, specify the servername
+  as _localhost_ with unique quorum &amp; leader election ports (i.e. 2888:3888, 2889:3889,
+  2890:3890 in the example above) for each server.X in that server's config file. Of course
+  separate _dataDir_s and distinct _clientPort_s are also necessary (in the above replicated
+  example, running on a single _localhost_, you would still have three config files).
 </Callout>
 
-machine, specify the servername
-as _localhost_ with unique quorum &
-leader election ports (i.e. 2888:3888, 2889:3889, 2890:3890 in
-the example above) for each server.X in that server's config
-file. Of course separate _dataDir_s and
-distinct _clientPort_s are also necessary
-(in the above replicated example, running on a
-single _localhost_, you would still have
-three config files).
+> Please be aware that setting up multiple servers on a single
+> machine will not create any redundancy. If something were to
+> happen which caused the machine to die, all of the zookeeper
+> servers would be offline. Full redundancy requires that each
+> server have its own machine. It must be a completely separate
+> physical server. Multiple virtual machines on the same physical
+> host are still vulnerable to the complete failure of that host.
 
->Please be aware that setting up multiple servers on a single
-machine will not create any redundancy. If something were to
-happen which caused the machine to die, all of the zookeeper
-servers would be offline. Full redundancy requires that each
-server have its own machine. It must be a completely separate
-physical server. Multiple virtual machines on the same physical
-host are still vulnerable to the complete failure of that host.
-
->If you have multiple network interfaces in your ZooKeeper machines,
-you can also instruct ZooKeeper to bind on all of your interfaces and
-automatically switch to a healthy interface in case of a network failure.
-For details, see the [Configuration Parameters](/docs/admin-ops/administrators-guide#id_multi_address).
+> If you have multiple network interfaces in your ZooKeeper machines,
+> you can also instruct ZooKeeper to bind on all of your interfaces and
+> automatically switch to a healthy interface in case of a network failure.
+> For details, see the [Configuration Parameters](/docs/admin-ops/administrators-guide#id_multi_address).
 
 ### Other Optimizations
 
 There are a couple of other configuration parameters that can
 greatly increase performance:
 
-* To get low latencies on updates it is important to
+- To get low latencies on updates it is important to
   have a dedicated transaction log directory. By default
   transaction logs are put in the same directory as the data
   snapshots and _myid_ file. The dataLogDir
