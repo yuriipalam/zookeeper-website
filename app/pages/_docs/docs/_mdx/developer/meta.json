@@ -4,7 +4,7 @@
     "programmers-guide",
     "use-cases",
     "java-example",
-    "barrier-and-queue-tutorial",
+    "basic-tutorial",
     "recipes",
     "external:[API Docs](https://zookeeper.apache.org/doc/current/apidocs/zookeeper-server/index.html)"
   ]
