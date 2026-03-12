@@ -12,8 +12,6 @@ description: "ZooKeeper has both namespace and bytes quotas. You can use the Zoo
     * [Listing Quotas](#Listing+Quotas)
     * [Deleting Quotas](#Deleting+Quotas)
 
-<a id="zookeeper_quotas"></a>
-
 ## Quotas
 
 ZooKeeper has both namespace and bytes quotas. You can use the ZooKeeperMain class to setup quotas.
@@ -29,8 +27,6 @@ $ bin/zkCli.sh -server host:port**
 ```
 
 The above command gives you a command line option of using quotas.
-
-<a id="Setting+Quotas"></a>
 
 ### Setting Quotas
 
@@ -65,13 +61,9 @@ setquota -n 100000 /apps/app1
 - The quota supports the soft and hard quota. The soft quota just logs the warning info when exceeding the quota, but the hard quota
 also throws a `QuotaExceededException`. When setting soft and hard quota on the same path, the hard quota has the priority.
 
-<a id="Listing+Quotas"></a>
-
 ### Listing Quotas
 
 You can use _listquota_ to list a quota on a ZooKeeper node.
-
-<a id="Deleting+Quotas"></a>
 
 ### Deleting Quotas
 

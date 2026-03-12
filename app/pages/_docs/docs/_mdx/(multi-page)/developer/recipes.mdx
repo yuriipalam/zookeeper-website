@@ -1,25 +1,7 @@
 ---
-title: "ZooKeeper Recipes and Solutions"
-description: "In this article, you'll find guidelines for using"
+title: "Recipes and Solutions"
+description: "Guidelines for using ZooKeeper to implement higher-order constructs such as barriers, queues, locks, and leader election."
 ---
-
-# ZooKeeper Recipes and Solutions
-
-* [A Guide to Creating Higher-level Constructs with ZooKeeper](#ch_recipes)
-    * [Important Note About Error Handling](#sc_recipes_errorHandlingNote)
-    * [Out of the Box Applications: Name Service, Configuration, Group Membership](#sc_outOfTheBox)
-    * [Barriers](#sc_recipes_eventHandles)
-        * [Double Barriers](#sc_doubleBarriers)
-    * [Queues](#sc_recipes_Queues)
-        * [Priority Queues](#sc_recipes_priorityQueues)
-    * [Locks](#sc_recipes_Locks)
-        * [Recoverable Errors and the GUID](#sc_recipes_GuidNote)
-        * [Shared Locks](#Shared+Locks)
-        * [Revocable Shared Locks](#sc_revocableSharedLocks)
-    * [Two-phased Commit](#sc_recipes_twoPhasedCommit)
-    * [Leader Election](#sc_leaderElection)
-
-<a id="ch_recipes"></a>
 
 ## A Guide to Creating Higher-level Constructs with ZooKeeper
 
@@ -49,8 +31,6 @@ as event handles or queues, a more practical means of performing the same
 function. In general, the examples in this section are designed to
 stimulate thought.
 
-<a id="sc_recipes_errorHandlingNote"></a>
-
 ### Important Note About Error Handling
 
 When implementing the recipes you must handle recoverable exceptions
@@ -62,8 +42,6 @@ returning the name of the node to the client. When the client reconnects its
 session is still valid and, thus, the node is not removed. The implication is
 that it is difficult for the client to know if its node was created or not. The
 recipes below include measures to handle this.
-
-<a id="sc_outOfTheBox"></a>
 
 ### Out of the Box Applications: Name Service, Configuration, Group Membership
 
@@ -77,8 +55,6 @@ group create ephemeral nodes under the group node. Nodes of the members
 that fail abnormally will be removed automatically when ZooKeeper detects
 the failure.
 
-<a id="sc_recipes_eventHandles"></a>
-
 ### Barriers
 
 Distributed systems use _barriers_
@@ -89,17 +65,15 @@ barrier is in place if the barrier node exists. Here's the
 pseudo code:
 
 1. Client calls the ZooKeeper API's **exists()** function on the barrier node, with
-  _watch_ set to true.
+   _watch_ set to true.
 1. If **exists()** returns false, the
-  barrier is gone and the client proceeds
+   barrier is gone and the client proceeds
 1. Else, if **exists()** returns true,
-  the clients wait for a watch event from ZooKeeper for the barrier
-  node.
+   the clients wait for a watch event from ZooKeeper for the barrier
+   node.
 1. When the watch event is triggered, the client reissues the
-  **exists( )** call, again waiting until
-  the barrier node is removed.
-
-<a id="sc_doubleBarriers"></a>
+   **exists( )** call, again waiting until
+   the barrier node is removed.
 
 #### Double Barriers
 
@@ -117,14 +91,14 @@ _x_ client process register before proceeding with
 the computation. (The _x_ here is up to you to
 determine for your system.)
 
-| **Enter**                         | **Leave**                     |
-|-----------------------------------|-------------------------------|
-| 1. Create a name __n_ = _b_+“/”+_p__ | 1. **L = getChildren(b, false)** |
-| 2. Set watch: **exists(_b_ + ‘‘/ready’’, true)** | 2. if no children, exit |
-| 3. Create child: **create(_n_, EPHEMERAL)**  | 3. if _p_ is only process node in L, delete(n) and exit |
-| 4. **L = getChildren(b, false)**  | 4. if _p_ is the lowest process node in L, wait on highest process node in L |
-| 5. if fewer children in L than_x_, wait for watch event  | 5. else **delete(_n_)**if still exists and wait on lowest process node in L |
-| 6. else **create(b + ‘‘/ready’’, REGULAR)** | 6. goto 1 |
+| **Enter**                                               | **Leave**                                                                    |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 1. Create a name **n* = \_b*+“/”+\_p**                  | 1. **L = getChildren(b, false)**                                             |
+| 2. Set watch: **exists(_b_ + ‘‘/ready’’, true)**        | 2. if no children, exit                                                      |
+| 3. Create child: **create(_n_, EPHEMERAL)**             | 3. if _p_ is only process node in L, delete(n) and exit                      |
+| 4. **L = getChildren(b, false)**                        | 4. if _p_ is the lowest process node in L, wait on highest process node in L |
+| 5. if fewer children in L than*x*, wait for watch event | 5. else **delete(_n_)**if still exists and wait on lowest process node in L  |
+| 6. else **create(b + ‘‘/ready’’, REGULAR)**             | 6. goto 1                                                                    |
 
 On entering, all processes watch on a ready node and
 create an ephemeral node as a child of the barrier node. Each process
@@ -150,8 +124,6 @@ the owner of the lowest process watches for any other process node
 single process wakes up on each node deletion except for the last node,
 which wakes up everyone when it is removed.
 
-<a id="sc_recipes_Queues"></a>
-
 ### Queues
 
 Distributed queues are a common data structure. To implement a
@@ -171,13 +143,11 @@ the list obtained from the first **getChildren(
 reader waits for a watch notification to check the queue again.
 
 <Callout type="info">
-There now exists a Queue implementation in ZooKeeper
+  There now exists a Queue implementation in ZooKeeper
 </Callout>
 
 recipes directory. This is distributed with the release --
 zookeeper-recipes/zookeeper-recipes-queue directory of the release artifact.
-
-<a id="sc_recipes_priorityQueues"></a>
 
 #### Priority Queues
 
@@ -190,8 +160,6 @@ from the queue, a client uses an up-to-date children list meaning that
 the client will invalidate previously obtained children lists if a watch
 notification triggers for the queue node.
 
-<a id="sc_recipes_Locks"></a>
-
 ### Locks
 
 Fully distributed locks that are globally synchronous, meaning at
@@ -200,7 +168,7 @@ can be implemented using ZooKeeper. As with priority queues, first define
 a lock node.
 
 <Callout type="info">
-There now exists a Lock implementation in ZooKeeper
+  There now exists a Lock implementation in ZooKeeper
 </Callout>
 
 recipes directory. This is distributed with the release --
@@ -209,79 +177,70 @@ zookeeper-recipes/zookeeper-recipes-lock directory of the release artifact.
 Clients wishing to obtain a lock do the following:
 
 1. Call **create( )** with a pathname
-  of "_locknode_/guid-lock-" and the _sequence_ and
-  _ephemeral_ flags set. The _guid_
-  is needed in case the create() result is missed. See the note below.
+   of "_locknode_/guid-lock-" and the _sequence_ and
+   _ephemeral_ flags set. The _guid_
+   is needed in case the create() result is missed. See the note below.
 1. Call **getChildren( )** on the lock
-  node _without_ setting the watch flag (this is
-  important to avoid the herd effect).
+   node _without_ setting the watch flag (this is
+   important to avoid the herd effect).
 1. If the pathname created in step **1** has the lowest sequence number suffix, the
-  client has the lock and the client exits the protocol.
+   client has the lock and the client exits the protocol.
 1. The client calls **exists( )** with
-  the watch flag set on the path in the lock directory with the next
-  lowest sequence number.
+   the watch flag set on the path in the lock directory with the next
+   lowest sequence number.
 1. if **exists( )** returns null, go
-  to step **2**. Otherwise, wait for a
-  notification for the pathname from the previous step before going to
-  step **2**.
+   to step **2**. Otherwise, wait for a
+   notification for the pathname from the previous step before going to
+   step **2**.
 
 The unlock protocol is very simple: clients wishing to release a
 lock simply delete the node they created in step 1.
 
 Here are a few things to notice:
 
-* The removal of a node will only cause one client to wake up
+- The removal of a node will only cause one client to wake up
   since each node is watched by exactly one client. In this way, you
   avoid the herd effect.
-
-* There is no polling or timeouts.
-
-* Because of the way you implement locking, it is easy to see the
+- There is no polling or timeouts.
+- Because of the way you implement locking, it is easy to see the
   amount of lock contention, break locks, debug locking problems,
   etc.
 
-<a id="sc_recipes_GuidNote"></a>
-
 #### Recoverable Errors and the GUID
 
-* If a recoverable error occurs calling **create()** the
+- If a recoverable error occurs calling **create()** the
   client should call **getChildren()** and check for a node
   containing the _guid_ used in the path name.
   This handles the case (noted [above](#sc_recipes_errorHandlingNote)) of
   the create() succeeding on the server but the server crashing before returning the name
   of the new node.
 
-<a id="Shared+Locks"></a>
-
 #### Shared Locks
 
 You can implement shared locks by with a few changes to the lock
 protocol:
 
-| **Obtaining a read lock:** | **Obtaining a write lock:** |
-|----------------------------|-----------------------------|
-| 1. Call **create( )** to create a node with pathname "*guid-/read-*". This is the lock node use later in the protocol. Make sure to set both the _sequence_ and _ephemeral_ flags. | 1. Call **create( )** to create a node with pathname "*guid-/write-*". This is the lock node spoken of later in the protocol. Make sure to set both _sequence_ and _ephemeral_ flags. |
-| 2. Call **getChildren( )** on the lock node _without_ setting the _watch_ flag - this is important, as it avoids the herd effect. | 2. Call **getChildren( )** on the lock node _without_ setting the _watch_ flag - this is important, as it avoids the herd effect. |
-| 3. If there are no children with a pathname starting with "*write-*" and having a lower sequence number than the node created in step **1**, the client has the lock and can exit the protocol. | 3. If there are no children with a lower sequence number than the node created in step **1**, the client has the lock and the client exits the protocol. |
-| 4. Otherwise, call **exists( )**, with _watch_ flag, set on the node in lock directory with pathname starting with "*write-*" having the next lowest sequence number. | 4. Call **exists( ),** with _watch_ flag set, on the node with the pathname that has the next lowest sequence number. |
-| 5. If **exists( )** returns _false_, goto step **2**. | 5. If **exists( )** returns _false_, goto step **2**. Otherwise, wait for a notification for the pathname from the previous step before going to step **2**. |
-| 6. Otherwise, wait for a notification for the pathname from the previous step before going to step **2** |  |
+| **Obtaining a read lock:**                                                                                                                                                                      | **Obtaining a write lock:**                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Call **create( )** to create a node with pathname "_guid-/read-_". This is the lock node use later in the protocol. Make sure to set both the _sequence_ and _ephemeral_ flags.              | 1. Call **create( )** to create a node with pathname "_guid-/write-_". This is the lock node spoken of later in the protocol. Make sure to set both _sequence_ and _ephemeral_ flags. |
+| 2. Call **getChildren( )** on the lock node _without_ setting the _watch_ flag - this is important, as it avoids the herd effect.                                                               | 2. Call **getChildren( )** on the lock node _without_ setting the _watch_ flag - this is important, as it avoids the herd effect.                                                     |
+| 3. If there are no children with a pathname starting with "_write-_" and having a lower sequence number than the node created in step **1**, the client has the lock and can exit the protocol. | 3. If there are no children with a lower sequence number than the node created in step **1**, the client has the lock and the client exits the protocol.                              |
+| 4. Otherwise, call **exists( )**, with _watch_ flag, set on the node in lock directory with pathname starting with "_write-_" having the next lowest sequence number.                           | 4. Call **exists( ),** with _watch_ flag set, on the node with the pathname that has the next lowest sequence number.                                                                 |
+| 5. If **exists( )** returns _false_, goto step **2**.                                                                                                                                           | 5. If **exists( )** returns _false_, goto step **2**. Otherwise, wait for a notification for the pathname from the previous step before going to step **2**.                          |
+| 6. Otherwise, wait for a notification for the pathname from the previous step before going to step **2**                                                                                        |                                                                                                                                                                                       |
 
 Notes:
 
-* It might appear that this recipe creates a herd effect:
+- It might appear that this recipe creates a herd effect:
   when there is a large group of clients waiting for a read
   lock, and all getting notified more or less simultaneously
-  when the "*write-*" node with the lowest
+  when the "_write-_" node with the lowest
   sequence number is deleted. In fact. that's valid behavior:
   as all those waiting reader clients should be released since
   they have the lock. The herd effect refers to releasing a
   "herd" when in fact only a single or a small number of
   machines can proceed.
-
-* See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.
-
-<a id="sc_revocableSharedLocks"></a>
+- See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.
 
 #### Revocable Shared Locks
 
@@ -306,8 +265,6 @@ you can always implement _Revocable Shared Locks with Freaking
 Laser Beams_ by stipulating in your protocol that the revoker
 is allowed to delete the lock node if after some length of time the lock
 isn't deleted by the lock holder.
-
-<a id="sc_recipes_twoPhasedCommit"></a>
 
 ### Two-phased Commit
 
@@ -347,14 +304,12 @@ To address the second problem, you can have the coordinator
 propagate the transaction to the sites, and have each site creating its
 own ephemeral node.
 
-<a id="sc_leaderElection"></a>
-
 ### Leader Election
 
 A simple way of doing leader election with ZooKeeper is to use the
 **SEQUENCE|EPHEMERAL** flags when creating
 znodes that represent "proposals" of clients. The idea is to have a znode,
-say "/election", such that each znode creates a child znode "/election/guid-n_"
+say "/election", such that each znode creates a child znode "/election/guid-n\_"
 with both flags SEQUENCE|EPHEMERAL. With the sequence flag, ZooKeeper
 automatically appends a sequence number that is greater than anyone
 previously appended to a child of "/election". The process that created
@@ -382,26 +337,25 @@ Here's the pseudo code:
 Let ELECTION be a path of choice of the application. To volunteer to
 be a leader:
 
-1. Create znode z with path "ELECTION/guid-n_" with both SEQUENCE and
-  EPHEMERAL flags;
+1. Create znode z with path "ELECTION/guid-n\_" with both SEQUENCE and
+   EPHEMERAL flags;
 1. Let C be the children of "ELECTION", and i is the sequence
-  number of z;
+   number of z;
 1. Watch for changes on "ELECTION/guid-n_j", where j is the largest
-  sequence number such that j < i and n_j is a znode in C;
+   sequence number such that j < i and n_j is a znode in C;
 
 Upon receiving a notification of znode deletion:
 
 1. Let C be the new set of children of ELECTION;
 1. If z is the smallest node in C, then execute leader
-  procedure;
+   procedure;
 1. Otherwise, watch for changes on "ELECTION/guid-n_j", where j is the
-  largest sequence number such that j < i and n_j is a znode in C;
+   largest sequence number such that j < i and n_j is a znode in C;
 
 Notes:
 
-* Note that the znode having no preceding znode on the list of
+- Note that the znode having no preceding znode on the list of
   children do not imply that the creator of this znode is aware that it is
   the current leader. Applications may consider creating a separate znode
   to acknowledge that the leader has executed the leader procedure.
-
-* See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.
+- See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.

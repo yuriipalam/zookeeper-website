@@ -9,8 +9,6 @@ description: "Although ZooKeeper performs very well by having clients connect di
 * [How to use Observers](#sc_UsingObservers)
 * [Example use cases](#ch_UseCases)
 
-<a id="ch_Introduction"></a>
-
 ## Observers: Scaling ZooKeeper Without Hurting Write Performance
 
 Although ZooKeeper performs very well by having clients connect directly
@@ -41,8 +39,6 @@ used to talk to a ZooKeeper server from another data center. Clients of
 the Observer will see fast reads, as all reads are served locally, and
 writes result in minimal network traffic as the number of messages
 required in the absence of the vote protocol is smaller.
-
-<a id="sc_UsingObservers"></a>
 
 ## How to use Observers
 
@@ -79,8 +75,6 @@ specified in every config file. You should see a command line prompt
 through which you can issue commands like _ls_ to query
 the ZooKeeper service.
 
-<a id="ch_ObserverMasters"></a>
-
 ## How to use Observer Masters
 
 Observers function simple as non-voting members of the ensemble, sharing
@@ -113,8 +107,6 @@ listen and serve on that port.
 ```
 observerMasterPort=2191
 ```
-
-<a id="ch_UseCases"></a>
 
 ## Example use cases
 

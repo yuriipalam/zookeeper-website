@@ -27,8 +27,6 @@ description: "Prior to the 3.5.0 release, the membership and all other configura
         * [Additional comments](#sc_reconfig_additional)
 * [Rebalancing Client Connections](#ch_reconfig_rebalancing)
 
-<a id="ch_reconfig_intro"></a>
-
 ## Overview
 
 Prior to the 3.5.0 release, the membership and all other configuration
@@ -72,11 +70,7 @@ Links: [paper (pdf)](https://www.usenix.org/system/files/conference/atc12/atc12-
 feature is disabled by default, and has to be explicitly turned on via
 [reconfigEnabled](/docs/admin-ops/administrators-guide#sc_advancedConfiguration) configuration option.
 
-<a id="ch_reconfig_format"></a>
-
 ## Changes to Configuration Format
-
-<a id="sc_reconfig_clientport"></a>
 
 ### Specifying the client port
 
@@ -120,10 +114,7 @@ server.5 = 125.23.63.23:1234:1235:participant;125.23.63.23:1236                 
 server.5 = 125.23.63.23:1234:1235:participant;125.23.63.23:1236;125.23.63.23:1237  (non-TLS + TLS server)
 server.5 = 125.23.63.23:1234:1235:participant;;125.23.63.23:1237                   (TLS-only server)
 
-
 ```
-
-<a id="sc_multiaddress"></a>
 
 ### Specifying multiple server addresses
 
@@ -144,8 +135,6 @@ server.2=zoo2-net1:2888:3888|zoo2-net2:2889:3889;zoo2-net1:2188
 server.2=zoo2-net1:2888:3888:observer|zoo2-net2:2889:3889:observer;2188
 
 ```
-
-<a id="sc_reconfig_standaloneEnabled"></a>
 
 ### The _standaloneEnabled_ flag
 
@@ -177,8 +166,6 @@ Since running the Distributed mode allows more flexibility, we
 recommend setting the flag to _false_. We expect that
 the legacy Standalone mode will be deprecated in the future.
 
-<a id="sc_reconfig_reconfigEnabled"></a>
-
 ### The _reconfigEnabled_ flag
 
 Starting with 3.5.0 and prior to 3.5.3, there is no way to disable
@@ -201,8 +188,6 @@ reconfigEnabled=true
 
 ```
 
-<a id="sc_reconfig_file"></a>
-
 ### Dynamic configuration file
 
 Starting with 3.5.0 we're distinguishing between dynamic
@@ -222,7 +207,6 @@ _dynamicConfigFile_ keyword.
 
 #### zoo_replicated1.cfg
 
-
 ```
 tickTime=2000
 dataDir=/zookeeper/data/zookeeper1
@@ -230,17 +214,14 @@ initLimit=5
 syncLimit=2
 dynamicConfigFile=/zookeeper/conf/zoo_replicated1.cfg.dynamic
 
-
 ```
 
 #### zoo_replicated1.cfg.dynamic
-
 
 ```
 server.1=125.23.63.23:2780:2783:participant;2791
 server.2=125.23.63.24:2781:2784:participant;2792
 server.3=125.23.63.25:2782:2785:participant;2793
-
 
 ```
 
@@ -265,14 +246,12 @@ The following is thus also legal:
 
 #### zoo_replicated1.cfg
 
-
 ```
 tickTime=2000
 dataDir=/zookeeper/data/zookeeper1
 initLimit=5
 syncLimit=2
 clientPort=
-
 
 ```
 
@@ -284,8 +263,6 @@ clientPortAddress lines (if specified) will be automatically removed
 during this process, if they are redundant (as in the example above).
 The original static configuration file is backed up (in a .bak
 file).
-
-<a id="sc_reconfig_backward"></a>
 
 ### Backward compatibility
 
@@ -304,7 +281,6 @@ server.1=125.23.63.23:2780:2783:participant
 server.2=125.23.63.24:2781:2784:participant
 server.3=125.23.63.25:2782:2785:participant
 
-
 ```
 
 During boot, a dynamic configuration file is created and contains
@@ -317,8 +293,6 @@ is invoked that sets the client port of server 1, we remove
 "clientPort=2791" from the static configuration file (the dynamic file
 now contain this information as part of the specification of server
 1).
-
-<a id="ch_reconfig_upgrade"></a>
 
 ## Upgrading to 3.5.0
 
@@ -344,8 +318,6 @@ you may leave the configuration in a single file, as well as leave the
 clientPort/clientPortAddress statements (although if you specify client
 ports in the new format, these statements are now redundant).
 
-<a id="ch_reconfig_dyn"></a>
-
 ## Dynamic Reconfiguration of the ZooKeeper Ensemble
 
 The ZooKeeper Java and C API were extended with getConfig and reconfig
@@ -354,8 +326,6 @@ commands that facilitate reconfiguration. Both commands have a synchronous
 here using the Java CLI, but note that you can similarly use the C CLI or
 invoke the commands directly from a program just like any other ZooKeeper
 command.
-
-<a id="ch_reconfig_api"></a>
 
 ### API
 
@@ -377,8 +347,6 @@ stored in /zookeeper/config znode. Use of this API does not require specific set
 because /zookeeper/config is readable to any users.
 
 ```
-
-<a id="sc_reconfig_access_control"></a>
 
 ### Security
 
@@ -434,8 +402,6 @@ check will be completely skipped, if skipACL is set to "yes". In such cases any 
 users can use reconfig API.
 
 ```
-
-<a id="sc_reconfig_retrieving"></a>
 
 ### Retrieving the current dynamic configuration
 
@@ -504,8 +470,6 @@ Note: in 3.5.0 it doesn't really matter which path is passed to the
 up to date with the leader (so one could use a different path instead of
 ZooDefs.CONFIG_NODE). However, this may change in the future.
 
-<a id="sc_reconfig_modifying"></a>
-
 ### Modifying the current dynamic configuration
 
 Modifying the configuration is done through the
@@ -519,8 +483,6 @@ configuration.
 A few examples are in: *ReconfigTest.java*,
 *ReconfigRecoveryTest.java* and
 *TestReconfigServer.cc*.
-
-<a id="sc_reconfig_general"></a>
 
 #### General
 
@@ -695,8 +657,6 @@ way to achieve this was to introduce another round to the
 reconfiguration protocol (which, for simplicity and compatibility with
 Zab, we decided to avoid).
 
-<a id="sc_reconfig_incremental"></a>
-
 #### Incremental mode
 
 The incremental mode allows adding and removing servers to the
@@ -760,8 +720,6 @@ There is also an asynchronous API, and an API accepting comma
 separated Strings instead of List\<String>. See
 src/java/main/org/apache/zookeeper/ZooKeeper.java.
 
-<a id="sc_reconfig_nonincremental"></a>
-
 #### Non-incremental mode
 
 The second mode of reconfiguration is non-incremental, whereby a
@@ -806,8 +764,6 @@ separated String containing the new members instead of
 List\<String>. See
 src/java/main/org/apache/zookeeper/ZooKeeper.java.
 
-<a id="sc_reconfig_conditional"></a>
-
 #### Conditional reconfig
 
 Sometimes (especially in non-incremental mode) a new proposed
@@ -824,8 +780,6 @@ last configuration at the leader has the specified version.
 In the previously listed Java examples, instead of -1 one could
 specify a configuration version to condition the
 reconfiguration.
-
-<a id="sc_reconfig_errors"></a>
 
 #### Error conditions
 
@@ -853,8 +807,6 @@ reconfiguration may fail for the following reasons:
 
 Most of these are illustrated by test-cases in
 *ReconfigFailureCases.java*.
-
-<a id="sc_reconfig_additional"></a>
 
 #### Additional comments
 
@@ -911,8 +863,6 @@ reconfig to remove D from the configuration and then invoke a second
 command to add it back as a participant (follower). During the
 intermediate state D is a non-voting follower and can ACK the state
 transfer performed during the second reconfig command.
-
-<a id="ch_reconfig_rebalancing"></a>
 
 ## Rebalancing Client Connections
 

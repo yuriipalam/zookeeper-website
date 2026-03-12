@@ -10,8 +10,6 @@ description: "Apache ZooKeeper has extensive support for JMX, allowing you"
 * [Run a JMX console](#ch_console)
 * [ZooKeeper MBean Reference](#ch_reference)
 
-<a id="ch_jmx"></a>
-
 ## JMX
 
 Apache ZooKeeper has extensive support for JMX, allowing you
@@ -26,8 +24,6 @@ _zkServer.sh_ supports only local management -
 review the linked document to enable support for remote management
 (beyond the scope of this document).
 
-<a id="ch_starting"></a>
-
 ## Starting ZooKeeper with JMX enabled
 
 The class
@@ -37,8 +33,6 @@ registers the proper MBeans during initialization to support JMX
 monitoring and management of the
 instance. See _bin/zkServer.sh_ for one
 example of starting ZooKeeper using QuorumPeerMain.
-
-<a id="ch_console"></a>
 
 ## Run a JMX console
 
@@ -86,8 +80,6 @@ when starting ZooKeeper. In addition, we can specify the name of
 the MBean with the _-Dzookeeper.jmx.log4j.mbean=log4j:hierarchy=default_
 option, in case we need to upgrade an integrated system
 using the old MBean name (`log4j:hierarchy = default`).
-
-<a id="ch_reference"></a>
 
 ## ZooKeeper MBean Reference
 

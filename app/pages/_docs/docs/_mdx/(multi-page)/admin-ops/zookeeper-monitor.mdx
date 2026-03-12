@@ -16,20 +16,13 @@ description: "The feature:`New Metrics System` has been available since 3.6.0 wh
 
 * [Four letter words](#four-letter-words)
 
-<a id="Metrics-System"></a>
-
 ## New Metrics System
 The feature:`New Metrics System` has been available since 3.6.0 which provides the abundant metrics
 to help users monitor the ZooKeeper on the topic: znode, network, disk, quorum, leader election,
 client, security, failures, watch/session, requestProcessor, and so forth.
 
-<a id="Metrics"></a>
-
 ### Metrics
 All the metrics are included in the `ServerMetrics.java`.
-
-<a id="Prometheus"></a>
-
 
 ### Pre-requisites:
 - Enable the `Prometheus MetricsProvider` by setting the following in `zoo.cfg`:
@@ -100,8 +93,6 @@ nohup /tmp/prometheus \
 ```
 
 - Now Prometheus will scrape zk metrics every 10 seconds.
-
-<a id="Alerting"></a>
 
 ### Alerting with Prometheus
 - We recommend that you read [Prometheus Official Alerting Page](https://prometheus.io/docs/practices/alerting/) to explore
@@ -220,9 +211,6 @@ groups:
       description: "JVM memory is filling up (> 80%)\\n labels: {{ $labels }}  value = {{ $value }}\\n"
 ```
 
-
-<a id="Grafana"></a>
-
 ### Grafana
 - Grafana has built-in Prometheus support; just add a Prometheus data source:
 
@@ -235,8 +223,6 @@ Access: proxy
 
 - Then download and import the default ZooKeeper dashboard [template](https://grafana.com/grafana/dashboards/10465) and customize.
 - Users can ask for Grafana dashboard account if having any good improvements by writing a email to **dev@zookeeper.apache.org**.
-
-<a id="influxdb"></a>
 
 ### InfluxDB
 
@@ -251,10 +237,8 @@ template](https://www.influxdata.com/influxdb-templates/zookeeper-monitor/) that
 includes the Telegraf configurations and a dashboard to get you set up right
 away.
 
-<a id="JMX"></a>
 ## JMX
 More details can be found in [here](/docs/admin-ops/jmx)
 
-<a id="four-letter-words"></a>
 ## Four letter words
 More details can be found in [here](/docs/admin-ops/administrators-guide#sc_zkCommands)

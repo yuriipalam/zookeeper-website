@@ -53,8 +53,6 @@ description: "This section contains information about deploying Zookeeper and"
     * [Things to Avoid](#sc_commonProblems)
     * [Best Practices](#sc_bestPractices)
 
-<a id="ch_deployment"></a>
-
 ## Deployment
 
 This section contains information about deploying Zookeeper and
@@ -70,11 +68,7 @@ section covers situations in which you are setting up ZooKeeper on a
 limited basis - for evaluation, testing, or development - but not in a
 production environment.
 
-<a id="sc_systemReq"></a>
-
 ### System Requirements
-
-<a id="sc_supportedPlatforms"></a>
 
 #### Supported Platforms
 
@@ -110,8 +104,6 @@ the matrix, components may or may not work.  The ZooKeeper community
 will fix obvious bugs that are reported for other platforms, but there
 is no full support.
 
-<a id="sc_requiredSoftware"></a>
-
 #### Required Software
 
 ZooKeeper runs in Java, release 1.8 or greater
@@ -122,8 +114,6 @@ ensemble, and we also recommend that they run on separate
 machines. At Yahoo!, ZooKeeper is usually deployed on
 dedicated RHEL boxes, with dual-core processors, 2GB of RAM,
 and 80GB IDE hard drives.
-
-<a id="sc_zkMulitServerSetup"></a>
 
 ### Clustered (Multi-Server) Setup
 
@@ -244,8 +234,6 @@ ensemble:
 
         $ bin/zkCli.sh -server 127.0.0.1:2181
 
-<a id="sc_singleAndDevSetup"></a>
-
 ### Single Server and Developer Setup
 
 If you want to set up ZooKeeper for development purposes, you will
@@ -263,8 +251,6 @@ For information on installing the client side libraries, refer to
 the [Bindings](/docs/developer/programmers-guide#ch_bindings)
 section of the [ZooKeeper
 Programmer's Guide](/docs/developer/programmers-guide).
-
-<a id="ch_administration"></a>
 
 ## Administration
 
@@ -286,8 +272,6 @@ ZooKeeper and covers these topics:
 * [Things to Avoid](#sc_commonProblems)
 * [Best Practices](#sc_bestPractices)
 
-<a id="sc_designing"></a>
-
 ### Designing a ZooKeeper Deployment
 
 The reliability of ZooKeeper rests on two basic assumptions.
@@ -306,8 +290,6 @@ administrators to maximize the probability for these assumptions
 to hold true. Some of these are cross-machines considerations,
 and others are things you should consider for each and every
 machine in your deployment.
-
-<a id="sc_CrossMachineRequirements"></a>
 
 #### Cross Machine Requirements
 
@@ -342,8 +324,6 @@ failure of that switch could cause a correlated failure and
 bring down the service. The same holds true of shared power
 circuits, cooling systems, etc.
 
-<a id="Single+Machine+Requirements"></a>
-
 #### Single Machine Requirements
 
 If ZooKeeper has to contend with other applications for
@@ -372,26 +352,16 @@ degradation:
   [Things to Avoid](#sc_commonProblems)
   below.
 
-<a id="sc_provisioning"></a>
-
 ### Provisioning
-
-<a id="sc_strengthsAndLimitations"></a>
 
 ### Things to Consider: ZooKeeper Strengths and Limitations
 
-<a id="sc_administering"></a>
-
 ### Administering
-
-<a id="sc_maintenance"></a>
 
 ### Maintenance
 
 Little long term maintenance is required for a ZooKeeper
 cluster however you must be aware of the following:
-
-<a id="Ongoing+Data+Directory+Cleanup"></a>
 
 #### Ongoing Data Directory Cleanup
 
@@ -431,7 +401,6 @@ clean up the logs daily.
 ```
 CLASSPATH='lib/*:conf' java org.apache.zookeeper.server.PurgeTxnLog <dataDir> <snapDir> -n <count>
 
-
 ```
 
 Automatic purging of the snapshots and corresponding
@@ -440,8 +409,6 @@ enabled via the following configuration parameters **autopurge.snapRetainCount**
 this, see [Advanced Configuration](#sc_advancedConfiguration)
 below.
 
-<a id="Debug+Log+Cleanup+Logback"></a>
-
 #### Debug Log Cleanup (logback)
 
 See the section on [logging](#sc_logging) in this document. It is
@@ -449,8 +416,6 @@ expected that you will setup a rolling file appender using the
 in-built logback feature. The sample configuration file in the
 release tar's `conf/logback.xml` provides an example of
 this.
-
-<a id="sc_supervision"></a>
 
 ### Supervision
 
@@ -487,8 +452,6 @@ these options.
 
 ```
 
-<a id="sc_monitoring"></a>
-
 ### Monitoring
 
 The ZooKeeper service can be monitored in one of three primary ways:
@@ -496,8 +459,6 @@ The ZooKeeper service can be monitored in one of three primary ways:
 * the command port through the use of [4 letter words](#sc_zkCommands)
 * with [JMX](/docs/admin-ops/jmx)
 * using the [`zkServer.sh status` command](/docs/admin-ops/zookeeper-tools#zkServer)
-
-<a id="sc_logging"></a>
 
 ### Logging
 
@@ -517,8 +478,6 @@ For more information about SLF4J, see
 For more information about Logback, see
 [Logback website](http://logback.qos.ch/).
 
-<a id="sc_troubleshooting"></a>
-
 ### Troubleshooting
 
 * *Server not coming up because of file corruption* :
@@ -533,8 +492,6 @@ of the corrupt server. Delete all the files in datadir/version-2 and datalogdir/
 Restart the server.
 
 ```
-
-<a id="sc_configuration"></a>
 
 ### Configuration Parameters
 
@@ -552,8 +509,6 @@ In 3.5.0 and later, some of these parameters should be placed in
 a dynamic configuration file. If they are placed in the static
 configuration file, ZooKeeper will automatically move them over to the
 dynamic configuration file. See [Dynamic Reconfiguration](/docs/admin-ops/dynamic-reconfiguration) for more information.
-
-<a id="sc_minimumConfiguration"></a>
 
 #### Minimum Configuration
 
@@ -615,8 +570,6 @@ regulate heartbeats, and timeouts. For example, the minimum
 session timeout will be two ticks.
 
 ```
-
-<a id="sc_advancedConfiguration"></a>
 
 #### Advanced Configuration
 
@@ -1075,7 +1028,6 @@ The weight of a local session. It is the number of tokens required for a local s
 **New in 3.6.0:**
 The weight of renewing a session. It is also the number of tokens required for a reconnect request to get through the throttler. It has to be a positive integer no smaller than the weight of a local session. The default is 2.
 
-
 ```
 
 * *clientPortListenBacklog* :
@@ -1448,7 +1400,6 @@ The default value is false.
    3. Snapshot triggered via admin server APIs
       The feature flag need to be enabled for the snapshot command to work. 
      
-<a id="sc_clusterOptions"></a>
 
 #### Cluster Options
 
@@ -1545,8 +1496,6 @@ The first followers used to connect to the leader, and the second is for
 leader election. If you want to test multiple servers on a single machine, then
 different ports can be used for each server.
 
-
-<a id="id_multi_address"></a>
 Since ZooKeeper 3.6.0 it is possible to specify **multiple addresses** for each
 ZooKeeper server (see [ZOOKEEPER-3188](https://issues.apache.org/jira/projects/ZOOKEEPER/issues/ZOOKEEPER-3188)).
 To enable this feature, you must set the *multiAddress.enabled* configuration property
@@ -1559,7 +1508,6 @@ in the config using a pipe ('|') character. A valid configuration using multiple
     server.1=zoo1-net1:2888:3888|zoo1-net2:2889:3889
     server.2=zoo2-net1:2888:3888|zoo2-net2:2889:3889
     server.3=zoo3-net1:2888:3888|zoo3-net2:2889:3889
-
 
 ```
 
@@ -1697,17 +1645,14 @@ command while disabling the rest of Four Letter Words command:
 
     4lw.commands.whitelist=stat, ruok, conf, isro
 
-
 ```
 
 If you really need enable all four-letter word commands by default, you can use
 the asterisk option so you don't have to include every command one by one in the list.
 As an example, this will enable all four-letter word commands:
 
-
 ```
 4lw.commands.whitelist=*
-
 
 ```
 
@@ -1760,7 +1705,6 @@ Default value 3. In container environment, especially in Kubernetes,
 this value should be increased or set to 0(infinite retry) to overcome issues
 related to DNS name resolving.
 
-
 ```
 
 * *observer.reconnectDelayMs* :
@@ -1789,8 +1733,6 @@ the process. Defaults to 200 ms.
    Turning on the local session feature by setting *localSessionsEnabled=true*. Turning on
    *localSessionsUpgradingEnabled* can upgrade a local session to a global session automatically as required (e.g. creating ephemeral nodes),
    which only matters when *localSessionsEnabled* is enabled.
-
-<a id="sc_authOptions"></a>
 
 #### Encryption, Authentication, Authorization Options
 
@@ -2293,8 +2235,6 @@ Default: **true** (3.9.0+), **false** (3.8.x)
 
 ```
 
-<a id="sc_tls_cipher_suites"></a>
-
 ##### TLS Cipher Suites
 
 From 3.5.5 to 3.9 a hard coded default cipher list was used, with the ordering
@@ -2305,8 +2245,6 @@ The list on Java 8 includes TLSv1.2 CBC, GCM and TLSv1.3 ciphers in ordering: *T
 The list on Java 9+ includes TLSv1.2 GCM, CBC and TLSv1.3 ciphers in ordering: *TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256, TLS_CHACHA20_POLY1305_SHA256*
 
 Since 3.10 there is no hardcoded list, and the JDK defaults are used.
-
-<a id="Experimental+Options%2FFeatures"></a>
 
 #### Experimental Options/Features
 
@@ -2340,8 +2278,6 @@ Currently the change here is guarded behind the flag to help us get more confide
 In Long run, we might want to remove this flag and set its behavior as the default codepath.
 
 ```
-
-<a id="Unsafe+Options"></a>
 
 #### Unsafe Options
 
@@ -2433,8 +2369,6 @@ This parameter has no effect, unless you enable the MultiAddress feature by sett
 
 ```
 
-<a id="Disabling+data+directory+autocreation"></a>
-
 #### Disabling data directory autocreation
 
 **New in 3.5:** The default
@@ -2481,8 +2415,6 @@ Note that this script ensures the data directories exist only,
 it does not create a config file, but rather requires a config
 file to be available in order to execute.
 
-<a id="sc_db_existence_validation"></a>
-
 #### Enabling db existence validation
 
 **New in 3.6.0:** The default
@@ -2507,8 +2439,6 @@ on the java command line, i.e.
 **-Dzookeeper.db.autocreate=false**.
 Running **zkServer-initialize.sh**
 will create the required initialization file.
-
-<a id="sc_performance_options"></a>
 
 #### Performance Tuning Options
 
@@ -2613,8 +2543,6 @@ any children are never deleted.
 
 ```
 
-<a id="sc_debug_observability_config"></a>
-
 #### Debug Observability Configurations
 
 **New in 3.6.0:** The following options are introduced to make zookeeper easier to debug.
@@ -2639,8 +2567,6 @@ is "false".
 
 ```
 
-<a id="sc_adminserver_config"></a>
-
 #### AdminServer configuration
 
 **New in 3.9.0:** The following
@@ -2659,7 +2585,6 @@ options are used to configure the [AdminServer](#sc_adminserver).
 * *admin.restore.enabled* :
   (Java system property: **zookeeper.admin.restore.enabled**)
   The flag for enabling the restore command. Defaults to true.
-
 
 * *admin.needClientAuth* :
   (Java system property: **zookeeper.admin.needClientAuth**)
@@ -2779,7 +2704,6 @@ The default is true.
    The timeout in ms for Prometheus worker threads shutdown.
    Default value is 1000ms.
    
-<a id="Communication+using+the+Netty+framework"></a>
 
 ### Communication using the Netty framework
 
@@ -2798,8 +2722,6 @@ variable **zookeeper.serverCnxnFactory**
 to **org.apache.zookeeper.server.NettyServerCnxnFactory**;
 for the client, set **zookeeper.clientCnxnSocket**
 to **org.apache.zookeeper.ClientCnxnSocketNetty**.
-
-<a id="Quorum+TLS"></a>
 
 #### Quorum TLS
 
@@ -2868,8 +2790,6 @@ INFO  [main:QuorumPeer@1797] - Port unification disabled
 INFO  [QuorumPeerListener:QuorumCnxManager$Listener@877] - Creating TLS-only quorum server socket
 ```
 
-<a id="Upgrading+existing+nonTLS+cluster"></a>
-
 #### Upgrading existing non-TLS cluster with no downtime
 
 *New in 3.5.5*
@@ -2919,12 +2839,7 @@ sslQuorum=true
 portUnification=false
 ```
 
-
-<a id="sc_zkCommands"></a>
-
 ### ZooKeeper Commands
-
-<a id="sc_4lw"></a>
 
 #### The Four Letter Words
 
@@ -3030,7 +2945,6 @@ use it carefully.
     **New in 3.4.0:** Outputs a list
     of variables that could be used for monitoring the health of the cluster.
 
-
 ```bash
 $ echo mntr | nc localhost 2185
               zk_version  3.4.0
@@ -3051,7 +2965,6 @@ $ echo mntr | nc localhost 2185
               zk_open_file_descriptor_count 23    - only available on Unix platforms
               zk_max_file_descriptor_count 1024   - only available on Unix platforms
 
-
 ```
 
 The output is compatible with java properties format and the content
@@ -3059,10 +2972,8 @@ may change over time (new keys added). Your scripts should expect changes.
 ATTENTION: Some of the keys are platform specific and some of the keys are only exported by the Leader.
 The output contains multiple lines with the following format:
 
-
 ```
 key \t value
-
 
 ```
 
@@ -3124,25 +3035,19 @@ order.  The result is appended to `stmk` and sent
 to the server using netcat.  The server responds with the new
 trace mask in decimal format.
 
-
 $ perl -e "print 'stmk', pack('q>', 0b0011111010)" | nc localhost 2181
 250
-
 
 ```
 
 Here's an example of the **ruok**
 command:
 
-
 ```bash
 $ echo ruok | nc 127.0.0.1 5111
     imok
 
-
 ```
-
-<a id="sc_adminserver"></a>
 
 #### The AdminServer
 
@@ -3419,10 +3324,7 @@ voting member.
 Peers can be in one of these phases: ELECTION, DISCOVERY, SYNCHRONIZATION, BROADCAST.
 Returns fields "voting" and "zabstate".
 
-
 ```
-
-<a id="sc_dataFileManagement"></a>
 
 ### Data File Management
 
@@ -3432,8 +3334,6 @@ the same. The server can (and should) be configured to store the
 transaction log files in a separate directory than the data files.
 Throughput increases and latency decreases when transaction logs reside
 on a dedicated log devices.
-
-<a id="The+Data+Directory"></a>
 
 #### The Data Directory
 
@@ -3471,8 +3371,6 @@ idempotent nature of its updates. By replaying the transaction log
 against fuzzy snapshots ZooKeeper gets the state of the system at the
 end of the log.
 
-<a id="The+Log+Directory"></a>
-
 #### The Log Directory
 
 The Log Directory contains the ZooKeeper transaction logs.
@@ -3483,8 +3381,6 @@ current log file reaches a (variable) threshold. The threshold is
 computed using the same parameter which influences the frequency of
 snapshotting (see snapCount and snapSizeLimitInKb above). The log file's
 suffix is the first zxid written to that log.
-
-<a id="sc_filemanagement"></a>
 
 #### File Management
 
@@ -3519,12 +3415,8 @@ taken to prevent unauthorized access. Such measures are external to
 ZooKeeper (e.g., control access to the files) and depend on the
 individual settings in which it is being deployed.
 
-<a id="Recovery+-+TxnLogToolkit"></a>
-
 #### Recovery - TxnLogToolkit
 More details can be found in [this](/docs/admin-ops/zookeeper-tools#zkTxnLogToolkit)
-
-<a id="sc_commonProblems"></a>
 
 ### Things to Avoid
 
@@ -3580,8 +3472,6 @@ usage limit that would cause the system to swap.
 It is thus recommended deploying ZooKeeper behind a firewall.
 
 ```
-
-<a id="sc_bestPractices"></a>
 
 ### Best Practices
 

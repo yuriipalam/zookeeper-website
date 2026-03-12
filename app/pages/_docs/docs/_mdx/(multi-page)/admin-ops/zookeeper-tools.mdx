@@ -24,11 +24,8 @@ description: "A command for the operations for the ZooKeeper server."
         * [Byteman](#Byteman)
     * [Jepsen Test](#jepsen-test)
     
-<a id="Scripts"></a>
 
 ## Scripts
-
-<a id="zkServer"></a>
 
 ### zkServer.sh
 A command for the operations for the ZooKeeper server.
@@ -73,15 +70,10 @@ the `./zkServer.sh status` command to find out if the ZooKeeper server is runnin
 ```bash
 CLIENT_JVMFLAGS="-Dzookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty -Dzookeeper.ssl.trustStore.location=/tmp/clienttrust.jks -Dzookeeper.ssl.trustStore.password=password -Dzookeeper.ssl.keyStore.location=/tmp/client.jks -Dzookeeper.ssl.keyStore.password=password -Dzookeeper.client.secure=true" ./zkServer.sh status
 
-
 ```
-
-<a id="zkCli"></a>
 
 ### zkCli.sh
 Look at the [ZooKeeperCLI](/docs/admin-ops/zookeeper-cli)
-
-<a id="zkEnv"></a>
 
 ### zkEnv.sh
 The environment setting for the ZooKeeper server
@@ -90,8 +82,6 @@ The environment setting for the ZooKeeper server
 # the setting of log property
 ZOO_LOG_DIR: the directory to store the logs
 ```
-
-<a id="zkCleanup"></a>
 
 ### zkCleanup.sh
 Clean up the old snapshots and transaction logs.
@@ -105,8 +95,6 @@ Usage:
 # Keep the latest 5 logs and snapshots
 ./zkCleanup.sh -n 5
 ```
-
-<a id="zkTxnLogToolkit"></a>
 
 ### zkTxnLogToolkit.sh
 TxnLogToolkit is a command line tool shipped with ZooKeeper which
@@ -178,8 +166,6 @@ One can turn on verbose mode with the `-v,--verbose` parameter to see all record
 Interactive mode can be turned off with the `-y,--yes` parameter. In this case all CRC errors will be fixed
 in the new transaction file.
 
-<a id="zkSnapShotToolkit"></a>
-
 ### zkSnapShotToolkit.sh
 Dump a snapshot file to stdout, showing the detailed information of the each zk-node.
 
@@ -223,7 +209,6 @@ USAGE: SnapshotFormatter [-d|-json] snapshot_file
 ./zkSnapShotToolkit.sh -json /data/zkdata/version-2/snapshot.fa01000186d
 [[1,0,{"progname":"SnapshotFormatter.java","progver":"0.01","timestamp":1559788148637},[{"name":"\/","asize":0,"dsize":0,"dev":0,"ino":1001},[{"name":"zookeeper","asize":0,"dsize":0,"dev":0,"ino":1002},{"name":"config","asize":0,"dsize":0,"dev":0,"ino":1003},[{"name":"quota","asize":0,"dsize":0,"dev":0,"ino":1004},[{"name":"test","asize":0,"dsize":0,"dev":0,"ino":1005},{"name":"zookeeper_limits","asize":52,"dsize":52,"dev":0,"ino":1006},{"name":"zookeeper_stats","asize":15,"dsize":15,"dev":0,"ino":1007}]]],{"name":"test","asize":0,"dsize":0,"dev":0,"ino":1008}]]
 ```
-<a id="zkSnapshotRecursiveSummaryToolkit"></a>
 
 ### zkSnapshotRecursiveSummaryToolkit.sh
 Recursively collect and display child count and data size for a selected node.
@@ -263,8 +248,6 @@ max_depth:        defines the depth where the tool still writes to the output. 0
 ----   children: 3
 ----   data: 0
 ```
-
-<a id="zkSnapshotComparer"></a>
 
 ### zkSnapshotComparer.sh
 SnapshotComparer is a tool that loads and compares two snapshots with configurable threshold and various filters, and outputs information about the delta. 
@@ -475,12 +458,7 @@ All layers compared.
 
 Or use `^c` to exit interactive mode anytime.
 
-
-<a id="Benchmark"></a>
-
 ## Benchmark
-
-<a id="YCSB"></a>
 
 ### YCSB
 
@@ -569,26 +547,16 @@ Run the workload test:
 # Cleaning up the workspace after finishing the benchmark.
 # e.g the CLI:deleteall /benchmark
 
-
 ```
-
-<a id="zk-smoketest"></a>
 
 ### zk-smoketest
 
 **zk-smoketest** provides a simple smoketest client for a ZooKeeper ensemble. Useful for verifying new, updated,
 existing installations. More details are [here](https://github.com/phunt/zk-smoketest).
 
-
-<a id="Testing"></a>
-
 ## Testing
 
-<a id="fault-injection"></a>
-
 ### Fault Injection Framework
-
-<a id="Byteman"></a>
 
 #### Byteman
 
@@ -666,9 +634,6 @@ DO
   return;
 ENDRULE
 ```
-
-
-<a id="jepsen-test"></a>
 
 ### Jepsen Test
 A framework for distributed systems verification, with fault injection.

@@ -1,11 +1,11 @@
 {
   "title": "Developer",
   "pages": [
-    "external:[API Docs](https://zookeeper.apache.org/doc/current/apidocs/zookeeper-server/index.html)",
     "programmers-guide",
     "use-cases",
     "java-example",
     "barrier-and-queue-tutorial",
-    "recipes"
+    "recipes",
+    "external:[API Docs](https://zookeeper.apache.org/doc/current/apidocs/zookeeper-server/index.html)"
   ]
 }

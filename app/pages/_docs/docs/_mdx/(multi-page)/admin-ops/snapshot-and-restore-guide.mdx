@@ -23,8 +23,6 @@ The supported auth schemas are digest, x509 and IP.
 * [Snapshot](#zookeeper_snapshot)
 * [Restore](#zookeeper_restore)  
 
-<a id="zookeeper_snapshot"></a>
-
 ## Snapshot
 Recovering a cluster needs a snapshot from a ZooKeeper cluster. Users can periodically take
 snapshots from a live server which has the highest zxid and stream out data to a local 
@@ -35,7 +33,6 @@ or external storage/file system (e.g., S3).
  curl -H 'Authorization: digest root:root_passwd' http://hostname:adminPort/commands/snapshot?streaming=true --output snapshotFileName
  ```
 
-<a id="zookeeper_restore"></a>
 ## Restore
 
 Restoring a cluster needs a single snapshot as input stream. Restore can be used for recovering a 

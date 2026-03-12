@@ -19,8 +19,6 @@ description: "This document contains information on the inner workings of ZooKee
         * [Logging at the Right Level](#sc_rightLevel)
         * [Use of Standard slf4j Idioms](#sc_slf4jIdioms)
 
-<a id="ch_Introduction"></a>
-
 ## Introduction
 
 This document contains information on the inner workings of ZooKeeper.
@@ -31,13 +29,9 @@ It discusses the following topics:
 * [Quorums](#sc_quorum)
 * [Logging](#sc_logging)
 
-<a id="sc_atomicBroadcast"></a>
-
 ## Atomic Broadcast
 
 At the heart of ZooKeeper is an atomic messaging system that keeps all of the servers in sync.
-
-<a id="sc_guaranteesPropertiesDefinitions"></a>
 
 ### Guarantees, Properties, and Definitions
 
@@ -161,8 +155,6 @@ yourself, _Does the set of proposals that the leader believes has been committed
 include all the proposals that really have been committed?_ The answer is _yes_.
 Below, we make clear why.)
 
-<a id="sc_leaderElection"></a>
-
 ### Leader Activation
 
 Leader activation includes leader election (`FastLeaderElection`).
@@ -212,8 +204,6 @@ NEW_LEADER proposal will not be committed since the leader will not have quorum.
 When this happens, the leader and any remaining followers will timeout and go back
 to leader election.
 
-<a id="sc_activeMessaging"></a>
-
 ### Active Messaging
 
 Leader Activation does all the heavy lifting. Once the leader is coronated he can
@@ -244,8 +234,6 @@ the following operating constraints are observed:
 * COMMITs are processed in order. Followers deliver a proposal
   message when that proposal is committed.
 
-<a id="sc_summary"></a>
-
 ### Summary
 
 So there you go. Why does it work? Specifically, why does a set of proposals
@@ -258,8 +246,6 @@ follow a single leader at a time; a new leader has seen all committed proposals
 from the previous epoch since it has seen the highest zxid from a quorum of servers;
 any uncommitted proposals from a previous epoch seen by a new leader will be committed
 by that leader before it becomes active.
-
-<a id="sc_comparisons"></a>
 
 ### Comparisons
 
@@ -276,9 +262,6 @@ all packets, it all falls apart. Also, our leader activation phase is different 
 both of them. In particular, our use of epochs allows us to skip blocks of uncommitted
 proposals and to not worry about duplicate proposals for a given zxid.
 
-<a id="sc_consistency"></a>
-
-
 ## Consistency Guarantees
 
 The [consistency](https://jepsen.io/consistency) guarantees of ZooKeeper lie between sequential consistency and linearizability. In this section, we explain the exact consistency guarantees that ZooKeeper provides.
@@ -288,8 +271,6 @@ Write operations in ZooKeeper are *linearizable*. In other words, each `write` w
 Read operations in ZooKeeper are *not linearizable* since they can return potentially stale data. This is because a `read` in ZooKeeper is not a quorum operation and a server will respond immediately to a client that is performing a `read`. ZooKeeper does this because it prioritizes performance over consistency for the read use case. However, reads in ZooKeeper are *sequentially consistent*, because `read` operations will appear to take effect in some sequential order that furthermore respects the order of each client's operations. A common pattern to work around this is to issue a `sync` before issuing a `read`. This too does **not** strictly guarantee up-to-date data because `sync` is [not currently a quorum operation](https://issues.apache.org/jira/browse/ZOOKEEPER-1675). To illustrate, consider a scenario where two servers simultaneously think they are the leader, something that could occur if the TCP connection timeout is smaller than `syncLimit * tickTime`. Note that this is [unlikely](https://www.amazon.com/ZooKeeper-Distributed-Coordination-Flavio-Junqueira/dp/1449361307) to occur in practice, but should be kept in mind nevertheless when discussing strict theoretical guarantees. Under this scenario, it is possible that the `sync` is served by the “leader” with stale data, thereby allowing the following `read` to be stale as well. The stronger guarantee of linearizability is provided if an actual quorum operation (e.g., a `write`) is performed before a `read`.
 
 Overall, the consistency guarantees of ZooKeeper are formally captured by the notion of [ordered sequential consistency](http://webee.technion.ac.il/people/idish/ftp/OSC-IPL17.pdf) or `OSC(U)` to be exact, which lies between sequential consistency and linearizability.
-
-<a id="sc_quorum"></a>
 
 ## Quorums
 
@@ -318,8 +299,6 @@ that a majority of co-locations will have a majority of servers available with h
 With ZooKeeper, we provide a user with the ability of configuring servers to use majority quorums, weights, or a
 hierarchy of groups.
 
-<a id="sc_logging"></a>
-
 ## Logging
 
 Zookeeper uses [slf4j](http://www.slf4j.org/index.html) as an abstraction layer for logging. 
@@ -331,14 +310,10 @@ For information on configuring logback for
 ZooKeeper, see the [Logging](/docs/admin-ops/administrators-guide#sc_logging) section
 of the [ZooKeeper Administrator's Guide.](/docs/admin-ops/administrators-guide)
 
-<a id="sc_developerGuidelines"></a>
-
 ### Developer Guidelines
 
 Please follow the  [slf4j manual](http://www.slf4j.org/manual.html) when creating log statements within code.
 Also read the [FAQ on performance](http://www.slf4j.org/faq.html#logging\_performance), when creating log statements. Patch reviewers will look for the following:
-
-<a id="sc_rightLevel"></a>
 
 #### Logging at the Right Level
 
@@ -354,8 +329,6 @@ It's important to pick the right one. In order of higher to lower severity:
 
 ZooKeeper is typically run in production such that log messages of INFO level
 severity and higher (more severe) are output to the log.
-
-<a id="sc_slf4jIdioms"></a>
 
 #### Use of Standard slf4j Idioms
 

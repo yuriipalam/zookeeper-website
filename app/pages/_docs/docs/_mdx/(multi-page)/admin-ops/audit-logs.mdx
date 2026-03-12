@@ -8,7 +8,6 @@ description: "Apache ZooKeeper supports audit logs from version 3.6.0. By defaul
 * [ZooKeeper Audit Logs](#ch_auditLogs)
 * [ZooKeeper Audit Log Configuration](#ch_reconfig_format)
 * [Who is taken as user in audit logs?](#ch_zkAuditUser)
-<a id="ch_auditLogs"></a>
 
 ## ZooKeeper Audit Logs
 
@@ -16,7 +15,6 @@ Apache ZooKeeper supports audit logs from version 3.6.0. By default audit logs a
  configure audit.enable=true in conf/zoo.cfg. Audit logs are not logged on all the ZooKeeper servers, but logged only on the servers where client is connected as depicted in below figure.
 
 ![Audit Logs](/docs-images/zkAuditLogs.jpg)
-
 
 The audit log captures detailed information for the operations that are selected to be audited. The audit information is written as a set of key=value pairs for the following keys
 
@@ -53,8 +51,6 @@ session=0x19344730000   user=192.168.1.2,zkcli@HADOOP.COM  ip=192.168.1.2    ope
 user=zookeeper/192.168.1.3 operation=serverStop    result=invoked
 
 ```
-
-<a id="ch_auditConfig"></a>
 
 ## ZooKeeper Audit Log Configuration
 
@@ -94,8 +90,6 @@ Audit logging is done using logback. Following is the default logback configurat
 
 Change above configuration to customize the auditlog file, number of backups, max file size, custom audit logger etc.
 
-<a id="ch_zkAuditUser"></a>
-
 ## Who is taken as user in audit logs?
 
 By default there are only four authentication provider:
@@ -123,7 +117,6 @@ In ZooKeeper Server not all the operations are done by clients but some operatio
 ```
 user=zookeeper/hadoop.hadoop.com@HADOOP.COM operation=serverStart result=success
 
-
 ```
 
 If there is no user associate with ZooKeeper server then the user who started the ZooKeeper server is taken as the user. For example if server started by root then root is taken as the system user
@@ -131,13 +124,11 @@ If there is no user associate with ZooKeeper server then the user who started th
 ```
 user=root operation=serverStart result=success
 
-
 ```
 
 Single client can attach multiple authentication schemes to a session, in this case all authenticated schemes will taken taken as user and will be presented as comma separated list. For example if a client is authenticate with principal zkcli@HADOOP.COM and ip 127.0.0.1 then create znode audit log will be as:		
 
 ```
 session=0x10c0bcb0000 user=zkcli@HADOOP.COM,127.0.0.1 ip=127.0.0.1 operation=create znode=/a result=success
-
 
 ```

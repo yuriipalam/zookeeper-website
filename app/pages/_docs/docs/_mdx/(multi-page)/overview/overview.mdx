@@ -18,8 +18,6 @@ description: "ZooKeeper is a distributed, open-source coordination service for"
     * [Reliability](#Reliability)
     * [The ZooKeeper Project](#The+ZooKeeper+Project)
 
-<a id="ch_DesignOverview"></a>
-
 ## ZooKeeper: A Distributed Coordination Service for Distributed Applications
 
 ZooKeeper is a distributed, open-source coordination service for
@@ -34,8 +32,6 @@ Coordination services are notoriously hard to get right. They are
 especially prone to errors such as race conditions and deadlock. The
 motivation behind ZooKeeper is to relieve distributed applications the
 responsibility of implementing coordination services from scratch.
-
-<a id="sc_designGoals"></a>
 
 ### Design Goals
 
@@ -83,8 +79,6 @@ especially fast in "read-dominant" workloads. ZooKeeper applications run
 on thousands of machines, and it performs best where reads are more
 common than writes, at ratios of around 10:1.
 
-<a id="sc_dataModelNameSpace"></a>
-
 ### Data model and the hierarchical namespace
 
 The namespace provided by ZooKeeper is much like that of a
@@ -95,8 +89,6 @@ path.
 #### ZooKeeper's Hierarchical Namespace
 
 ![ZooKeeper's Hierarchical Namespace](/docs-images/zknamespace.jpg)
-
-<a id="Nodes+and+ephemeral+nodes"></a>
 
 ### Nodes and ephemeral nodes
 
@@ -124,8 +116,6 @@ ZooKeeper also has the notion of ephemeral nodes. These znodes
 exists as long as the session that created the znode is active. When the
 session ends the znode is deleted.
 
-<a id="Conditional+updates+and+watches"></a>
-
 ### Conditional updates and watches
 
 ZooKeeper supports the concept of _watches_.
@@ -140,7 +130,6 @@ permanent, recursive watches on a znode that are not removed when triggered
 and that trigger for changes on the registered znode as well as any children
 znodes recursively.
        
-<a id="Guarantees"></a>
 
 ### Guarantees
 
@@ -160,8 +149,6 @@ synchronization, it provides a set of guarantees. These are:
   from that time forward until a client overwrites the update.
 * Timeliness - The clients view of the system is guaranteed to
   be up-to-date within a certain time bound.
-
-<a id="Simple+API"></a>
 
 ### Simple API
 
@@ -190,8 +177,6 @@ operations:
 * *sync* :
     waits for data to be propagated
 
-<a id="Implementation"></a>
-
 ### Implementation
 
 [ZooKeeper Components](#zkComponents) shows the high-level components
@@ -199,8 +184,6 @@ of the ZooKeeper service. With the exception of the request processor,
 each of
 the servers that make up the ZooKeeper service replicates its own copy
 of each of the components.
-
-<a id="zkComponents"></a>
 
 ![ZooKeeper Components](/docs-images/zkcomponents.jpg)
 
@@ -230,15 +213,11 @@ calculates what the state of the system is when the write is to be
 applied and transforms this into a transaction that captures this new
 state.
 
-<a id="Uses"></a>
-
 ### Uses
 
 The programming interface to ZooKeeper is deliberately simple.
 With it, however, you can implement higher order operations, such as
 synchronizations primitives, group membership, ownership, etc.
-
-<a id="Performance"></a>
 
 ### Performance
 
@@ -248,8 +227,6 @@ that it is. (See [ZooKeeper Throughput as the Read-Write Ratio Varies](#zkPerfRW
 performance in applications where reads outnumber writes, since writes
 involve synchronizing the state of all servers. (Reads outnumbering
 writes is typically the case for a coordination service.)
-
-<a id="zkPerfRW"></a>
 
 ![ZooKeeper Throughput as the Read-Write Ratio Varies](/docs-images/zkperfRW-3.2.jpg)
 
@@ -280,8 +257,6 @@ various failures. The events marked in the figure are the following:
 1. Failure and recovery of two followers
 1. Failure of another leader
 
-<a id="Reliability"></a>
-
 ### Reliability
 
 To show the behavior of the system over time as
@@ -290,8 +265,6 @@ failures are injected we ran a ZooKeeper service made up of
 but this time we kept the write percentage at a constant
 30%, which is a conservative ratio of our expected
 workloads.
-
-<a id="zkPerfReliability"></a>
 
 ![Reliability in the Presence of Errors](/docs-images/zkperfreliability.jpg)
 
@@ -303,8 +276,6 @@ to prevent throughput from dropping substantially. In our observations,
 ZooKeeper takes less than 200ms to elect a new leader. Third, as
 followers recover, ZooKeeper is able to raise throughput again once they
 start processing requests.
-
-<a id="The+ZooKeeper+Project"></a>
 
 ### The ZooKeeper Project
 

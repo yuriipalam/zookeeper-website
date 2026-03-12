@@ -17,7 +17,6 @@ These release notes include new developer and user facing incompatibilities, fea
 * [Migration Instructions](#migration)
 * [Changes](#changes)
 
-<a id="migration"></a>
 ## Migration Instructions when Upgrading to 3.0.0
 
 *You should only have to read this section if you are upgrading from a previous version of ZooKeeper to version 3.0.0, otw skip down to [changes](#changes)*
@@ -30,7 +29,6 @@ Note: ZooKeeper increments the major version number (major.minor.fix) when backw
 * [Migrating Server Data](#migration_data)
 * [Migrating Server Configuration](#migration_config)
 
-<a id="migration_code"></a>
 ### Migrating Client Code
 
 The underlying client-server protocol has changed in version 3.0.0
@@ -39,7 +37,6 @@ serving clusters to ensure proper operation of the system (old
 pre-3.0.0 clients are not guaranteed to operate against upgraded
 3.0.0 servers and vice-versa).
 
-<a id="Watch+Management"></a>
 #### Watch Management
 
 In previous releases of ZooKeeper any watches registered by clients were lost if the client lost a connection to a ZooKeeper server.
@@ -54,7 +51,6 @@ This release also allows clients to specify call specific watch functions.
 This gives the developer the ability to modularize logic in different watch functions rather than cramming everything in the watch function attached to the ZooKeeper handle.
 Call specific watch functions receive all session events for as long as they are active, but will only receive the watch callbacks for which they are registered.
 
-<a id="Java+API"></a>
 #### Java API
 
 1. The java package structure has changed from **com.yahoo.zookeeper*** to **org.apache.zookeeper***. This will probably affect all of your java code which makes use of ZooKeeper APIs (typically import statements)
@@ -63,12 +59,10 @@ Call specific watch functions receive all session events for as long as they are
 
 Also see [the current Java API](http://zookeeper.apache.org/docs/current/apidocs/zookeeper-server/index.html)
 
-<a id="C+API"></a>
 #### C API
 
 1. A number of constants used in the client ZooKeeper API were renamed in order to reduce namespace collision, see [ZOOKEEPER-6](https://issues.apache.org/jira/browse/ZOOKEEPER-6) for full details
 
-<a id="migration_data"></a>
 ### Migrating Server Data
 The following issues resulted in changes to the on-disk data format (the snapshot and transaction log files contained within the ZK data directory) and require a migration utility to be run. 
   
@@ -113,7 +107,6 @@ This is how upgrade works in ZooKeeper. This will help you troubleshoot in case 
 
 Troubleshooting.
 
-
 1. In case you start ZooKeeper 3.0 without upgrading from 2.0 on a 2.0 database - the servers will start up with an empty database.
  This is because the servers assume that `<dataDir>/version-2` and `<dataLogDir>/version-2` will have the database to start with. Since this will be empty
  in case of no upgrade, the servers will start with an empty database. In such a case, shutdown the ZooKeeper servers, remove the version-2 directory (remember
@@ -124,7 +117,6 @@ Troubleshooting.
 1. If you do not wish to run with ZooKeeper 3.0 and prefer to run with ZooKeeper 2.0 and have already upgraded - you can run ZooKeeper 2 with 
  the `<dataDir>` and `<dataLogDir>` directories changed to `<dataDir>/version-1` and `<dataLogDir>/version-1`. Remember that you will lose all the updates that you made after the upgrade.
 
-<a id="migration_config"></a>
 ### Migrating Server Configuration
 
 There is a significant change to the ZooKeeper server configuration file.
@@ -137,8 +129,6 @@ the *electionAlg* and *server.X* properties.
 You will either need to explicitly set *electionAlg* to its previous default value
 of *0* or change your *server.X* options to include the leader election port.
 
-
-<a id="changes"></a>
 ## Changes Since ZooKeeper 2.2.1
 
 Version 2.2.1 code, documentation, binaries, etc... are still accessible on [SourceForge](http://sourceforge.net/projects/zookeeper)

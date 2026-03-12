@@ -13,8 +13,6 @@ description: "This document contains information to get you started quickly with
     * [Running Replicated ZooKeeper](#sc_RunningReplicatedZooKeeper)
     * [Other Optimizations](#other-optimizations)
 
-<a id="getting-started-coordinating-distributed-applications-with-zooKeeper"></a>
-
 ## Getting Started: Coordinating Distributed Applications with ZooKeeper
 
 This document contains information to get you started quickly with
@@ -27,21 +25,15 @@ deployments, and optimizing the transaction log. However for the complete
 instructions for commercial deployments, please refer to the [ZooKeeper
 Administrator's Guide](/docs/admin-ops/administrators-guide).
 
-<a id="sc_Prerequisites"></a>
-
 ### Pre-requisites
 
 See [System Requirements](/docs/admin-ops/administrators-guide#sc_systemReq) in the Admin guide.
-
-<a id="sc_Download"></a>
 
 ### Download
 
 To get a ZooKeeper distribution, download a recent
 [stable](http://zookeeper.apache.org/releases.html) release from one of the Apache Download
 Mirrors.
-
-<a id="sc_InstallingSingleMode"></a>
 
 ### Standalone Operation
 
@@ -55,12 +47,10 @@ it and cd to the root
 To start ZooKeeper you need a configuration file. Here is a sample,
 create it in **conf/zoo.cfg**:
 
-
 ```
 tickTime=2000
 dataDir=/var/lib/zookeeper
 clientPort=2181
-
 
 ```
 
@@ -93,10 +83,8 @@ database.
 Now that you created the configuration file, you can start
 ZooKeeper:
 
-
 ```bash
 bin/zkServer.sh start
-
 
 ```
 
@@ -113,16 +101,12 @@ This is fine for most development situations, but to run ZooKeeper in
 replicated mode, please see [Running Replicated
 ZooKeeper](#sc_RunningReplicatedZooKeeper).
 
-<a id="sc_FileManagement"></a>
-
 ### Managing ZooKeeper Storage
 
 For long running production systems ZooKeeper storage must
 be managed externally (dataDir and logs). See the section on
 [maintenance](/docs/admin-ops/administrators-guide#sc_maintenance) for
 more details.
-
-<a id="sc_ConnectingToZooKeeper"></a>
 
 ### Connecting to ZooKeeper
 
@@ -132,17 +116,14 @@ more details.
 <Step>Create, inspect, update, and delete a test znode to validate end-to-end operation.</Step>
 </Steps>
 
-
 ```bash
 $ bin/zkCli.sh -server 127.0.0.1:2181
-
 
 ```
 
 This lets you perform simple, file-like operations.
 
 Once you have connected, you should see something like:
-
 
 ```
 Connecting to localhost:2181
@@ -154,7 +135,6 @@ JLine support is enabled
 ```
 
 From the shell, type `help` to get a listing of commands that can be executed from the client, as in:
-
 
 ```
 [zkshell: 0] help
@@ -185,45 +165,37 @@ setquota -n|-b val path
 stat [-w] path
 sync path
 
-
 ```
 
 From here, you can try a few simple commands to get a feel for this simple command line interface.  First, start by issuing the list command, as
 in `ls`, yielding:
 
-
 ```
 [zkshell: 8] ls /
 [zookeeper]
-
 
 ```
 
 Next, create a new znode by running `create /zk_test my_data`. This creates a new znode and associates the string "my_data" with the node.
 You should see:
 
-
 ```
 [zkshell: 9] create /zk_test my_data
 Created /zk_test
-
 
 ```
 
 Issue another `ls /` command to see what the directory looks like:
 
-
 ```
 [zkshell: 11] ls /
 [zookeeper, zk_test]
-
 
 ```
 
 Notice that the zk_test directory has now been created.
 
 Next, verify that the data was associated with the znode by running the `get` command, as in:
-
 
 ```
 [zkshell: 12] get /zk_test
@@ -240,11 +212,9 @@ ephemeralOwner = 0
 dataLength = 7
 numChildren = 0
 
-
 ```
 
 We can change the data associated with zk_test by issuing the `set` command, as in:
-
 
 ```
 [zkshell: 14] set /zk_test junk
@@ -273,13 +243,11 @@ ephemeralOwner = 0
 dataLength = 4
 numChildren = 0
 
-
 ```
 
 (Notice we did a `get` after setting the data and it did, indeed, change.
 
 Finally, let's `delete` the node by issuing:
-
 
 ```
 [zkshell: 16] delete /zk_test
@@ -287,12 +255,9 @@ Finally, let's `delete` the node by issuing:
 [zookeeper]
 [zkshell: 18]
 
-
 ```
 
 That's it for now. To explore more, see the [Zookeeper CLI](/docs/admin-ops/zookeeper-cli).
-
-<a id="sc_ProgrammingToZooKeeper"></a>
 
 ### Programming to ZooKeeper
 
@@ -302,8 +267,6 @@ threaded and multi-threaded. These differ only in how the messaging loop
 is done. For more information, see the [Programming
 Examples in the ZooKeeper Programmer's Guide](/docs/developer/programmers-guide#ch_programStructureWithExample) for
 sample code using the different APIs.
-
-<a id="sc_RunningReplicatedZooKeeper"></a>
 
 ### Running Replicated ZooKeeper
 
@@ -395,8 +358,6 @@ host are still vulnerable to the complete failure of that host.
 you can also instruct ZooKeeper to bind on all of your interfaces and
 automatically switch to a healthy interface in case of a network failure.
 For details, see the [Configuration Parameters](/docs/admin-ops/administrators-guide#id_multi_address).
-
-<a id="other-optimizations"></a>
 
 ### Other Optimizations
 

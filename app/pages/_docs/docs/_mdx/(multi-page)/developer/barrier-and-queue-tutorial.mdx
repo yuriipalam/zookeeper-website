@@ -1,19 +1,7 @@
 ---
-title: "Programming with ZooKeeper - A basic tutorial"
-description: "In this tutorial, we show simple implementations of barriers and"
+title: "Basic tutorial"
+description: "Simple implementations of barriers and producer-consumer queues using ZooKeeper, introducing the core coordination primitives."
 ---
-
-# Programming with ZooKeeper - A basic tutorial
-
-* [Introduction](#ch_Introduction)
-* [Barriers](#sc_barriers)
-* [Producer-Consumer Queues](#sc_producerConsumerQueues)
-* [Complete example](#Complete+example)
-    * [Queue test](#Queue+test)
-    * [Barrier test](#Barrier+test)
-    * [Source Listing](#sc_sourceListing)
-
-<a id="ch_Introduction"></a>
 
 ## Introduction
 
@@ -23,7 +11,7 @@ These examples assume that you have at least one ZooKeeper server running.
 
 Both primitives use the following common excerpt of code:
 
-```
+```java
 static ZooKeeper zk = null;
 static Integer mutex;
 
@@ -48,9 +36,6 @@ synchronized public void process(WatchedEvent event) {
         mutex.notify();
     }
 }
-
-
-
 ```
 
 Both classes extend SyncPrimitive. In this way, we execute steps that are
@@ -68,8 +53,6 @@ if a client is waiting for other clients to leave a barrier, then it can set a w
 wait for modifications to a particular node, which can indicate that it is the end of the wait.
 This point becomes clear once we go over the examples.
 
-<a id="sc_barriers"></a>
-
 ## Barriers
 
 A barrier is a primitive that enables a group of processes to synchronize the
@@ -81,9 +64,9 @@ nodes, joined processes can start the computation.
 
 In this example, each process instantiates a Barrier object, and its constructor takes as parameters:
 
-* the address of a ZooKeeper server (e.g., "zoo1.foo.com:2181")
-* the path of the barrier node on ZooKeeper (e.g., "/b1")
-* the size of the group of processes
+- the address of a ZooKeeper server (e.g., "zoo1.foo.com:2181")
+- the path of the barrier node on ZooKeeper (e.g., "/b1")
+- the size of the group of processes
 
 The constructor of Barrier passes the address of the Zookeeper server to the
 constructor of the parent class. The parent class creates a ZooKeeper instance if
@@ -91,7 +74,7 @@ one does not exist. The constructor of Barrier then creates a
 barrier node on ZooKeeper, which is the parent node of all process nodes, and
 we call root (**Note:** This is not the ZooKeeper root "/").
 
-```
+```java
 /**
  * Barrier constructor
  *
@@ -127,8 +110,6 @@ Barrier(String address, String root, int size) {
         System.out.println(e.toString());
     }
 }
-
-
 ```
 
 To enter the barrier, a process calls enter(). The process creates a node under
@@ -141,7 +122,7 @@ through the call to "getChildren()". In the code, we have that "getChildren()"
 has two parameters. The first one states the node to read from, and the second is
 a boolean flag that enables the process to set a watch. In the code the flag is true.
 
-```
+```java
 /**
  * Join barrier
  *
@@ -165,8 +146,6 @@ boolean enter() throws KeeperException, InterruptedException{
         }
     }
 }
-
-
 ```
 
 Note that enter() throws both KeeperException and InterruptedException, so it is
@@ -179,7 +158,7 @@ that the second parameter of the call to getChildren() is true, meaning that
 ZooKeeper has to set a watch on the root node). Upon reception of a notification,
 it checks once more whether the root node has any children.
 
-```
+```java
 /**
  * Wait until all reach barrier
  *
@@ -201,11 +180,7 @@ boolean leave() throws KeeperException, InterruptedException {
             }
         }
     }
-
-
 ```
-
-<a id="sc_producerConsumerQueues"></a>
 
 ## Producer-Consumer Queues
 
@@ -221,7 +196,7 @@ with Barrier objects, it first calls the constructor of the parent class, SyncPr
 that creates a ZooKeeper object if one doesn't exist. It then verifies if the root
 node of the queue exists, and creates if it doesn't.
 
-```
+```java
 /**
  * Constructor of producer-consumer queue
  *
@@ -248,8 +223,6 @@ Queue(String address, String name) {
         }
     }
 }
-
-
 ```
 
 A producer process calls "produce()" to add an element to the queue, and passes
@@ -259,7 +232,7 @@ append the value of the sequencer counter associated to the root node. In this w
 we impose a total order on the elements of the queue, thus guaranteeing that the
 oldest element of the queue is the next one consumed.
 
-```
+```java
 /**
  * Add element to the queue.
  *
@@ -279,8 +252,6 @@ boolean produce(int i) throws KeeperException, InterruptedException{
 
     return true;
 }
-
-
 ```
 
 To consume an element, a consumer process obtains the children of the root node,
@@ -294,7 +265,7 @@ values, we need to decide which element is the smallest. To decide which one has
 the smallest counter value, we traverse the list, and remove the prefix "element"
 from each one.
 
-```
+```java
 /**
  * Remove first element from the queue.
  *
@@ -333,11 +304,7 @@ int consume() throws KeeperException, InterruptedException{
         }
     }
 }
-
-
 ```
-
-<a id="Complete+example"></a>
 
 ## Complete example
 
@@ -348,40 +315,29 @@ recipes. Use the following command to run it.
 ZOOBINDIR="[path_to_distro]/bin"
 . "$ZOOBINDIR"/zkEnv.sh
 java SyncPrimitive [Test Type] [ZK server] [No of elements] [Client type]
-
 ```
-
-<a id="Queue+test"></a>
 
 ### Queue test
 
 Start a producer to create 100 elements
 
-```
+```bash
 java SyncPrimitive qTest localhost 100 p
-
-
 ```
 
 Start a consumer to consume 100 elements
 
-```
+```bash
 java SyncPrimitive qTest localhost 100 c
-
 ```
-
-<a id="Barrier+test"></a>
 
 ### Barrier test
 
 Start a barrier with 2 participants (start as many times as many participants you'd like to enter)
 
-```
+```bash
 java SyncPrimitive bTest localhost 2
-
 ```
-
-<a id="sc_sourceListing"></a>
 
 ### Source Listing
 
