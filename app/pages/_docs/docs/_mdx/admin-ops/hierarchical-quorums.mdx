@@ -1,9 +1,7 @@
 ---
-title: "Introduction to hierarchical quorums"
-description: "This document gives an example of how to use hierarchical quorums. The basic idea is"
+title: "Hierarchical Quorums"
+description: "How to configure ZooKeeper with hierarchical quorums by splitting servers into groups and assigning weights to control quorum formation."
 ---
-
-# Introduction to hierarchical quorums
 
 This document gives an example of how to use hierarchical quorums. The basic idea is
 very simple. First, we split servers into groups, and add a line for each group listing
@@ -26,7 +24,6 @@ weight.6=1
 weight.7=1
 weight.8=1
 weight.9=1
-
 ```
 
 When running the system, we are able to form a quorum once we have a majority of votes from
