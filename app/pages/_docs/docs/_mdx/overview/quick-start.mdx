@@ -90,17 +90,16 @@ more details.
 ### Connecting to ZooKeeper
 
 <Steps>
-  <Step>Start `zkCli.sh` and connect to your ZooKeeper server.</Step>
+  <Step>
+    Start `zkCli.sh` and connect to your ZooKeeper server. `bin/zkCli.sh
+    -server 127.0.0.1:2181`
+  </Step>
   <Step>Run `help` to list commands and verify client connectivity.</Step>
   <Step>
     Create, inspect, update, and delete a test znode to validate end-to-end
     operation.
   </Step>
 </Steps>
-
-```bash
-$ bin/zkCli.sh -server 127.0.0.1:2181
-```
 
 This lets you perform simple, file-like operations.
 
@@ -156,6 +155,7 @@ in `ls`, yielding:
 
 Next, create a new znode by running `create /zk_test my_data`. This creates a new znode and associates the string "my_data" with the node.
 You should see:
+
 ```
 [zkshell: 9] create /zk_test my_data
 Created /zk_test
@@ -304,11 +304,12 @@ currently require another port for leader election. This is the
 second port in the server entry.
 
 <Callout type="info">
-  If you want to test multiple servers on a single machine, specify the servername
-  as _localhost_ with unique quorum &amp; leader election ports (i.e. 2888:3888, 2889:3889,
-  2890:3890 in the example above) for each server.X in that server's config file. Of course
-  separate _dataDir_s and distinct _clientPort_s are also necessary (in the above replicated
-  example, running on a single _localhost_, you would still have three config files).
+  If you want to test multiple servers on a single machine, specify the
+  servername as _localhost_ with unique quorum &amp; leader election ports (i.e.
+  2888:3888, 2889:3889, 2890:3890 in the example above) for each server.X in
+  that server's config file. Of course separate _dataDir_s and distinct
+  _clientPort_s are also necessary (in the above replicated example, running on
+  a single _localhost_, you would still have three config files).
 </Callout>
 
 > Please be aware that setting up multiple servers on a single

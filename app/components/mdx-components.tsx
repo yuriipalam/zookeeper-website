@@ -55,7 +55,7 @@ export function getMDXComponents(overrides?: MDXComponents): MDXComponents {
     a: ({ href, children, ...rest }) => {
       const isExternal =
         href?.startsWith("http") &&
-        !href?.startsWith("https://hbase.apache.org/");
+        !href?.startsWith("https://zookeeper.apache.org/");
       if (isExternal) {
         const onlyImg = Array.isArray(children)
           ? children.every(
