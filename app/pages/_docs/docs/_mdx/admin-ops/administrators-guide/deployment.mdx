@@ -6,9 +6,9 @@ description: "Covers ZooKeeper deployment requirements and setup: supported plat
 This section contains information about deploying Zookeeper and
 covers these topics:
 
-- [System Requirements](#sc_systemReq)
-- [Clustered (Multi-Server) Setup](#sc_zkMulitServerSetup)
-- [Single Server and Developer Setup](#sc_singleAndDevSetup)
+- [System Requirements](#system-requirements)
+- [Clustered (Multi-Server) Setup](#clustered-multi-server-setup)
+- [Single Server and Developer Setup](#single-server-and-developer-setup)
 
 The first two sections assume you are interested in installing
 ZooKeeper in a production environment such as a datacenter. The final
@@ -129,12 +129,12 @@ server.3=zoo3:2888:3888
 ```
 
     You can find the meanings of these and other configuration settings in the section
-    [Configuration Parameters](#sc_configuration). Every machine that is part of the ZooKeeper
+    [Configuration Parameters](/docs/admin-ops/administrators-guide/configuration-parameters). Every machine that is part of the ZooKeeper
     ensemble should know about every other machine in the ensemble. You accomplish this with the
     series of lines of the form **server.id=host:port:port**. (The parameters **host** and **port**
     are straightforward; for each server you need to specify first a Quorum port then a dedicated
     port for ZooKeeper leader election). Since ZooKeeper 3.6.0 you can also
-    [specify multiple addresses](#id_multi_address) for each ZooKeeper server instance (this can
+    [specify multiple addresses](/docs/admin-ops/administrators-guide/configuration-parameters#cluster-options) for each ZooKeeper server instance (this can
     increase availability when multiple physical network interfaces can be used parallel in the
     cluster). You attribute the server id to each machine by creating a file named _myid_, one for
     each server, which resides in that server's data directory, as specified by the configuration
@@ -190,11 +190,11 @@ development machine.
 The steps to setting up a single server instance are the similar
 to the above, except the configuration file is simpler. You can find the
 complete instructions in the [Installing and
-Running ZooKeeper in Single Server Mode](/docs/overview/quick-start#sc_InstallingSingleMode) section of the [ZooKeeper Getting Started
+Running ZooKeeper in Single Server Mode](/docs/overview/quick-start#standalone-operation) section of the [ZooKeeper Getting Started
 Guide](/docs/overview/quick-start).
 
 For information on installing the client side libraries, refer to
-the [Bindings](/docs/developer/programmers-guide#ch_bindings)
+the [Bindings](/docs/developer/programmers-guide/bindings)
 section of the [ZooKeeper
 Programmer's Guide](/docs/developer/programmers-guide).
 
@@ -275,5 +275,5 @@ degradation:
   Therefore, make certain that the maximum heap size given
   to ZooKeeper is not bigger than the amount of real memory
   available to ZooKeeper. For more on this, see
-  [Things to Avoid](#sc_commonProblems)
-  below.
+  [Things to Avoid](/docs/admin-ops/administrators-guide/best-practices#things-to-avoid)
+  in the Best Practices guide.

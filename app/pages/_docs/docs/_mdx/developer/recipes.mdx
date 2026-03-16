@@ -144,16 +144,16 @@ reader waits for a watch notification to check the queue again.
 
 <Callout type="info">
   There now exists a Queue implementation in ZooKeeper
+  recipes directory. This is distributed with the release --
+  zookeeper-recipes/zookeeper-recipes-queue directory of the release artifact.
 </Callout>
 
-recipes directory. This is distributed with the release --
-zookeeper-recipes/zookeeper-recipes-queue directory of the release artifact.
 
 #### Priority Queues
 
 To implement a priority queue, you need only make two simple
 changes to the generic [queue
-recipe](#sc_recipes_Queues) . First, to add to a queue, the pathname ends with
+recipe](#queues) . First, to add to a queue, the pathname ends with
 "queue-YY" where YY is the priority of the element with lower numbers
 representing higher priority (just like UNIX). Second, when removing
 from the queue, a client uses an up-to-date children list meaning that
@@ -169,10 +169,10 @@ a lock node.
 
 <Callout type="info">
   There now exists a Lock implementation in ZooKeeper
+  recipes directory. This is distributed with the release --
+  zookeeper-recipes/zookeeper-recipes-lock directory of the release artifact.
 </Callout>
 
-recipes directory. This is distributed with the release --
-zookeeper-recipes/zookeeper-recipes-lock directory of the release artifact.
 
 Clients wishing to obtain a lock do the following:
 
@@ -211,7 +211,7 @@ Here are a few things to notice:
 - If a recoverable error occurs calling **create()** the
   client should call **getChildren()** and check for a node
   containing the _guid_ used in the path name.
-  This handles the case (noted [above](#sc_recipes_errorHandlingNote)) of
+  This handles the case (noted [above](#important-note-about-error-handling)) of
   the create() succeeding on the server but the server crashing before returning the name
   of the new node.
 
@@ -240,7 +240,7 @@ Notes:
   they have the lock. The herd effect refers to releasing a
   "herd" when in fact only a single or a small number of
   machines can proceed.
-- See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.
+- See the [note for Locks](#recoverable-errors-and-the-guid) on how to use the guid in the node.
 
 #### Revocable Shared Locks
 
@@ -358,4 +358,4 @@ Notes:
   children do not imply that the creator of this znode is aware that it is
   the current leader. Applications may consider creating a separate znode
   to acknowledge that the leader has executed the leader procedure.
-- See the [note for Locks](#sc_recipes_GuidNote) on how to use the guid in the node.
+- See the [note for Locks](#recoverable-errors-and-the-guid) on how to use the guid in the node.

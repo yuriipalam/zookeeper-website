@@ -38,7 +38,7 @@ Links: [paper (pdf)](https://www.usenix.org/system/files/conference/atc12/atc12-
 <Callout type="warn">
   Starting with 3.5.3, the dynamic reconfiguration feature is disabled by
   default and must be explicitly turned on via the
-  [reconfigEnabled](/docs/admin-ops/administrators-guide#sc_advancedConfiguration)
+  [reconfigEnabled](/docs/admin-ops/administrators-guide/configuration-parameters#advanced-configuration)
   configuration option.
 </Callout>
 
@@ -132,7 +132,7 @@ deprecated in the future.
 Starting with 3.5.0 and prior to 3.5.3, there is no way to disable
 dynamic reconfiguration. To address the security concern that a malicious
 actor could make arbitrary changes to the ensemble configuration, the
-[reconfigEnabled](/docs/admin-ops/administrators-guide#sc_advancedConfiguration) option was introduced in 3.5.3. Any attempt
+[reconfigEnabled](/docs/admin-ops/administrators-guide/configuration-parameters#advanced-configuration) option was introduced in 3.5.3. Any attempt
 to reconfigure a cluster through the reconfig API — with or without authentication —
 will fail by default unless `reconfigEnabled` is set to `true`.
 
@@ -296,7 +296,7 @@ be authenticated.
 An escape hatch is provided for users operating in a secured environment (e.g.
 behind a company firewall) who want to use reconfiguration without the overhead
 of configuring an explicit authorized user list: setting
-[`skipACL`](/docs/admin-ops/administrators-guide#sc_authOptions) to `yes` skips
+[`skipACL`](/docs/admin-ops/administrators-guide/configuration-parameters#encryption-authentication-authorization-options) to `yes` skips
 ACL checks and allows any user to reconfigure the cluster.
 
 - **Access Control:** The dynamic configuration is stored in the special znode
@@ -314,7 +314,7 @@ ACL checks and allows any user to reconfigure the cluster.
   for more details.
 
 - **Disable ACL check:** ZooKeeper supports the
-  [`skipACL`](/docs/admin-ops/administrators-guide#sc_authOptions) option such that
+  [`skipACL`](/docs/admin-ops/administrators-guide/configuration-parameters#encryption-authentication-authorization-options) option such that
   ACL checks are completely skipped when `skipACL` is set to `yes`. In such cases
   any unauthenticated user can use the reconfig API.
 

@@ -5,7 +5,7 @@ description: "These release notes include new developer and user facing incompat
 
 ## Migration Instructions when Upgrading to 3.0.0
 
-_You should only have to read this section if you are upgrading from a previous version of ZooKeeper to version 3.0.0, otw skip down to [changes](#changes)_
+_You should only have to read this section if you are upgrading from a previous version of ZooKeeper to version 3.0.0, otw skip down to [changes](#changes-since-zookeeper-221)_
 
 A small number of changes in this release have resulted in non-backward compatible Zookeeper client user code and server instance data. The following instructions provide details on how to migrate code and date from version 2.2.1 to version 3.0.0.
 
@@ -99,7 +99,7 @@ There is a significant change to the ZooKeeper server configuration file.
 
 The default election algorithm, specified by the _electionAlg_ configuration attribute, has
 changed from a default of _0_ to a default of _3_. See
-[Cluster Options](/docs/admin-ops/administrators-guide#sc_clusterOptions) section of the administrators guide, specifically
+[Cluster Options](/docs/admin-ops/administrators-guide/configuration-parameters#cluster-options) section of the administrators guide, specifically
 the _electionAlg_ and _server.X_ properties.
 
 You will either need to explicitly set _electionAlg_ to its previous default value

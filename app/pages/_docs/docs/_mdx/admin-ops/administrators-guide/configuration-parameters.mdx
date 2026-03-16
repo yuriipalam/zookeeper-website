@@ -255,7 +255,7 @@ property, when available, is noted below.
 - _extendedTypesEnabled_ :
   (Java system property only: **zookeeper.extendedTypesEnabled**)
   **New in 3.5.4, 3.6.0:** Define to `true` to enable
-  extended features such as the creation of [TTL Nodes](/docs/developer/programmers-guide#TTL+Nodes).
+  extended features such as the creation of [TTL Nodes](/docs/developer/programmers-guide/data-model#ttl-nodes).
   They are disabled by default. IMPORTANT: when enabled server IDs must
   be less than 255 due to internal limitations.
 
@@ -605,14 +605,14 @@ property, when available, is noted below.
   (Java system property: **zookeeper.audit.enable**)
   **New in 3.6.0:**
   By default audit logs are disabled. Set to "true" to enable it. Default value is "false".
-  See the [ZooKeeper audit logs](/docs/admin-ops/audit-logs) for more information.
+  See the [ZooKeeper audit logs](/docs/admin-ops/monitor-and-audit-logs) for more information.
 
 - _audit.impl.class_ :
   (Java system property: **zookeeper.audit.impl.class**)
   **New in 3.6.0:**
   Class to implement the audit logger. By default logback based audit logger org.apache.zookeeper.audit
   .Slf4jAuditLogger is used.
-  See the [ZooKeeper audit logs](/docs/admin-ops/audit-logs) for more information.
+  See the [ZooKeeper audit logs](/docs/admin-ops/monitor-and-audit-logs) for more information.
 
 - _largeRequestMaxBytes_ :
   (Java system property: **zookeeper.largeRequestMaxBytes**)
@@ -735,13 +735,13 @@ of servers -- that is, when deploying clusters of servers.
 
 - _initLimit_ :
   (No Java system property)
-  Amount of time, in ticks (see [tickTime](#id_tickTime)), to allow followers to
+  Amount of time, in ticks (see [tickTime](#minimum-configuration)), to allow followers to
   connect and sync to a leader. Increased this value as needed, if
   the amount of data managed by ZooKeeper is large.
 
 - _connectToLearnerMasterLimit_ :
   (Java system property: zookeeper.**connectToLearnerMasterLimit**)
-  Amount of time, in ticks (see [tickTime](#id_tickTime)), to allow followers to
+  Amount of time, in ticks (see [tickTime](#minimum-configuration)), to allow followers to
   connect to the leader after leader election. Defaults to the value of initLimit.
   Use when initLimit is high so connecting to learner master doesn't result in higher timeout.
 
@@ -804,7 +804,7 @@ of servers -- that is, when deploying clusters of servers.
 
 - _syncLimit_ :
   (No Java system property)
-  Amount of time, in ticks (see [tickTime](#id_tickTime)), to allow followers to sync
+  Amount of time, in ticks (see [tickTime](#minimum-configuration)), to allow followers to sync
   with ZooKeeper. If followers fall too far behind a leader, they
   will be dropped.
 
@@ -815,7 +815,7 @@ of servers -- that is, when deploying clusters of servers.
   The left-hand side of the assignment is a colon-separated list of server
   identifiers. Note that groups must be disjoint and the union of all groups
   must be the ZooKeeper ensemble.
-  You will find an example [here](/docs/admin-ops/hierarchical-quorums)
+  You will find an example [here](/docs/admin-ops/quorums)
 
 - _weight.x=nnnnn_ :
   (No Java system property)
@@ -825,7 +825,7 @@ of servers -- that is, when deploying clusters of servers.
   such as leader election and the atomic broadcast protocol. By default
   the weight of server is 1. If the configuration defines groups, but not
   weights, then a value of 1 will be assigned to all servers.
-  You will find an example [here](/docs/admin-ops/hierarchical-quorums)
+  You will find an example [here](/docs/admin-ops/quorums)
 
 - _cnxTimeout_ :
   (Java system property: zookeeper.**cnxTimeout**)
@@ -884,7 +884,7 @@ of servers -- that is, when deploying clusters of servers.
 - _4lw.commands.whitelist_ :
   (Java system property: **zookeeper.4lw.commands.whitelist**)
   **New in 3.5.3:**
-  A list of comma separated [Four Letter Words](#sc_4lw)
+  A list of comma separated [Four Letter Words](/docs/admin-ops/administrators-guide/commands#the-four-letter-words)
   commands that user wants to use. A valid Four Letter Words
   command must be put in this list else ZooKeeper server will
   not enable the command.
@@ -978,7 +978,7 @@ The options in this section allow control over
 encryption/authentication/authorization performed by the service.
 
 Beside this page, you can also find useful information about client side configuration in the
-[Programmers Guide](/docs/developer/programmers-guide#sc_java_client_configuration).
+[Programmers Guide](/docs/developer/programmers-guide/bindings#client-configuration-parameters).
 The ZooKeeper Wiki also has useful pages about [ZooKeeper SSL support](https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZooKeeper+SSL+User+Guide),
 and [SASL authentication for ZooKeeper](https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZooKeeper+and+SASL).
 
@@ -1204,7 +1204,7 @@ server if this feature is enabled with sasl as authentication scheme.
   (Java system properties: **zookeeper.ssl.ciphersuites** and **zookeeper.ssl.quorum.ciphersuites**)
   **New in 3.5.5:**
   Specifies the enabled cipher suites to be used in client and quorum TLS negotiation.
-  Default: JDK defaults since 3.10.0, and hard coded cipher suites for 3.9 and earlier versions. See [TLS Cipher Suites](#sc_tls_cipher_suites).
+  Default: JDK defaults since 3.10.0, and hard coded cipher suites for 3.9 and earlier versions. See [TLS Cipher Suites](#tls-cipher-suites).
 
 - _ssl.context.supplier.class_ and _ssl.quorum.context.supplier.class_ :
   (Java system properties: **zookeeper.ssl.context.supplier.class** and **zookeeper.ssl.quorum.context.supplier.class**)
@@ -1321,7 +1321,7 @@ server if this feature is enabled with sasl as authentication scheme.
 - _multiAddress.enabled_ :
   (Java system property: **zookeeper.multiAddress.enabled**)
   **New in 3.6.0:**
-  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#id_multi_address)
+  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#cluster-options)
   for each ZooKeeper server instance (this can increase availability when multiple physical
   network interfaces can be used parallel in the cluster). Setting this parameter to
   **true** will enable this feature. Please note, that you can not enable this feature
@@ -1331,7 +1331,7 @@ server if this feature is enabled with sasl as authentication scheme.
 - _multiAddress.reachabilityCheckTimeoutMs_ :
   (Java system property: **zookeeper.multiAddress.reachabilityCheckTimeoutMs**)
   **New in 3.6.0:**
-  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#id_multi_address)
+  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#cluster-options)
   for each ZooKeeper server instance (this can increase availability when multiple physical
   network interfaces can be used parallel in the cluster). ZooKeeper will perform ICMP ECHO requests
   or try to establish a TCP connection on port 7 (Echo) of the destination host in order to find
@@ -1451,7 +1451,7 @@ the variable does.
 - _multiAddress.reachabilityCheckEnabled_ :
   (Java system property: **zookeeper.multiAddress.reachabilityCheckEnabled**)
   **New in 3.6.0:**
-  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#id_multi_address)
+  Since ZooKeeper 3.6.0 you can also [specify multiple addresses](#cluster-options)
   for each ZooKeeper server instance (this can increase availability when multiple physical
   network interfaces can be used parallel in the cluster). ZooKeeper will perform ICMP ECHO requests
   or try to establish a TCP connection on port 7 (Echo) of the destination host in order to find
@@ -1636,7 +1636,7 @@ Both subsystems need to have sufficient amount of threads to achieve peak read t
 ## AdminServer configuration
 
 **New in 3.9.0:** The following
-options are used to configure the [AdminServer](#sc_adminserver).
+options are used to configure the [AdminServer](#adminserver-configuration).
 
 - _admin.rateLimiterIntervalInMS_ :
   (Java system property: **zookeeper.admin.rateLimiterIntervalInMS**)
@@ -1656,7 +1656,7 @@ options are used to configure the [AdminServer](#sc_adminserver).
   Defaults to false.
 
   **New in 3.7.1:** The following
-  options are used to configure the [AdminServer](#sc_adminserver).
+  options are used to configure the [AdminServer](#adminserver-configuration).
 
 - _admin.forceHttps_ :
   (Java system property: **zookeeper.admin.forceHttps**)
@@ -1665,7 +1665,7 @@ options are used to configure the [AdminServer](#sc_adminserver).
   Overwrites **admin.portUnification** settings.
 
   **New in 3.6.0:** The following
-  options are used to configure the [AdminServer](#sc_adminserver).
+  options are used to configure the [AdminServer](#adminserver-configuration).
 
 - _admin.portUnification_ :
   (Java system property: **zookeeper.admin.portUnification**)
@@ -1673,7 +1673,7 @@ options are used to configure the [AdminServer](#sc_adminserver).
   Defaults to disabled.
 
   **New in 3.5.0:** The following
-  options are used to configure the [AdminServer](#sc_adminserver).
+  options are used to configure the [AdminServer](#adminserver-configuration).
 
 - _admin.enableServer_ :
   (Java system property: **zookeeper.admin.enableServer**)

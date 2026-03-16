@@ -253,7 +253,8 @@ when _localSessionsUpgradingEnabled_ is enable:
                                                                             +-----------------------+
   ```
 
-- Q&A
+## Q&A [!toc]
+
 - _What's the reason for having the config option to disable local session upgrade?_
   - In a large deployment which wants to handle a very large number of clients, we know that clients connecting via the observers
     which is supposed to be local session only. So this is more like a safeguard against someone accidentally creates lots of ephemeral nodes and global sessions.

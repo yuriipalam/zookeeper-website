@@ -20,23 +20,18 @@ int zookeeper_init(const char *host, watcher_fn fn, int recv_timeout, const clie
 
 - \*_host_ :
   Connection string to zookeeper server in the format of host:port. If there are multiple servers, use comma as separator after specifying the host:port pairs. Eg: "127.0.0.1:2181,127.0.0.1:3001,127.0.0.1:3002"
-
 - _fn_ :
   Watcher function to process events when a notification is triggered.
-
 - _recv_timeout_ :
   Session expiration time in milliseconds.
-
 - \*_clientid_ :
   We can specify 0 for a new session. If a session has already establish previously, we could provide that client ID and it would reconnect to that previous session.
-
 - \*_context_ :
   Context object that can be associated with the zkhandle_t handler. If it is not used, we can set it to 0.
-
 - _flags_ :
   In an initiation, we can leave it for 0.
 
-We will demonstrate client that outputs "Connected to Zookeeper" after successful connection or an error message otherwise. Let's call the following code _zkClient.cc_ :
+We will demonstrate client that outputs "Connected to Zookeeper" after successful connection or an error message otherwise. Let's call the following code _zkClient.cc_:
 
 ```c
 #include <stdio.h>

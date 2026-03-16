@@ -170,10 +170,10 @@ The following ZooKeeper operations deal with ACLs:
   completion, \_const* _void_
   \*data);
 
-The application uses the zoo_add_auth function to
-authenticate itself to the server. The function can be called
-multiple times if the application wants to authenticate using
-different schemes and/or identities.
+  The application uses the zoo_add_auth function to
+  authenticate itself to the server. The function can be called
+  multiple times if the application wants to authenticate using
+  different schemes and/or identities.
 
 - _int_ _zoo_create_
   (zhandle*t \*zh, \_const* _char_
@@ -185,17 +185,17 @@ different schemes and/or identities.
   \*realpath, _int_
   max_realpath_len);
 
-zoo_create(...) operation creates a new node. The acl
-parameter is a list of ACLs associated with the node. The parent
-node must have the CREATE permission bit set.
+  zoo_create(...) operation creates a new node. The acl
+  parameter is a list of ACLs associated with the node. The parent
+  node must have the CREATE permission bit set.
 
 - _int_ _zoo_get_acl_
   (zhandle*t \*zh, \_const* _char_
   \*path,_struct_ ACL*vector
   \*acl, \_struct* Stat \*stat);
 
-This operation returns a node’s ACL info. The node must have READ or ADMIN
-permission set. Without ADMIN permission, the digest hash values will be masked out.
+  This operation returns a node’s ACL info. The node must have READ or ADMIN
+  permission set. Without ADMIN permission, the digest hash values will be masked out.
 
 - _int_ _zoo_set_acl_
   (zhandle*t \*zh, \_const* _char_
@@ -203,8 +203,8 @@ permission set. Without ADMIN permission, the digest hash values will be masked 
   version,_const_ _struct_
   ACL_vector \*acl);
 
-This function replaces node’s ACL list with a new one. The
-node must have the ADMIN permission set.
+  This function replaces node’s ACL list with a new one. The
+  node must have the ADMIN permission set.
 
 Here is a sample code that makes use of the above APIs to
 authenticate itself using the “_foo_” scheme
@@ -213,11 +213,10 @@ permissions.
 
 <Callout type="info">
   This is a very simple example which is intended to show
+  how to interact with ZooKeeper ACLs
+  specifically. See _.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c_
+  for an example of a C client implementation
 </Callout>
-
-how to interact with ZooKeeper ACLs
-specifically. See _.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c_
-for an example of a C client implementation
 
 ```c
 #include <string.h>

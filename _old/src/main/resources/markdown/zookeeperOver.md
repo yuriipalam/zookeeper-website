@@ -180,26 +180,13 @@ One of the design goals of ZooKeeper is providing a very simple
 programming interface. As a result, it supports only these
 operations:
 
-* *create* :
-    creates a node at a location in the tree
-
-* *delete* :
-    deletes a node
-
-* *exists* :
-    tests if a node exists at a location
-
-* *get data* :
-    reads the data from a node
-
-* *set data* :
-    writes data to a node
-
-* *get children* :
-    retrieves a list of children of a node
-
-* *sync* :
-    waits for data to be propagated
+* *create* : creates a node at a location in the tree
+* *delete* : deletes a node
+* *exists* : tests if a node exists at a location
+* *get data* : reads the data from a node
+* *set data* : writes data to a node
+* *get children* : retrieves a list of children of a node
+* *sync* : waits for data to be propagated
 
 <a name="Implementation"></a>
 

@@ -118,7 +118,6 @@ description: "A catalog of real-world projects and organizations that use Apache
 - Apache CXF is an open source services framework. CXF helps you build and develop services using frontend programming
   APIs, like JAX-WS and JAX-RS. These services can speak a variety of protocols such as SOAP, XML/HTTP, RESTful HTTP,
   or CORBA and work over a variety of transports such as HTTP, JMS or JBI.
-
 - The Distributed OSGi implementation at Apache CXF uses ZooKeeper for its Discovery functionality [^4].
 
 ### [Apache Drill](http://drill.apache.org/)
@@ -179,22 +178,21 @@ description: "A catalog of real-world projects and organizations that use Apache
 - The implementation of automatic HDFS failover relies on ZooKeeper for the following things:
   - **Failure detection** - each of the NameNode machines in the cluster maintains a persistent session in ZooKeeper.
     If the machine crashes, the ZooKeeper session will expire, notifying the other NameNode that a failover should be triggered.
-- **Active NameNode election** - ZooKeeper provides a simple mechanism to exclusively elect a node as active. If the current active NameNode crashes,
-  another node may take a special exclusive lock in ZooKeeper indicating that it should become the next active.
+  - **Active NameNode election** - ZooKeeper provides a simple mechanism to exclusively elect a node as active. If the current active NameNode crashes,
+    another node may take a special exclusive lock in ZooKeeper indicating that it should become the next active.
 
 - The ZKFailoverController (ZKFC) is a new component which is a ZooKeeper client which also monitors and manages the state of the NameNode.
   Each of the machines which runs a NameNode also runs a ZKFC, and that ZKFC is responsible for:
-
-- **Health monitoring** - the ZKFC pings its local NameNode on a periodic basis with a health-check command.
-  So long as the NameNode responds in a timely fashion with a healthy status, the ZKFC considers the node healthy.
-  If the node has crashed, frozen, or otherwise entered an unhealthy state, the health monitor will mark it as unhealthy.
-- **ZooKeeper session management** - when the local NameNode is healthy, the ZKFC holds a session open in ZooKeeper.
-  If the local NameNode is active, it also holds a special “lock” znode. This lock uses ZooKeeper’s support for “ephemeral” nodes;
-  if the session expires, the lock node will be automatically deleted.
-- **ZooKeeper-based election** - if the local NameNode is healthy, and the ZKFC sees that no other node currently holds the lock znode,
-  it will itself try to acquire the lock. If it succeeds, then it has “won the election”, and is responsible for running a failover to make its local NameNode active.
-  The failover process is similar to the manual failover described above: first, the previous active is fenced if necessary,
-  and then the local NameNode transitions to active state [^7].
+  - **Health monitoring** - the ZKFC pings its local NameNode on a periodic basis with a health-check command.
+    So long as the NameNode responds in a timely fashion with a healthy status, the ZKFC considers the node healthy.
+    If the node has crashed, frozen, or otherwise entered an unhealthy state, the health monitor will mark it as unhealthy.
+  - **ZooKeeper session management** - when the local NameNode is healthy, the ZKFC holds a session open in ZooKeeper.
+    If the local NameNode is active, it also holds a special “lock” znode. This lock uses ZooKeeper’s support for “ephemeral” nodes;
+    if the session expires, the lock node will be automatically deleted.
+  - **ZooKeeper-based election** - if the local NameNode is healthy, and the ZKFC sees that no other node currently holds the lock znode,
+    it will itself try to acquire the lock. If it succeeds, then it has “won the election”, and is responsible for running a failover to make its local NameNode active.
+    The failover process is similar to the manual failover described above: first, the previous active is fenced if necessary,
+    and then the local NameNode transitions to active state [^7].
 
 ### [Apache HBase](https://hbase.apache.org/)
 
@@ -202,7 +200,6 @@ description: "A catalog of real-world projects and organizations that use Apache
 - HBase uses ZooKeeper for master election, server lease management, bootstrapping, and coordination between servers.
   A distributed Apache HBase installation depends on a running ZooKeeper cluster. All participating nodes and clients
   need to be able to access the running ZooKeeper ensemble [^8].
-
 - As you can see, ZooKeeper is a fundamental part of HBase. All operations that require coordination, such as Regions
   assignment, Master-Failover, replication, and snapshots, are built on ZooKeeper [^20].
 
@@ -238,22 +235,20 @@ description: "A catalog of real-world projects and organizations that use Apache
 ### [Apache Kafka](https://kafka.apache.org/)
 
 - Kafka is a distributed publish/subscribe messaging system
-- Apache Kafka relies on ZooKeeper for the following things: - **Controller election**
-  The controller is one of the most important broking entity in a Kafka ecosystem, and it also has the responsibility
-  to maintain the leader-follower relationship across all the partitions. If a node by some reason is shutting down,
-  it’s the controller’s responsibility to tell all the replicas to act as partition leaders in order to fulfill the
-  duties of the partition leaders on the node that is about to fail. So, whenever a node shuts down, a new controller
-  can be elected and it can also be made sure that at any given time, there is only one controller and all the follower nodes have agreed on that.
-- **Configuration Of Topics**
-  The configuration regarding all the topics including the list of existing topics, the number of partitions for each topic,
-
-the location of all the replicas, list of configuration overrides for all topics and which node is the preferred leader, etc.
-
-- **Access control lists**
-  Access control lists or ACLs for all the topics are also maintained within Zookeeper.
-
-- **Membership of the cluster**
-  Zookeeper also maintains a list of all the brokers that are functioning at any given moment and are a part of the cluster [^9].
+- Apache Kafka relies on ZooKeeper for the following things:
+  - **Controller election**
+    The controller is one of the most important broking entity in a Kafka ecosystem, and it also has the responsibility
+    to maintain the leader-follower relationship across all the partitions. If a node by some reason is shutting down,
+    it’s the controller’s responsibility to tell all the replicas to act as partition leaders in order to fulfill the
+    duties of the partition leaders on the node that is about to fail. So, whenever a node shuts down, a new controller
+    can be elected and it can also be made sure that at any given time, there is only one controller and all the follower nodes have agreed on that.
+  - **Configuration Of Topics**
+    The configuration regarding all the topics including the list of existing topics, the number of partitions for each topic,
+    the location of all the replicas, list of configuration overrides for all topics and which node is the preferred leader, etc.
+  - **Access control lists**
+    Access control lists or ACLs for all the topics are also maintained within Zookeeper.
+  - **Membership of the cluster**
+    Zookeeper also maintains a list of all the brokers that are functioning at any given moment and are a part of the cluster [^9].
 
 ### [Apache Kylin](http://kylin.apache.org/)
 
@@ -301,7 +296,6 @@ the location of all the replicas, list of configuration overrides for all topics
 - Apache Storm is a free and open source distributed realtime computation system. Apache Storm makes it easy to reliably
   process unbounded streams of data, doing for realtime processing what Hadoop did for batch processing.
   Apache Storm is simple, can be used with any programming language, and is a lot of fun to use!
-
 - Storm uses Zookeeper for coordinating the cluster [^22].
 
 ## Companies
@@ -424,9 +418,7 @@ the location of all the replicas, list of configuration overrides for all topics
 
 [^16]: https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/dynamic-configuration-at-twitter.html
 
-[^17]:
-    TANG, C., KOOBURAT, T., VENKATACHALAM, P.,CHANDER, A., WEN, Z., NARAYANAN, A., DOWELL,P., AND KARL, R. Holistic Configuration Management
-    at Facebook. In Proceedings of the 25th Symposium on Operating System Principles (SOSP’15) (Monterey, CA,USA, Oct. 2015).
+[^17]: TANG, C., KOOBURAT, T., VENKATACHALAM, P.,CHANDER, A., WEN, Z., NARAYANAN, A., DOWELL,P., AND KARL, R. Holistic Configuration Management at Facebook. In Proceedings of the 25th Symposium on Operating System Principles (SOSP’15) (Monterey, CA,USA, Oct. 2015).
 
 [^18]: https://www.youtube.com/watch?v=SeZV373gUZc
 

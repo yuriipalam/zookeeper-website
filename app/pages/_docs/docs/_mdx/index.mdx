@@ -140,24 +140,17 @@ One of the design goals of ZooKeeper is providing a very simple
 programming interface. As a result, it supports only these
 operations:
 
-- _create_ :  
-  creates a node at a location in the tree
-- _delete_ :  
-  deletes a node
-- _exists_ :  
-  tests if a node exists at a location
-- _get data_ :  
-  reads the data from a node
-- _set data_ :  
-  writes data to a node
-- _get children_ :  
-  retrieves a list of children of a node
-- _sync_ :  
-  waits for data to be propagated
+- _create_ : creates a node at a location in the tree
+- _delete_ : deletes a node
+- _exists_ : tests if a node exists at a location
+- _get data_ : reads the data from a node
+- _set data_ : writes data to a node
+- _get children_ : retrieves a list of children of a node
+- _sync_ : waits for data to be propagated
 
 ### Implementation
 
-[ZooKeeper Components](#zkComponents) shows the high-level components
+ZooKeeper Components shows the high-level components
 of the ZooKeeper service. With the exception of the request processor,
 each of
 the servers that make up the ZooKeeper service replicates its own copy
@@ -201,14 +194,14 @@ synchronizations primitives, group membership, ownership, etc.
 
 ZooKeeper is designed to be highly performance. But is it? The
 results of the ZooKeeper's development team at Yahoo! Research indicate
-that it is. (See [ZooKeeper Throughput as the Read-Write Ratio Varies](#zkPerfRW).) It is especially high
+that it is. It is especially high
 performance in applications where reads outnumber writes, since writes
 involve synchronizing the state of all servers. (Reads outnumbering
 writes is typically the case for a coordination service.)
 
 ![ZooKeeper Throughput as the Read-Write Ratio Varies](/docs-images/zkperfRW-3.2.jpg)
 
-The [ZooKeeper Throughput as the Read-Write Ratio Varies](#zkPerfRW) is a throughput
+The "ZooKeeper Throughput as the Read-Write Ratio Varies" is a throughput
 graph of ZooKeeper release 3.2 running on servers with dual 2Ghz
 Xeon and two SATA 15K RPM drives. One drive was used as a
 dedicated ZooKeeper log device. The snapshots were written to
@@ -226,7 +219,7 @@ leaders do not allow connections from clients.
 the [previous 3.1 release](http://zookeeper.apache.org/docs/r3.1.1/zookeeperOver.html#Performance).
 
 Benchmarks also indicate that it is reliable, too.
-[Reliability in the Presence of Errors](#zkPerfReliability) shows how a deployment responds to
+[Reliability in the Presence of Errors](#reliability) shows how a deployment responds to
 various failures. The events marked in the figure are the following:
 
 1. Failure and recovery of a follower
