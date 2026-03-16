@@ -23,7 +23,7 @@ test.describe("Landing Page Navigation", () => {
     const response = await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
     expect(response?.status()).toBe(200);
-    await expect(page).toHaveTitle(/HBase/);
+    await expect(page).toHaveTitle(/Apache ZooKeeper/);
   });
 
   test("has visible navigation bar with logo", async ({ page }) => {
@@ -31,38 +31,38 @@ test.describe("Landing Page Navigation", () => {
     await page.waitForLoadState("load");
 
     // Check for logo/home link
-    const logo = page.getByRole("link", { name: /HBase Home/i });
+    const logo = page.getByRole("link", { name: /ZooKeeper Home/i });
     await expect(logo).toBeVisible();
 
     // Check for logo image (use .first() since there are multiple)
     const logoImage = page
-      .getByRole("img", { name: /Apache HBase logo/i })
+      .getByRole("img", { name: /Apache ZooKeeper logo/i })
       .first();
     await expect(logoImage).toBeVisible();
   });
 
-  test("navigation menu - Apache HBase Project dropdown exists", async ({
+  test("navigation menu - Apache ZooKeeper Project dropdown exists", async ({
     page
   }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
-    // Find the "Apache HBase Project" button (use .first() for desktop version)
+    // Find the "Apache ZooKeeper Project" button (use .first() for desktop version)
     const projectButton = page
-      .getByRole("button", { name: /Apache HBase Project/i })
+      .getByRole("button", { name: /Apache ZooKeeper Project/i })
       .first();
     await expect(projectButton).toBeVisible();
   });
 
-  test("navigation menu - Documentation and API dropdown exists", async ({
+  test("navigation menu - Documentation dropdown exists", async ({
     page
   }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
-    // Find the "Documentation and API" button (use .first() for desktop version)
+    // Find the "Documentation" button (use .first() for desktop version)
     const docsButton = page
-      .getByRole("button", { name: /Documentation and API/i })
+      .getByRole("button", { name: /^Documentation$/i })
       .first();
     await expect(docsButton).toBeVisible();
   });
@@ -77,7 +77,7 @@ test.describe("Landing Page Navigation", () => {
     if ((await downloadsLink.count()) > 0) {
       await downloadsLink.click();
       await page.waitForLoadState("load");
-      await expect(page).toHaveURL(/.*download/);
+      await expect(page).toHaveURL(/.*releases/);
     }
   });
 
@@ -135,7 +135,7 @@ test.describe("Landing Page Navigation", () => {
     // Check for hero section with large logo or heading
     const heroElements = page
       .locator("section, div")
-      .filter({ hasText: /Hadoop|Database/i });
+      .filter({ hasText: /ZooKeeper|distributed coordination/i });
     const count = await heroElements.count();
     expect(count).toBeGreaterThan(0);
   });
@@ -144,9 +144,9 @@ test.describe("Landing Page Navigation", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 
-    // Click Documentation and API dropdown
+    // Click Documentation dropdown
     const docsButton = page
-      .getByRole("button", { name: /Documentation and API/i })
+      .getByRole("button", { name: /^Documentation$/i })
       .first();
     await docsButton.click();
     await page.waitForTimeout(300);

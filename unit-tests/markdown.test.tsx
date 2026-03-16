@@ -106,12 +106,12 @@ describe("MDX Components", () => {
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     });
 
-    it("treats hbase.apache.org links as internal", () => {
+    it("treats zookeeper.apache.org links as internal", () => {
       const components = getMDXComponents();
       const A = components.a as React.ComponentType<any>;
 
       renderWithProviders(
-        <A href="https://hbase.apache.org/docs">Apache Link</A>
+        <A href="https://zookeeper.apache.org/docs">Apache Link</A>
       );
 
       const link = screen.getByRole("link", { name: "Apache Link" });

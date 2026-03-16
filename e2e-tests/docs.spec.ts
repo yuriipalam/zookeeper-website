@@ -25,7 +25,7 @@ test.describe("Documentation Page - Basic Loading", () => {
 
     // Check URL and title
     await expect(page).toHaveURL(/.*docs/);
-    await expect(page).toHaveTitle(/Preface|HBase/i);
+    await expect(page).toHaveTitle(/Overview|ZooKeeper/i);
   });
 
   test("docs page has visible content", async ({ page }) => {
@@ -38,13 +38,13 @@ test.describe("Documentation Page - Basic Loading", () => {
     expect(bodyText!.length).toBeGreaterThan(500);
   });
 
-  test("docs page has header with Apache HBase link", async ({ page }) => {
+  test("docs page has header with Apache ZooKeeper link", async ({ page }) => {
     await page.goto("/docs");
     await page.waitForLoadState("networkidle");
 
     // Check for header link
     const headerLink = page
-      .getByRole("link", { name: /Apache HBase/i })
+      .getByRole("link", { name: /Apache ZooKeeper/i })
       .first();
     await expect(headerLink).toBeVisible();
   });

@@ -26,15 +26,15 @@ describe("HomePage", () => {
     renderWithProviders(<HomePage />);
 
     const heading = screen.getByRole("heading", {
-      name: /The Hadoop Database/i
+      name: /The standard for distributed coordination/i
     });
     expect(heading).toBeInTheDocument();
   });
 
-  it("displays the Apache HBase logo", () => {
+  it("displays the Apache ZooKeeper logo", () => {
     renderWithProviders(<HomePage />);
 
-    const logos = screen.getAllByAltText(/Apache HBase logo/i);
+    const logos = screen.getAllByAltText(/Apache ZooKeeper logo/i);
     expect(logos.length).toBeGreaterThan(0);
   });
 
@@ -42,19 +42,19 @@ describe("HomePage", () => {
     renderWithProviders(<HomePage />);
 
     const description = screen.getByText(
-      /A distributed, scalable, big data store/i
+      /Naming, configuration management, synchronization/i
     );
     expect(description).toBeInTheDocument();
   });
 
-  it("displays Download HBase button", () => {
+  it("displays Download button", () => {
     renderWithProviders(<HomePage />);
 
     const downloadButton = screen.getByRole("link", {
-      name: /Download HBase/i
+      name: /^Download$/i
     });
     expect(downloadButton).toBeInTheDocument();
-    expect(downloadButton).toHaveAttribute("href", "/downloads");
+    expect(downloadButton).toHaveAttribute("href", "/releases");
   });
 
   it("displays Read Documentation button", () => {
@@ -70,8 +70,8 @@ describe("HomePage", () => {
     renderWithProviders(<HomePage />);
 
     // Check for key feature headings
-    expect(screen.getByText("Billions of Rows")).toBeInTheDocument();
-    expect(screen.getByText("Real-time Access")).toBeInTheDocument();
+    expect(screen.getByText("High Performance")).toBeInTheDocument();
+    expect(screen.getByText("Simple & Reliable")).toBeInTheDocument();
   });
 
   it("renders use cases section", () => {

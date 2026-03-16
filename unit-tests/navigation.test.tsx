@@ -32,14 +32,14 @@ describe("SiteNavbar", () => {
   it("renders the navbar with logo", () => {
     renderWithProviders(<SiteNavbar />);
 
-    const logo = screen.getByAltText(/Apache HBase logo/i);
+    const logo = screen.getByAltText(/Apache ZooKeeper logo/i);
     expect(logo).toBeInTheDocument();
   });
 
   it("logo links to home", () => {
     renderWithProviders(<SiteNavbar />);
 
-    const logo = screen.getByAltText(/Apache HBase logo/i);
+    const logo = screen.getByAltText(/Apache ZooKeeper logo/i);
     const logoLink = logo.closest("a");
     expect(logoLink).toHaveAttribute("href", "/");
   });
@@ -49,7 +49,7 @@ describe("SiteNavbar", () => {
 
     // There are multiple buttons (JS and no-JS), so use getAllByRole
     const projectMenus = screen.getAllByRole("button", {
-      name: /Apache HBase Project/i
+      name: /Apache ZooKeeper Project/i
     });
     expect(projectMenus.length).toBeGreaterThan(0);
   });
@@ -59,7 +59,7 @@ describe("SiteNavbar", () => {
 
     // There are multiple buttons (JS and no-JS), so use getAllByRole
     const docsMenus = screen.getAllByRole("button", {
-      name: /Documentation and API/i
+      name: /^Documentation$/i
     });
     expect(docsMenus.length).toBeGreaterThan(0);
   });
@@ -78,7 +78,7 @@ describe("SiteNavbar", () => {
 
     // Get the first project menu button (for desktop JS version)
     const projectMenus = screen.getAllByRole("button", {
-      name: /Apache HBase Project/i
+      name: /Apache ZooKeeper Project/i
     });
     await user.click(projectMenus[0]);
 
@@ -99,13 +99,13 @@ describe("SiteNavbar", () => {
     renderWithProviders(<SiteNavbar />);
 
     const docsMenus = screen.getAllByRole("button", {
-      name: /Documentation and API/i
+      name: /^Documentation$/i
     });
     await user.click(docsMenus[0]);
 
     // Check for documentation links
-    const refGuideLinks = screen.getAllByText(/Reference Guide/i);
-    expect(refGuideLinks.length).toBeGreaterThan(0);
+    const docLinks = screen.getAllByRole("menuitem", { name: /Issue Tracking/i });
+    expect(docLinks.length).toBeGreaterThan(0);
   });
 
   it("opens ASF dropdown menu and shows links", async () => {
