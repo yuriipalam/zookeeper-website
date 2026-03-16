@@ -1,16 +1,7 @@
 {
   "title": "Developer",
   "pages": [
-    "index",
-    "the-zookeeper-data-model",
-    "zookeeper-sessions",
-    "zookeeper-watches",
-    "zookeeper-access-control-using-acls",
-    "pluggable-zookeeper-authentication",
-    "consistency-guarantees",
-    "bindings",
-    "building-blocks-a-guide-to-zookeeper-operations",
-    "gotchas-common-problems-and-troubleshooting",
+    "programmers-guide",
     "use-cases",
     "java-example",
     "basic-tutorial",

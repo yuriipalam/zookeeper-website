@@ -1,0 +1,14 @@
+{
+  "title": "Programmer's Guide",
+  "pages": [
+    "data-model",
+    "sessions",
+    "watches",
+    "access-control-using-acls",
+    "pluggable-authentication",
+    "consistency-guarantees",
+    "bindings",
+    "building-blocks-a-guide-to-zookeeper-operations",
+    "gotchas-common-problems-and-troubleshooting"
+  ]
+}
