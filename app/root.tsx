@@ -45,7 +45,9 @@ export const links: Route.LinksFunction = () => [
     type: "font/woff2",
     crossOrigin: "anonymous"
   },
-  { rel: "stylesheet", href: appStyles }
+  { rel: "stylesheet", href: appStyles },
+  { rel: "icon", href: "/images/logo.svg", type: "image/svg+xml" },
+  { rel: "icon", href: "/favicon.ico", sizes: "any" }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
