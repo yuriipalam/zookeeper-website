@@ -2,8 +2,8 @@
   "title": "Miscellaneous",
   "pages": [
     "internals",
+    "[Mailing Lists](/mailing-lists)",
     "external:[Wiki](https://cwiki.apache.org/confluence/display/ZOOKEEPER)",
-    "external:[FAQ](https://cwiki.apache.org/confluence/display/ZOOKEEPER/FAQ)",
-    "external:[Mailing Lists](/mailing-lists)"
+    "external:[FAQ](https://cwiki.apache.org/confluence/display/ZOOKEEPER/FAQ)"
   ]
 }

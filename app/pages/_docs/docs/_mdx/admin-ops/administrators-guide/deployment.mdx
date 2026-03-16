@@ -79,20 +79,21 @@ machines ZooKeeper can handle the failure of two machines.
   Guide](/docs/overview/quick-start), a minimum of three servers are required
   for a fault tolerant clustered setup, and it is strongly recommended that you
   have an odd number of servers.
+
+  Usually three servers is more than enough for a production
+  install, but for maximum reliability during maintenance, you may
+  wish to install five servers. With three servers, if you perform
+  maintenance on one of them, you are vulnerable to a failure on one
+  of the other two servers during that maintenance. If you have five
+  of them running, you can take one down for maintenance, and know
+  that you're still OK if one of the other four suddenly fails.  
+  
+  Your redundancy considerations should include all aspects of
+  your environment. If you have three ZooKeeper servers, but their
+  network cables are all plugged into the same network switch, then
+  the failure of that switch will take down your entire ensemble.
 </Callout>
 
-> Usually three servers is more than enough for a production
-> install, but for maximum reliability during maintenance, you may
-> wish to install five servers. With three servers, if you perform
-> maintenance on one of them, you are vulnerable to a failure on one
-> of the other two servers during that maintenance. If you have five
-> of them running, you can take one down for maintenance, and know
-> that you're still OK if one of the other four suddenly fails.
-
-> Your redundancy considerations should include all aspects of
-> your environment. If you have three ZooKeeper servers, but their
-> network cables are all plugged into the same network switch, then
-> the failure of that switch will take down your entire ensemble.
 
 Here are the steps to set a server that will be part of an
 ensemble. These steps should be performed on every host in the
@@ -134,7 +135,7 @@ server.3=zoo3:2888:3888
     series of lines of the form **server.id=host:port:port**. (The parameters **host** and **port**
     are straightforward; for each server you need to specify first a Quorum port then a dedicated
     port for ZooKeeper leader election). Since ZooKeeper 3.6.0 you can also
-    [specify multiple addresses](/docs/admin-ops/administrators-guide/configuration-parameters#cluster-options) for each ZooKeeper server instance (this can
+    specify multiple addresses for each ZooKeeper server instance (this can
     increase availability when multiple physical network interfaces can be used parallel in the
     cluster). You attribute the server id to each machine by creating a file named _myid_, one for
     each server, which resides in that server's data directory, as specified by the configuration

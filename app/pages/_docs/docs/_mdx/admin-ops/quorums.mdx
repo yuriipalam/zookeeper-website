@@ -110,7 +110,7 @@ We consider an asynchronous distributed system which consists of **2** ZooKeeper
 
 #### Liveness Issue
 
-When the Oracle satisfies the following property introduced by [CT]:
+When the Oracle satisfies the following property introduced by [^1]:
 
 > **Strong Completeness:** There is a time after which every process that crashes is permanently suspected by every correct process.
 
@@ -144,7 +144,7 @@ This trades liveness for safety.
 
 **Split Brain Issue**
 
-We consider the Oracle satisfies the following property introduced by [CT]:
+We consider the Oracle satisfies the following property introduced by [^1]:
 
 > **Accuracy:** There is a time after which some correct process is never suspected by any process.
 
@@ -227,4 +227,4 @@ With these steps, you can observe and practice how the Oracle works with a two-i
 
 ### Reference
 
-[CT] Tushar Deepak Chandra and Sam Toueg. 1991. Unreliable failure detectors for asynchronous systems (preliminary version). In _Proceedings of the tenth annual ACM symposium on Principles of distributed computing_ (_PODC '91_). Association for Computing Machinery, New York, NY, USA, 325–340. [DOI:10.1145/112600.112627](https://doi.org/10.1145/112600.112627)
+[^1]: Tushar Deepak Chandra and Sam Toueg. 1991. Unreliable failure detectors for asynchronous systems (preliminary version). In _Proceedings of the tenth annual ACM symposium on Principles of distributed computing_ (_PODC '91_). Association for Computing Machinery, New York, NY, USA, 325–340. [DOI:10.1145/112600.112627](https://doi.org/10.1145/112600.112627)

@@ -38,8 +38,7 @@ Links: [paper (pdf)](https://www.usenix.org/system/files/conference/atc12/atc12-
 <Callout type="warn">
   Starting with 3.5.3, the dynamic reconfiguration feature is disabled by
   default and must be explicitly turned on via the
-  [reconfigEnabled](/docs/admin-ops/administrators-guide/configuration-parameters#advanced-configuration)
-  configuration option.
+  `reconfigEnabled` configuration option.
 </Callout>
 
 ## Changes to Configuration Format
@@ -132,7 +131,7 @@ deprecated in the future.
 Starting with 3.5.0 and prior to 3.5.3, there is no way to disable
 dynamic reconfiguration. To address the security concern that a malicious
 actor could make arbitrary changes to the ensemble configuration, the
-[reconfigEnabled](/docs/admin-ops/administrators-guide/configuration-parameters#advanced-configuration) option was introduced in 3.5.3. Any attempt
+`reconfigEnabled` option was introduced in 3.5.3. Any attempt
 to reconfigure a cluster through the reconfig API — with or without authentication —
 will fail by default unless `reconfigEnabled` is set to `true`.
 
@@ -231,7 +230,7 @@ part of the configuration as explained earlier. In this case, however, the
 line `clientPort=2791` will remain in the static configuration file of
 server 1 since it is not redundant — it was not specified as part of
 `server.1=...` using the format described in
-[Specifying the Client Port](#changes-to-configuration-format). If a
+[Changes to Configuration Format](#changes-to-configuration-format). If a
 reconfiguration is invoked that sets the client port of server 1, `clientPort=2791`
 is removed from the static configuration file (the dynamic file then contains
 this information as part of the server 1 specification).
@@ -296,7 +295,7 @@ be authenticated.
 An escape hatch is provided for users operating in a secured environment (e.g.
 behind a company firewall) who want to use reconfiguration without the overhead
 of configuring an explicit authorized user list: setting
-[`skipACL`](/docs/admin-ops/administrators-guide/configuration-parameters#encryption-authentication-authorization-options) to `yes` skips
+`skipACL` to `yes` skips
 ACL checks and allows any user to reconfigure the cluster.
 
 - **Access Control:** The dynamic configuration is stored in the special znode
@@ -314,7 +313,7 @@ ACL checks and allows any user to reconfigure the cluster.
   for more details.
 
 - **Disable ACL check:** ZooKeeper supports the
-  [`skipACL`](/docs/admin-ops/administrators-guide/configuration-parameters#encryption-authentication-authorization-options) option such that
+  `skipACL` option such that
   ACL checks are completely skipped when `skipACL` is set to `yes`. In such cases
   any unauthenticated user can use the reconfig API.
 
