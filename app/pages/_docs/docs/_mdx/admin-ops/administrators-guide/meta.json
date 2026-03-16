@@ -5,7 +5,7 @@
     "administration",
     "configuration-parameters",
     "communication-using-the-netty-framework",
-    "zookeeper-commands",
+    "commands",
     "data-file-management",
     "best-practices"
   ]

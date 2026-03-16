@@ -9,9 +9,9 @@
     "oracle-quorum",
     "observers-guide",
     "dynamic-reconfiguration",
-    "zookeeper-cli",
-    "zookeeper-tools",
-    "zookeeper-monitor",
+    "cli",
+    "tools",
+    "monitor",
     "audit-logs"
   ]
 }
