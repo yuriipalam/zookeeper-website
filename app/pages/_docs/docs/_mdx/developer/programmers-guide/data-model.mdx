@@ -102,12 +102,12 @@ for duplicate check. In that case, getEphemerals() api could be used to
 get the list of nodes for the session. This might be a typical use case
 for service discovery.
 
-### Sequence Nodes -- Unique Naming
+### Sequence Nodes — Unique Naming
 
 When creating a znode you can also request that
 ZooKeeper append a monotonically increasing counter to the end
 of path. This counter is unique to the parent znode. The
-counter has a format of %010d -- that is 10 digits with 0
+counter has a format of %010d — that is 10 digits with 0
 (zero) padding (the counter is formatted in this way to
 simplify sorting), i.e. "`<path>0000000001`". See
 [Queue

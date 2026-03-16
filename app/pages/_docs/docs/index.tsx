@@ -75,13 +75,8 @@ const renderer = toClientRenderer(
     const baseGithubPath = "zookeeper-docs/app/pages/_docs/docs/_mdx/";
 
     const grouppedRoutes = [
-      "configuration",
-      "upgrading",
-      "security",
-      "architecture",
-      "backup-restore",
-      "operational-management",
-      "building-and-developing"
+      "developer/programmers-guide",
+      "admin-ops/administrators-guide"
     ];
     const trimmedRoute = route?.endsWith("/") ? route?.slice(0, -1) : route;
     const mdxFileRoute = `${trimmedRoute === "" ? "index" : trimmedRoute}.mdx`;

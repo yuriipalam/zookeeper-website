@@ -137,7 +137,7 @@ to a new server.
 
 Once a connection to the server is successfully established
 (connected) there are basically two cases where the client lib generates
-connectionloss (the result code in c binding, exception in Java -- see
+connectionloss (the result code in c binding, exception in Java — see
 the API documentation for binding specific details) when either a synchronous or
 asynchronous operation is performed and one of the following holds:
 
@@ -146,7 +146,7 @@ asynchronous operation is performed and one of the following holds:
 1. The ZooKeeper client disconnects from a server when there
    are pending operations to that server, i.e., there is a pending asynchronous call.
 
-**Added in 3.2.0 -- SessionMovedException**. There is an internal
+**Added in 3.2.0 — SessionMovedException**. There is an internal
 exception that is generally not seen by clients called the SessionMovedException.
 This exception occurs because a request was received on a connection for a session
 which has been reestablished on a different server. The normal cause of this error is
@@ -175,7 +175,7 @@ move to one of the new hosts in order to balance the load. The algorithm will ca
 to drop its connection to the current host to which it is connected with probability 0.4 and in this
 case cause the client to connect to one of the 2 new hosts, chosen at random.
 
-Another example -- suppose we have 5 hosts and now update the list to remove 2 of the hosts,
+Another example — suppose we have 5 hosts and now update the list to remove 2 of the hosts,
 the clients connected to the 3 remaining hosts will stay connected, whereas all clients connected
 to the 2 removed hosts will need to move to one of the 3 hosts, chosen at random. If the connection
 is dropped, the client moves to a special mode where he chooses a new server to connect to using the

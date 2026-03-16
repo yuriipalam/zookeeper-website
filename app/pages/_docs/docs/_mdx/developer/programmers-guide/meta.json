@@ -4,9 +4,9 @@
     "data-model",
     "sessions",
     "watches",
+    "consistency-guarantees",
     "access-control-using-acls",
     "pluggable-authentication",
-    "consistency-guarantees",
     "bindings",
     "building-blocks-a-guide-to-zookeeper-operations",
     "gotchas-common-problems-and-troubleshooting"
