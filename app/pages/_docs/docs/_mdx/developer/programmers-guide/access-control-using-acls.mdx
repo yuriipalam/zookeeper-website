@@ -164,7 +164,7 @@ scheme) before it can create nodes with this ACL.
 The following ZooKeeper operations deal with ACLs:
 
 - _int_ _zoo_add_auth_
-  (zhandle*t \*zh,\_const* _char__
+  (zhandle*t \*zh,\_const* _char\_\_
   scheme,*const* *char*_
   cert, _int_ certLen, void*completion_t
   completion, \_const* _void_
@@ -212,10 +212,10 @@ and create an ephemeral node “/xyz” with create-only
 permissions.
 
 <Callout type="info">
-  This is a very simple example which is intended to show
-  how to interact with ZooKeeper ACLs
-  specifically. See _.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c_
-  for an example of a C client implementation
+  This is a very simple example which is intended to show how to interact with
+  ZooKeeper ACLs specifically. See
+  _.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c_ for an example of a
+  C client implementation
 </Callout>
 
 ```c

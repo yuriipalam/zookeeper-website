@@ -44,6 +44,7 @@ The ASF Security team maintains a page with a description of how vulnerabilities
 **Severity:** important
 
 **Affected versions:**
+
 - Apache ZooKeeper (org.apache.zookeeper:zookeeper) 3.9.0 through 3.9.4
 - Apache ZooKeeper (org.apache.zookeeper:zookeeper) 3.8.0 through 3.8.5
 
@@ -64,6 +65,7 @@ Improper handling of configuration values in ZKConfig in Apache ZooKeeper 3.8.5 
 **Severity:** important
 
 **Affected versions:**
+
 - Apache ZooKeeper (org.apache.zookeeper:zookeeper) 3.9.0 through 3.9.4
 - Apache ZooKeeper (org.apache.zookeeper:zookeeper) 3.8.0 through 3.8.5
 
@@ -86,6 +88,7 @@ This issue is being tracked as [ZOOKEEPER-4986](https://issues.apache.org/jira/b
 **Severity:** moderate
 
 **Affected versions:**
+
 - Apache ZooKeeper (org.apache.zookeeper:zookeeper) 3.9.0 before 3.9.4
 
 **Description:**
@@ -109,6 +112,7 @@ The issue can be mitigated by disabling both commands (via `admin.snapshot.enabl
 **Severity:** important
 
 **Affected versions:**
+
 - Apache ZooKeeper 3.9.0 before 3.9.3
 
 **Description:**
@@ -128,6 +132,7 @@ When using IPAuthenticationProvider in ZooKeeper Admin Server there is a possibi
 **Severity:** critical
 
 **Affected versions:**
+
 - Apache ZooKeeper 3.9.0 through 3.9.1
 - Apache ZooKeeper 3.8.0 through 3.8.3
 - Apache ZooKeeper 3.6.0 through 3.7.2
@@ -151,6 +156,7 @@ Users are recommended to upgrade to version 3.9.2 or 3.8.4 which fixes the issue
 **Severity:** critical
 
 **Affected versions:**
+
 - Apache ZooKeeper 3.9.0
 - Apache ZooKeeper 3.8.0 through 3.8.2
 - Apache ZooKeeper 3.7.0 through 3.7.1

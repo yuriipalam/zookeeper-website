@@ -40,7 +40,7 @@ The keys used to sign releases can be found in our published [KEYS](https://down
 - [apache-zookeeper-3.9.5-bin.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5-bin.tar.gz)
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5-bin.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5-bin.tar.gz.sha512))
-- [apache-zookeeper-3.9.5.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5.tar.gz) *(source)*
+- [apache-zookeeper-3.9.5.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5.tar.gz) _(source)_
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.9.5/apache-zookeeper-3.9.5.tar.gz.sha512))
 
@@ -49,7 +49,7 @@ The keys used to sign releases can be found in our published [KEYS](https://down
 - [apache-zookeeper-3.8.6-bin.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6-bin.tar.gz)
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6-bin.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6-bin.tar.gz.sha512))
-- [apache-zookeeper-3.8.6.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6.tar.gz) *(source)*
+- [apache-zookeeper-3.8.6.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6.tar.gz) _(source)_
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.8.6/apache-zookeeper-3.8.6.tar.gz.sha512))
 
@@ -58,7 +58,7 @@ The keys used to sign releases can be found in our published [KEYS](https://down
 - [apache-zookeeper-3.7.2-bin.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2-bin.tar.gz)
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2-bin.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2-bin.tar.gz.sha512))
-- [apache-zookeeper-3.7.2.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2.tar.gz) *(source)*
+- [apache-zookeeper-3.7.2.tar.gz](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2.tar.gz) _(source)_
   ([asc](https://downloads.apache.org/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2.tar.gz.asc),
   [sha512](https://downloads.apache.org/zookeeper/zookeeper-3.7.2/apache-zookeeper-3.7.2.tar.gz.sha512))
 

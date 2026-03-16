@@ -42,7 +42,7 @@ When describing the ZooKeeper messaging protocol we will talk of packets,
 proposals, and messages:
 
 - **Packet:** A sequence of bytes sent through a FIFO channel.
-- **Proposal:** A unit of agreement. Proposals are agreed upon by exchanging packets with a quorum of ZooKeeper servers. Most proposals contain messages; however, the NEW\_LEADER proposal is an example of a proposal that does not contain a message.
+- **Proposal:** A unit of agreement. Proposals are agreed upon by exchanging packets with a quorum of ZooKeeper servers. Most proposals contain messages; however, the NEW_LEADER proposal is an example of a proposal that does not contain a message.
 - **Message:** A sequence of bytes to be atomically broadcast to all ZooKeeper servers. A message is put into a proposal and agreed upon before it is delivered.
 
 As stated above, ZooKeeper guarantees a total order of messages, and it also
@@ -78,7 +78,7 @@ this holistic concept. A leader becomes active only when a quorum of followers
 (the leader counts as a follower as well — you can always vote for yourself) has synced
 up with the leader: they have the same state. This state consists of all of the
 proposals that the leader believes have been committed and the proposal to follow
-the leader, the NEW\_LEADER proposal. (Hopefully you are thinking:
+the leader, the NEW_LEADER proposal. (Hopefully you are thinking:
 _Does the set of proposals that the leader believes has been committed
 include all the proposals that really have been committed?_ The answer is _yes_.
 Below, we make clear why.)
@@ -114,20 +114,20 @@ to the leader, the leader will tell the follower to discard `U`.
 
 A new leader establishes a zxid to start using for new proposals by getting the
 epoch, `e`, of the highest zxid it has seen and setting the next zxid to use to be
-`(e+1, 0)`. After the leader syncs with a follower, it will propose a NEW\_LEADER
-proposal. Once the NEW\_LEADER proposal has been committed, the leader will activate
+`(e+1, 0)`. After the leader syncs with a follower, it will propose a NEW_LEADER
+proposal. Once the NEW_LEADER proposal has been committed, the leader will activate
 and start receiving and issuing proposals.
 
 The basic rules of operation during leader activation are:
 
-- A follower will ACK the NEW\_LEADER proposal after it has synced with the leader.
-- A follower will only ACK a NEW\_LEADER proposal with a given zxid from a single server.
-- A new leader will COMMIT the NEW\_LEADER proposal when a quorum of followers has ACKed it.
-- A follower will commit any state it received from the leader when the NEW\_LEADER proposal is COMMITted.
-- A new leader will not accept new proposals until the NEW\_LEADER proposal has been COMMITted.
+- A follower will ACK the NEW_LEADER proposal after it has synced with the leader.
+- A follower will only ACK a NEW_LEADER proposal with a given zxid from a single server.
+- A new leader will COMMIT the NEW_LEADER proposal when a quorum of followers has ACKed it.
+- A follower will commit any state it received from the leader when the NEW_LEADER proposal is COMMITted.
+- A new leader will not accept new proposals until the NEW_LEADER proposal has been COMMITted.
 
 If leader election terminates erroneously, we don't have a problem since the
-NEW\_LEADER proposal will not be committed because the leader will not have quorum.
+NEW_LEADER proposal will not be committed because the leader will not have quorum.
 When this happens, the leader and any remaining followers will timeout and go back
 to leader election.
 

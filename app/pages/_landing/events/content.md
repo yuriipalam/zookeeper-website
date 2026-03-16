@@ -57,12 +57,12 @@ We will have remote viewing locations in our Facebook Seattle office, and the ev
 
 **"Apache ZooKeeper — a short history"** (Patrick Hunt)
 
-*Ten years at Apache — a short history of the Apache ZooKeeper project including insights on how to use it, when to use it, when not to use it, and experiences from running in production.*
+_Ten years at Apache — a short history of the Apache ZooKeeper project including insights on how to use it, when to use it, when not to use it, and experiences from running in production._
 
 Interestingly ZooKeeper will be hitting its 10 year anniversary at Apache while in Budapest — see [ZOOKEEPER-1](https://issues.apache.org/jira/browse/ZOOKEEPER-1).
 
 **"What it feels like working on an Open Source project"** (Andor Molnar)
 
-*Experiences of a Hungarian software engineer moved to the Open Source world recently from the traditional closed-source proprietary product development. The ladder of Apache: committer, PMC members, etc. Challenges in prioritization. Does scrum work with open source? Importance of socialization: how networking helps you to be successful.*
+_Experiences of a Hungarian software engineer moved to the Open Source world recently from the traditional closed-source proprietary product development. The ladder of Apache: committer, PMC members, etc. Challenges in prioritization. Does scrum work with open source? Importance of socialization: how networking helps you to be successful._
 
 **Recording:** no recording

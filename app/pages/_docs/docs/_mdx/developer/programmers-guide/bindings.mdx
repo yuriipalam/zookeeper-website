@@ -134,7 +134,7 @@ and [SASL authentication for ZooKeeper](https://cwiki.apache.org/confluence/disp
   and the password to unlock the file.
 - _zookeeper.ssl.keyStore.passwordPath_ :
   **New in 3.8.0:**
-  Specifies the file path which contains the keystore password  
+  Specifies the file path which contains the keystore password
 
 - _zookeeper.ssl.trustStore.location and zookeeper.ssl.trustStore.password_ :
   **New in 3.5.5:**
@@ -233,16 +233,13 @@ project source package downloaded from apache, skip to step **3**.
   Do not build shared libraries. (Enabled by
   default.)
   <Callout type="info">
-    See INSTALL for general information about running **configure**.
-    1. Run `make` or `make
-    install` to build the libraries and install them.
-    1. To generate doxygen documentation for the ZooKeeper API, run
-      `make doxygen-doc`. All documentation will be
-      placed in a new subfolder named docs. By default, this command
-      only generates HTML. For information on other document formats,
-      run `./configure --help`
+    See INSTALL for general information about running **configure**. 1. Run
+    `make` or `make install` to build the libraries and install them. 1. To
+    generate doxygen documentation for the ZooKeeper API, run `make
+    doxygen-doc`. All documentation will be placed in a new subfolder named
+    docs. By default, this command only generates HTML. For information on other
+    document formats, run `./configure --help`
   </Callout>
-
 
 ### Building Your Own C Client
 
@@ -258,6 +255,6 @@ you have to remember to
    sure to link against the_zookeeper_st_library.
 
 <Callout type="info">
-  See *.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c*
-  for an example of a C client implementation
+  See *.../trunk/zookeeper-client/zookeeper-client-c/src/cli.c* for an example
+  of a C client implementation
 </Callout>
