@@ -1,18 +1,50 @@
 ---
-title: "Oracle Quorum"
-description: "Reference for configuring Oracle Quorum in ZooKeeper: oracle file format, zoo.cfg setup, liveness and safety trade-offs, and hardware/software failure detector implementation examples."
+title: "Quorums"
+description: "How to configure ZooKeeper quorums: hierarchical quorums using server groups and weights, and Oracle Quorum for increasing availability in two-instance clusters."
 ---
+
+## Hierarchical Quorums
+
+This document gives an example of how to use hierarchical quorums. The basic idea is
+very simple. First, we split servers into groups, and add a line for each group listing
+the servers that form this group. Next we have to assign a weight to each server.
+
+The following example shows how to configure a system with three groups of three servers
+each, and we assign a weight of 1 to each server:
+
+```
+group.1=1:2:3
+group.2=4:5:6
+group.3=7:8:9
+
+weight.1=1
+weight.2=1
+weight.3=1
+weight.4=1
+weight.5=1
+weight.6=1
+weight.7=1
+weight.8=1
+weight.9=1
+```
+
+When running the system, we are able to form a quorum once we have a majority of votes from
+a majority of non-zero-weight groups. Groups that have zero weight are discarded and not
+considered when forming quorums. Looking at the example, we are able to form a quorum once
+we have votes from at least two servers from each of two different groups.
+
+## Oracle Quorum
 
 Oracle Quorum increases the availability of a cluster of 2 ZooKeeper instances with a failure detector known as the Oracle.
 The Oracle is designed to grant permission to the instance which is the only remaining instance
 in a 2-instance configuration when the other instance is identified as faulty by the failure detector.
 
-## The Implementation of the Oracle
+### The Implementation of the Oracle
 
 Every instance accesses a file which contains either `0` or `1` to indicate whether that instance is authorized by the Oracle.
 This design can be changed since failure detector algorithms vary. You can override the `askOracle()` method in _QuorumOracleMaj_ to adapt a preferred way of reading the Oracle's decision.
 
-## Deployment Contexts
+### Deployment Contexts
 
 The Oracle is designed to increase the availability of a cluster of **2** ZooKeeper instances; thus, the size of the voting member is **2**.
 In other words, the Oracle solves the consensus problem of a possible faulty instance in a two-instance ensemble.
@@ -21,7 +53,7 @@ When the size of the voting members exceeds 2, the expected way to make the Orac
 For example, with a configuration of 5 instances, when a faulty machine breaks the connection with the Leader, a _reconfig_ client request is expected to re-form the cluster as 4 instances.
 Once the size of the voting member equals 2, the configuration falls into the problem domain which the Oracle is designed to address.
 
-## Configuring the Oracle in `zoo.cfg`
+### Configuring the Oracle in `zoo.cfg`
 
 Regardless of the cluster size, `oraclePath` must be configured at initialization time, like other static parameters.
 The following shows the correct way to specify and enable the Oracle:
@@ -47,7 +79,7 @@ Any equivalent file is suitable for the current implementation of `QuorumOracleM
 The number of oracle files should equal the number of ZooKeeper instances configured to enable the Oracle.
 Each ZooKeeper instance should have its own oracle file — files must not be shared, otherwise the issues described in the Safety section will arise.
 
-### Example `zoo.cfg`
+#### Example `zoo.cfg`
 
 ```
 dataDir=/data
@@ -65,18 +97,18 @@ server.1=0.0.0.0:2888:3888;2181
 server.2=hw1:2888:3888;2181
 ```
 
-## Behavior After Enabling the Oracle
+### Behavior After Enabling the Oracle
 
 _QuorumPeerConfig_ will create an instance of _QuorumOracleMaj_ instead of the default `QuorumMaj` when it reads an `oraclePath` in `zoo.cfg`.
 `QuorumOracleMaj` inherits from `QuorumMaj` and differs from its superclass by overriding `containsQuorum()`.
 `QuorumOracleMaj` executes its version of `containsQuorum` when the Leader loses all of its followers and fails to maintain the quorum.
 In all other cases, _QuorumOracleMaj_ behaves identically to _QuorumMaj_.
 
-## Considerations When Using the Oracle
+### Considerations When Using the Oracle
 
 We consider an asynchronous distributed system which consists of **2** ZooKeeper instances and an Oracle.
 
-### Liveness Issue
+#### Liveness Issue
 
 When the Oracle satisfies the following property introduced by [CT]:
 
@@ -90,9 +122,9 @@ Suppose we have a Leader and a Follower running in the broadcasting state. The s
 1. The Leader fails, but the Oracle does not detect the faulty Leader — the Oracle will not authorize the Follower to become a new Leader.
 2. A Follower fails, but the Oracle does not detect the faulty Follower — the Oracle will authorize the Leader to move the system forward.
 
-### Safety Issue
+#### Safety Issue
 
-#### Loss of Progress
+**Loss of Progress**
 
 Progress can be lost when multiple failures occur in the system at different times. For example:
 
@@ -110,7 +142,7 @@ However, loss of progress can be prevented by making the Oracle capable of refer
 When the Oracle can refer to the latest zxid, at T5 `zxid(0x2_A)`, Ben will not complete leader election because the Oracle would not authorize him while John is still known to be ahead.
 This trades liveness for safety.
 
-#### Split Brain Issue
+**Split Brain Issue**
 
 We consider the Oracle satisfies the following property introduced by [CT]:
 
@@ -128,24 +160,24 @@ Split brain is expected when the Oracle fails to maintain this property during l
 1. System start.
 2. A failed instance recovering from failure.
 
-## Examples of Failure Detector Implementations
+### Examples of Failure Detector Implementations
 
 A failure detector's role is to authorize the querying ZooKeeper instance whether it has the right to move the system forward without waiting for the faulty instance.
 
-### Hardware-based Implementation
+#### Hardware-based Implementation
 
 Suppose two dedicated hardware nodes, `hw1` and `hw2`, host ZooKeeper instances `zk1` and `zk2` respectively, forming a cluster.
 A hardware device attached to both nodes can determine whether each is powered on.
 When `hw1` is not powered on, `zk1` is undoubtedly faulty.
 The hardware device then updates the oracle file on `hw2` to `1`, authorizing `zk2` to move the system forward.
 
-### Software-based Implementation
+#### Software-based Implementation
 
 Suppose two dedicated hardware nodes, `hw1` and `hw2`, host ZooKeeper instances `zk1` and `zk2` respectively.
 Two services, `o1` on `hw1` and `o2` on `hw2`, detect whether the other node is alive (for example, by pinging).
 When `o1` cannot ping `hw2`, it identifies `hw2` as faulty and updates the oracle file of `zk1` to `1`, authorizing `zk1` to move forward.
 
-### Using a USB Device as the Oracle
+#### Using a USB Device as the Oracle
 
 In macOS 10.15.7 (19H2), external storage devices are mounted under `/Volumes`.
 A USB device containing the required oracle file can serve as the Oracle.
@@ -193,6 +225,6 @@ The following 6 steps demonstrate how this works:
 
 With these steps, you can observe and practice how the Oracle works with a two-instance system.
 
-## Reference
+### Reference
 
 [CT] Tushar Deepak Chandra and Sam Toueg. 1991. Unreliable failure detectors for asynchronous systems (preliminary version). In _Proceedings of the tenth annual ACM symposium on Principles of distributed computing_ (_PODC '91_). Association for Computing Machinery, New York, NY, USA, 325–340. [DOI:10.1145/112600.112627](https://doi.org/10.1145/112600.112627)

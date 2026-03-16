@@ -5,13 +5,11 @@
     "quota-guide",
     "snapshot-and-restore-guide",
     "jmx",
-    "hierarchical-quorums",
-    "oracle-quorum",
+    "quorums",
     "observers-guide",
     "dynamic-reconfiguration",
     "cli",
     "tools",
-    "monitor",
-    "audit-logs"
+    "monitor-and-audit-logs"
   ]
 }
