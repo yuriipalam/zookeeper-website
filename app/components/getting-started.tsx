@@ -27,14 +27,14 @@ export function GettingStartedSection() {
       to: "/releases"
     },
     {
-      title: "2. Read the Guide",
-      desc: "Walk through installation, configuration, and cluster setup.",
-      to: "/docs"
+      title: "2. Quick Start",
+      desc: "Set up a single ZooKeeper server and learn the basics of the CLI.",
+      to: "/docs/overview/quick-start"
     },
     {
-      title: "3. Connect a Client",
-      desc: "Use the Java client or CLI to start building distributed applications.",
-      to: "/docs"
+      title: "3. Write a Client",
+      desc: "Follow the basic tutorial to implement distributed primitives like barriers and queues.",
+      to: "/docs/developer/basic-tutorial"
     }
   ];
   return (
