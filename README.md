@@ -16,9 +16,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Apache HBase Website
+# Apache ZooKeeper Website
 
-The official website for Apache HBase, built with modern web technologies to provide a fast, accessible, and maintainable web presence.
+The official website for Apache ZooKeeper, built with modern web technologies to provide a fast, accessible, and maintainable web presence.
 
 ---
 
@@ -46,10 +46,9 @@ Legacy documentation is preserved for those users who have old bookmarked links 
 
 **Examples:**
 
-- `app/pages/_landing/team/content.md` - Markdown content for team page
-- `app/pages/_landing/powered-by-hbase/companies.json` - JSON data for companies
-- `app/pages/_landing/news/events.json` - JSON data for news/events
-- `app/pages/_docs/docs/_mdx/(multi-page)/...` - MDX content for documentation
+- `app/pages/_landing/credits/developers.json` - JSON data for developers
+- `app/pages/_landing/releases/index.tsx` - Releases page
+- `app/pages/_docs/docs/_mdx/...` - MDX content for documentation
 
 ---
 
@@ -84,7 +83,6 @@ This website uses modern web technologies. Here's what each one does (with Java 
 - **Fumadocs** - Documentation framework used for the docs section
   - Provides MDX-based docs structure and navigation
   - Lives alongside the landing pages in the same React Router app
-  - Supports multi-page and single-page docs from the same MDX sources
   - [Documentation](https://fumadocs.com/)
 
 #### Progressive Enhancement
@@ -198,7 +196,7 @@ my-react-router-app/
    - Only concerned with appearance and basic interaction
 
 2. **Business Components (`/components`)**: Reusable across pages
-   - May contain business logic specific to HBase website
+   - May contain business logic specific to ZooKeeper website
    - Examples: navigation, footer, theme toggle
 
 3. **Pages (`/pages`)**: Complete pages combining ui and components
@@ -216,9 +214,8 @@ my-react-router-app/
    - **Docs pages** live under `app/pages/_docs/` and use Fumadocs layouts.
    - Both are part of the same React Router application, but render with different layouts and visual styles.
 
-6. **Documentation Versions**:
-   - **Multi-page docs** live under `app/pages/_docs/docs/_mdx/(multi-page)/` and are the source of truth.
-   - **Single-page docs** live under `app/pages/_docs/docs/_mdx/single-page/` and import content from the multi-page docs.
+6. **Documentation Structure**:
+   - **Docs** live under `app/pages/_docs/docs/_mdx/` and are the source of truth.
 
 #### Important Conventions
 
@@ -226,7 +223,7 @@ my-react-router-app/
 
 **Always use the custom Link component from `@/components/link` instead of importing Link directly from `react-router`.**
 
-The HBase website includes pages that are not part of this React Router application (e.g., documentation pages, API docs). The custom Link component automatically determines whether a link should trigger a hard reload or use React Router's client-side navigation:
+The ZooKeeper website includes pages that are not part of this React Router application (e.g., documentation pages, API docs). The custom Link component automatically determines whether a link should trigger a hard reload or use React Router's client-side navigation:
 
 **Usage:**
 
@@ -262,33 +259,7 @@ npm install
 
 This downloads all required packages from npm (similar to Maven Central).
 
-#### 2. Generate Developers and Config Data
-
-**Important:** Before starting the development server, generate the `developers.json` file from the root `pom.xml`:
-
-```bash
-npm run extract-developers
-```
-
-This extracts the developer information from the parent `pom.xml` file and creates `app/pages/team/developers.json`, which is required for the Team page to work properly. Re-run this command whenever the developers section in `pom.xml` changes. The output json is ignored by git, and this command also runs at a build time, so there is no need to `git commit` the generated file.
-
-**Important:** Generate the HBase configuration markdown before starting the development server:
-
-```bash
-npm run extract-hbase-config
-```
-
-This extracts data from `hbase-default.xml` and creates `app/pages/_docs/docs/_mdx/(multi-page)/configuration/hbase-default.md`, which is required for the documentation page to work properly. Re-run this command whenever `hbase-default.xml` changes. The generated markdown is ignored by git, and this command also runs at build time, so there is no need to `git commit` the generated file.
-
-**Important:** Generate the HBase version metadata before starting the development server:
-
-```bash
-npm run extract-hbase-version
-```
-
-This extracts the `<revision>` value from the root `pom.xml` and creates `app/lib/export-pdf/hbase-version.json`, which is used on the docs PDF cover. Re-run this command whenever the root `pom.xml` version changes. The generated json is ignored by git, and this command also runs at build time, so there is no need to `git commit` the generated file.
-
-#### 3. Start Development Server
+#### 2. Start Development Server
 
 ```bash
 npm run dev
@@ -318,9 +289,8 @@ This starts a local development server with:
 
 **Add a new documentation page:**
 
-1. Create a new `.mdx` file in `app/pages/_docs/docs/_mdx/(multi-page)/` (for example `my-topic.mdx`).
+1. Create a new `.mdx` file in `app/pages/_docs/docs/_mdx/` (for example `my-topic.mdx`).
 2. Add the new file to the relevant `meta.json` in the same section folder so it appears in navigation.
-3. Import the page into `app/pages/_docs/docs/_mdx/single-page/index.mdx` and add an `#` header so it renders in the single-page docs.
 
 **Update content:**
 
@@ -347,20 +317,6 @@ npm run lint:fix
 ### Testing
 
 The project uses [Vitest](https://vitest.dev/) and [Playwright](http://playwright.dev/) for testing. Vitest is for unit testing, while Playwright is for e2e testing.
-
-#### Export Documentation PDF
-
-The docs PDF export is implemented as a Playwright e2e test in `e2e-tests/export-pdf.spec.ts`. It runs during `npm run ci-skip-tests` and generates static PDF assets for the documentation by rendering the single-page docs in both light and dark themes (HTML -> PDF).
-
-The export quality depends heavily on the `@media print` styles defined in `app/app.css`, which control layout, pagination, and print-only behavior.
-
-There is also a dedicated command you can run manually when needed:
-
-```bash
-npm run export-pdf
-```
-
-This command is part of `npm run ci-skip-tests` and is executed automatically by Maven only when `-DskipTests` is enabled.
 
 **Run tests:**
 
@@ -415,13 +371,13 @@ If you need the CI flow without unit/e2e test suites, use:
 npm run ci-skip-tests
 ```
 
-This runs extraction, docs initialization, Playwright browser installation, PDF export, and the production build (without lint/typecheck and without unit/e2e test suites).
+This runs docs initialization and the production build (without lint/typecheck and without unit/e2e test suites).
 
 Generated files are located under the `build/` directory.
 
 ### Maven Integration
 
-The website is integrated with the Apache HBase Maven build system using the `frontend-maven-plugin`. The website is configured to build **only during site generation** (`mvn site`) and will not build during regular Maven lifecycle phases like `mvn clean install`.
+The website is integrated with the Apache ZooKeeper Maven build system using the `frontend-maven-plugin`. The website is configured to build **only during site generation** (`mvn site`) and will not build during regular Maven lifecycle phases like `mvn clean install`.
 
 #### When the Website Builds
 
@@ -437,7 +393,7 @@ The website will **NOT** build during regular commands like:
 - `mvn package`
 - `mvn compile`
 
-This keeps regular HBase builds fast while still allowing the website to be generated when needed.
+This keeps regular ZooKeeper builds fast while still allowing the website to be generated when needed.
 
 #### What Gets Executed During `mvn site`
 
@@ -456,56 +412,47 @@ When you run `mvn site`, the website module automatically:
    - Reads from `package.json`
    - Installs to `node_modules/`
 
-4. **Extracts developers data** from the parent `pom.xml`
-   - Creates `app/pages/team/developers.json`
-   - Required for the Team page
-
-5. **Runs a website CI command**:
+4. **Runs a website CI command**:
    - Default (`mvn site`): `npm run ci`
    - With test skipping (`mvn site -DskipTests`): `npm run ci-skip-tests`
 
    `npm run ci` executes:
+   - `npm run fumadocs-init` - Initialize Fumadocs
    - `npm run lint` - ESLint code quality checks
    - `npm run typecheck` - TypeScript type checking
-   - `npm run extract-developers` - Extract developers from parent pom.xml
-   - `npm run extract-hbase-config` - Extract data from `hbase-default.xml` to `app/pages/_docs/docs/_mdx/(multi-page)/configuration/hbase-default.md`
-   - `npm run extract-hbase-version` - Extract version from root `pom.xml` to `app/lib/export-pdf/hbase-version.json`
    - `npm run test:unit:run` - Vitest unit tests
+   - `npx playwright install` - Installs Playwright browsers
    - `npm run test:e2e` - Playwright e2e tests
    - `npm run build` - Production build
 
    `npm run ci-skip-tests` executes:
-   - `npm run extract-developers` - Extract developers from parent pom.xml
-   - `npm run extract-hbase-config` - Extract data from `hbase-default.xml` to `app/pages/_docs/docs/_mdx/(multi-page)/configuration/hbase-default.md`
-   - `npm run extract-hbase-version` - Extract version from root `pom.xml` to `app/lib/export-pdf/hbase-version.json`
-   - `npx playwright install` - Installs Playwright browsers
-   - `npm run export-pdf` - Generates docs PDF assets through Playwright
+   - `npm run fumadocs-init` - Initialize Fumadocs
    - `npm run build` - Production build
 
-6. **Build Output**: Generated files are in `build/` directory
+5. **Build Output**: Generated files are in `build/` directory
 
 #### Maven Commands
 
-**Build HBase WITHOUT the Website (default):**
+**Build ZooKeeper WITHOUT the Website (default):**
 
 ```bash
-# From HBase root directory
+# From ZooKeeper root directory
 mvn clean install
 ```
 
 **Build the Website:**
 
 ```bash
-# From HBase root or hbase-website directory
+# From ZooKeeper root or zookeeper-website directory
 mvn site
 ```
 
-This generates the full HBase website including documentation and the React-based website.
+This generates the full ZooKeeper website including documentation and the React-based website.
 
 **Build the Website While Skipping Test Suites:**
 
 ```bash
-# From HBase root or hbase-website directory
+# From ZooKeeper root or zookeeper-website directory
 mvn site -DskipTests
 ```
 
@@ -514,17 +461,17 @@ This runs `npm run ci-skip-tests` for the website module.
 **Build Website Only:**
 
 ```bash
-# From hbase-website directory
-cd hbase-website
+# From zookeeper-website directory
+cd zookeeper-website
 mvn clean install
 ```
 
 **Skip Website Build:**
 
-If you want to build HBase but skip the website:
+If you want to build ZooKeeper but skip the website:
 
 ```bash
-# From HBase root directory
+# From ZooKeeper root directory
 mvn clean install -DskipSite
 ```
 
@@ -590,4 +537,4 @@ lsof -ti:5173 | xargs kill -9
 
 ---
 
-Built with ❤️ for the Apache HBase community.
+Built with ❤️ for the Apache ZooKeeper community.
