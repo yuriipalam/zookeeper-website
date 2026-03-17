@@ -318,10 +318,13 @@ npm run lint:fix
 
 The project uses [Vitest](https://vitest.dev/) and [Playwright](http://playwright.dev/) for testing. Vitest is for unit testing, while Playwright is for e2e testing.
 
+**Note:** Playwright tests are configured to run against the production build. Therefore, you must build the project (`npm run build`) before running the e2e tests locally.
+
 **Run tests:**
 
 ```bash
-# Run all tests
+# Run all tests (unit + e2e)
+# Note: e2e tests require a production build first (`npm run build`)
 npm test
 
 # Run unit tests once (for CI/CD)
@@ -330,10 +333,10 @@ npm run test:run
 # Run unit tests with UI
 npm run test:ui
 
-# Run e2e tests
+# Run e2e tests (requires `npm run build` first)
 npm run test:e2e
 
-# Run e2e tests with UI
+# Run e2e tests with UI (requires `npm run build` first)
 npm run test:e2e:ui
 ```
 

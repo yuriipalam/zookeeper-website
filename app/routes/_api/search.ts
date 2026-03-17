@@ -20,9 +20,7 @@ import { source } from "@/lib/source";
 import { createFromSource } from "@/components/docs/search/create-from-source";
 
 const server = createFromSource(source, {
-  language: "english",
-  tag: (pageUrl: string) =>
-    pageUrl.startsWith("/docs/single-page") ? "single-page" : "multi-page"
+  language: "english"
 });
 
 export async function loader() {

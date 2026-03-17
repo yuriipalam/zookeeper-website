@@ -37,7 +37,7 @@ logger.warn = (msg, options) => {
     )
   )
     return;
-  // Suppress Babel deoptimization warnings for large MDX files (expected for single-page docs)
+  // Suppress Babel deoptimization warnings for large MDX files
   if (msg.includes("deoptimised the styling")) return;
   // Log all other warnings
   originalWarn(msg, options);

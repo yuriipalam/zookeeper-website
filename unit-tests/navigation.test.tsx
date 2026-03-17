@@ -104,7 +104,9 @@ describe("SiteNavbar", () => {
     await user.click(docsMenus[0]);
 
     // Check for documentation links
-    const docLinks = screen.getAllByRole("menuitem", { name: /Issue Tracking/i });
+    const docLinks = screen.getAllByRole("menuitem", {
+      name: /Issue Tracking/i
+    });
     expect(docLinks.length).toBeGreaterThan(0);
   });
 

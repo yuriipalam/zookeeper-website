@@ -54,9 +54,7 @@ test.describe("Landing Page Navigation", () => {
     await expect(projectButton).toBeVisible();
   });
 
-  test("navigation menu - Documentation dropdown exists", async ({
-    page
-  }) => {
+  test("navigation menu - Documentation dropdown exists", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("load");
 

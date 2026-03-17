@@ -195,18 +195,6 @@ test.describe("Documentation Page - Content & Navigation", () => {
     expect(headingCount).toBeGreaterThan(2);
   });
 
-  test("can navigate to single-page documentation", async ({ page }) => {
-    await page.goto("/docs/single-page");
-    await page.waitForLoadState("networkidle");
-
-    // Verify URL
-    await expect(page).toHaveURL(/.*single-page/);
-
-    // Check for content
-    const bodyText = await page.locator("body").textContent();
-    expect(bodyText!.length).toBeGreaterThan(5000); // Single page has lots of content
-  });
-
   test("can navigate to configuration docs", async ({ page }) => {
     await page.goto("/docs/configuration");
     await page.waitForLoadState("networkidle");
