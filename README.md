@@ -302,6 +302,11 @@ This starts a local development server with:
 - Check if shadcn/ui has what you need first
 - Only create custom components if necessary
 
+**Update the 404 page:**
+
+- Edit the content in `app/routes/404.tsx`.
+- Apache 404 handling lives in `public/.htaccess` (uses `ErrorDocument 404 /404`).
+
 **Check code quality:**
 
 ```bash

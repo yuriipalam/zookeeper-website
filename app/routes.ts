@@ -43,5 +43,6 @@ export default [
   ]),
   // API (Rendered at build time)
   route("llms-full.txt", "routes/_api/llms-full.ts"),
-  route("api/search", "routes/_api/search.ts")
+  route("api/search", "routes/_api/search.ts"),
+  route("404", "routes/404.tsx")
 ] satisfies RouteConfig;
