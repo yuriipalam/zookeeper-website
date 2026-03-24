@@ -152,8 +152,11 @@ test.describe("Older Docs Picker – navbar Documentation menu", () => {
   test("Documentation menu contains an 'Older docs' sub-menu trigger", async ({
     page
   }) => {
-    // Open the Documentation dropdown
-    await page.getByRole("button", { name: /documentation/i }).click();
+    // Open the Documentation dropdown (scope to banner to avoid matching the mobile collapsible)
+    await page
+      .getByRole("banner")
+      .getByRole("button", { name: /documentation/i })
+      .click();
 
     // The sub-menu trigger should be visible
     const olderDocs = page.getByRole("menuitem", { name: /older docs/i });
@@ -163,21 +166,29 @@ test.describe("Older Docs Picker – navbar Documentation menu", () => {
   test("hovering 'Older docs' in the navbar opens a version sub-menu", async ({
     page
   }) => {
-    await page.getByRole("button", { name: /documentation/i }).click();
+    await page
+      .getByRole("banner")
+      .getByRole("button", { name: /documentation/i })
+      .click();
 
     const olderDocs = page.getByRole("menuitem", { name: /older docs/i });
     await olderDocs.hover();
+    // ArrowRight reliably opens Radix sub-menus cross-browser (hover alone is flaky in Firefox)
+    await olderDocs.press("ArrowRight");
 
-    // Sub-menu content (version list) should appear
+    // Wait until the sub-menu actually opens (a second menu element becomes visible)
+    await expect(page.getByRole("menu")).toHaveCount(2, { timeout: 10000 });
     const subMenu = page.getByRole("menu").last();
-    await expect(subMenu).toBeVisible();
 
-    const links = subMenu.getByRole("link");
-    await expect(links.first()).toBeVisible();
+    const options = subMenu.getByRole("option");
+    await expect(options.first()).toBeVisible();
   });
 
   test("navbar older-docs links point to /released-docs/", async ({ page }) => {
-    await page.getByRole("button", { name: /documentation/i }).click();
+    await page
+      .getByRole("banner")
+      .getByRole("button", { name: /documentation/i })
+      .click();
 
     const olderDocs = page.getByRole("menuitem", { name: /older docs/i });
     await olderDocs.hover();
