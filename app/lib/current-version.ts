@@ -1,0 +1,1 @@
+export const CURRENT_VERSION = "3.9.5";

@@ -202,24 +202,17 @@ function DocsMenu() {
           )
         )}
         <DropdownMenuSeparator />
-        {docsLinks.map((group) => (
-          <DropdownMenuSub key={group.label}>
-            <DropdownMenuSubTrigger>{group.label}</DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              {group.links.map((item) => (
-                <DropdownMenuItem key={item.label} asChild>
-                  <Link
-                    to={item.to}
-                    target={item.external ? "_blank" : "_self"}
-                    aria-label={item.label}
-                  >
-                    {item.label}
-                    {item.external && <ExternalLink className="size-4" />}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
+        {docsLinks.map((item) => (
+          <DropdownMenuItem key={item.label} asChild>
+            <Link
+              to={item.to}
+              target={item.external ? "_blank" : "_self"}
+              aria-label={item.label}
+            >
+              {item.label}
+              {item.external && <ExternalLink className="size-4" />}
+            </Link>
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
@@ -403,27 +396,17 @@ function MobileDocsSection({ onLinkClick }: { onLinkClick: () => void }) {
           )
         )}
         <div className="border-border/40 my-2 border-t pt-2">
-          {docsLinks.map((group) => (
-            <Collapsible key={group.label} className="w-full">
-              <CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex w-full items-center justify-between py-1.5 text-left text-sm">
-                {group.label}
-                <ChevronRight className="h-3 w-3 rotate-90 transition-transform group-data-[state=closed]:rotate-0" />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="w-full space-y-1 pl-3">
-                {group.links.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.to}
-                    target={item.external ? "_blank" : "_self"}
-                    className="text-muted-foreground hover:text-foreground flex items-center py-1 text-xs"
-                    aria-label={item.label}
-                  >
-                    {item.label}
-                    {item.external && <ExternalLink className="size-4" />}
-                  </Link>
-                ))}
-              </CollapsibleContent>
-            </Collapsible>
+          {docsLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              target={item.external ? "_blank" : "_self"}
+              className="text-muted-foreground hover:text-foreground flex items-center py-1 text-sm"
+              aria-label={item.label}
+            >
+              {item.label}
+              {item.external && <ExternalLink className="size-4" />}
+            </Link>
           ))}
         </div>
       </CollapsibleContent>
@@ -540,27 +523,17 @@ function NoJSDocsMenu() {
           )
         )}
         <div className="bg-muted border-border/40 -mx-1 my-1 h-px" />
-        {docsLinks.map((group) => (
-          <details key={group.label} className="group/sub relative">
-            <summary className="hover:bg-accent hover:text-accent-foreground flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm outline-none select-none">
-              {group.label}
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </summary>
-            <div className="bg-popover text-popover-foreground absolute top-0 left-full z-50 ml-1 min-w-[12rem] rounded-md border p-1 shadow-md">
-              {group.links.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  target={item.external ? "_blank" : "_self"}
-                  aria-label={item.label}
-                  className="hover:bg-accent hover:text-accent-foreground relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none"
-                >
-                  {item.label}
-                  {item.external && <ExternalLink className="size-4" />}
-                </Link>
-              ))}
-            </div>
-          </details>
+        {docsLinks.map((item) => (
+          <Link
+            key={item.label}
+            to={item.to}
+            target={item.external ? "_blank" : "_self"}
+            aria-label={item.label}
+            className="hover:bg-accent hover:text-accent-foreground relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none"
+          >
+            {item.label}
+            {item.external && <ExternalLink className="size-4" />}
+          </Link>
         ))}
       </div>
     </details>
@@ -688,27 +661,17 @@ function NoJSMobileDocsSection() {
           )
         )}
         <div className="border-border/40 my-2 border-t pt-2">
-          {docsLinks.map((group) => (
-            <details key={group.label} className="w-full">
-              <summary className="text-muted-foreground hover:text-foreground flex w-full cursor-pointer items-center justify-between py-1.5 text-left text-sm">
-                {group.label}
-                <ChevronRight className="h-3 w-3" />
-              </summary>
-              <div className="w-full space-y-1 pt-1 pl-3">
-                {group.links.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.to}
-                    target={item.external ? "_blank" : "_self"}
-                    className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center py-1 text-xs"
-                    aria-label={item.label}
-                  >
-                    {item.label}
-                    {item.external && <ExternalLink className="size-4" />}
-                  </Link>
-                ))}
-              </div>
-            </details>
+          {docsLinks.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              target={item.external ? "_blank" : "_self"}
+              className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center py-1 text-sm"
+              aria-label={item.label}
+            >
+              {item.label}
+              {item.external && <ExternalLink className="size-4" />}
+            </Link>
           ))}
         </div>
       </div>

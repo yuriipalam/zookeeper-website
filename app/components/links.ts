@@ -16,6 +16,8 @@
 // limitations under the License.
 //
 
+import { CURRENT_VERSION } from "@/lib/current-version";
+
 interface LinkType {
   label: string;
   to: string;
@@ -60,7 +62,7 @@ export const projectLinks: LinkType[] = [
 
 export const documentationLinks: (LinkType | NestedLinkType)[] = [
   {
-    label: "Documentation",
+    label: `${CURRENT_VERSION} Documentation`,
     to: "/docs"
   },
   {
@@ -125,36 +127,10 @@ export const asfLinks: LinkType[] = [
   }
 ];
 
-type ZkDocOption = "ref" | "api";
+const zkDocVersions = ["3.9.5", "3.8.6", "3.7.2"];
 
-const zkDocLabels: Record<ZkDocOption, string> = {
-  ref: "Documentation",
-  api: "API Docs"
-};
-
-function getZkDocsURL(version: string, option: ZkDocOption): string {
-  const baseUrl = "https://zookeeper.apache.org/doc/";
-  switch (option) {
-    case "ref":
-      return `${baseUrl}r${version}/`;
-    case "api":
-      return `${baseUrl}r${version}/apidocs/zookeeper-server/index.html`;
-  }
-}
-
-const zkDocsItems: Record<string, ZkDocOption[]> = {
-  "3.9.5": ["ref", "api"],
-  "3.8.6": ["ref", "api"],
-  "3.7.2": ["ref", "api"]
-};
-
-export const docsLinks: NestedLinkType[] = Object.keys(zkDocsItems).map(
-  (version) => ({
-    label: `${version} Documentation`,
-    links: zkDocsItems[version].map((option) => ({
-      label: zkDocLabels[option],
-      to: getZkDocsURL(version, option),
-      external: true
-    }))
-  })
-);
+export const docsLinks: LinkType[] = zkDocVersions.map((version) => ({
+  label: `${version} Documentation`,
+  to: `https://zookeeper.apache.org/doc/r${version}/`,
+  external: true
+}));
