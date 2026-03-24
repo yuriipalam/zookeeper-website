@@ -123,7 +123,8 @@ export default defineConfig([
     "prettier.config.js",
     "react-router.config.ts",
     ".react-router",
-    ".source"
+    ".source",
+    "public/released-docs"
   ]),
   {
     files: ["**/*.{ts,tsx}"],
@@ -155,7 +156,8 @@ export default defineConfig([
       },
     },
     rules: {
-      "import/no-unresolved": "error",
+      // virtual: modules are resolved by Vite plugins at build/test time
+      "import/no-unresolved": ["error", { ignore: ["^virtual:"] }],
       "import/no-duplicates": "warn",
 
       "no-implicit-globals": "off",

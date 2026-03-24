@@ -32,12 +32,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger
 } from "@/ui/collapsible";
-import {
-  BookOpen,
-  ChevronDown,
-  ChevronRight,
-  ExternalLink
-} from "lucide-react";
+import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "@/components/link";
@@ -167,9 +162,7 @@ function ProjectMenu() {
 function OlderDocsSubMenu() {
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>
-        Older docs
-      </DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger>Older docs</DropdownMenuSubTrigger>
       <DropdownMenuSubContent className="w-56 p-0">
         <OlderDocsVersionList />
       </DropdownMenuSubContent>

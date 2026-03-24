@@ -126,4 +126,3 @@ export const asfLinks: LinkType[] = [
     external: true
   }
 ];
-

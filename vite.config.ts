@@ -44,7 +44,6 @@ logger.warn = (msg, options) => {
   originalWarn(msg, options);
 };
 
-
 export default defineConfig({
   plugins: [
     releasedDocsVersionsPlugin(),

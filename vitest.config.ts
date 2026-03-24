@@ -25,7 +25,12 @@ import * as MdxConfig from "./source.config";
 import { releasedDocsVersionsPlugin } from "./plugins/released-docs-versions";
 
 export default defineConfig({
-  plugins: [releasedDocsVersionsPlugin(), mdx(MdxConfig), react(), tsconfigPaths()],
+  plugins: [
+    releasedDocsVersionsPlugin(),
+    mdx(MdxConfig),
+    react(),
+    tsconfigPaths()
+  ],
   test: {
     globals: true,
     environment: "happy-dom",
