@@ -100,7 +100,7 @@ const renderer = toClientRenderer(
 
     return (
       <FumaDocsPage toc={toc} tableOfContent={{ style: "clerk" }}>
-        <title>{frontmatter.title}</title>
+        <title>{frontmatter.title + " | Zookeeper"}</title>
         <meta name="description" content={frontmatter.description} />
 
         <div className="no-print">
