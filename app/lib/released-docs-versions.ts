@@ -58,61 +58,12 @@ export function sortVersionsDesc(versions: string[]): string[] {
   });
 }
 
+import { RAW_RELEASED_DOC_VERSIONS } from "virtual:released-docs-versions";
+
 /**
  * All released documentation versions available under /released-docs/.
- * Sorted from newest to oldest.
+ * Derived from the actual folder names at build time, sorted newest to oldest.
  */
-export const RELEASED_DOC_VERSIONS: string[] = sortVersionsDesc([
-  "3.9.4",
-  "3.9.3",
-  "3.9.2",
-  "3.9.1",
-  "3.9.0",
-  "3.8.6",
-  "3.8.5",
-  "3.8.4",
-  "3.8.3",
-  "3.8.2",
-  "3.8.1",
-  "3.8.0",
-  "3.7.2",
-  "3.7.1",
-  "3.7.0",
-  "3.6.4",
-  "3.6.3",
-  "3.6.2",
-  "3.6.1",
-  "3.6.0",
-  "3.5.10",
-  "3.5.9",
-  "3.5.8",
-  "3.5.7",
-  "3.5.5",
-  "3.5.4-beta",
-  "3.5.3-beta",
-  "3.5.2-alpha",
-  "3.5.1-alpha",
-  "3.5.0-alpha",
-  "3.4.14",
-  "3.4.13",
-  "3.4.12",
-  "3.4.11",
-  "3.4.10",
-  "3.4.9",
-  "3.4.8",
-  "3.4.7",
-  "3.4.6",
-  "3.4.5",
-  "3.4.4",
-  "3.4.3",
-  "3.4.2",
-  "3.4.1",
-  "3.4.0",
-  "3.3.6",
-  "3.3.5",
-  "3.3.4",
-  "3.3.3",
-  "3.3.2",
-  "3.2.2",
-  "3.1.2"
-]);
+export const RELEASED_DOC_VERSIONS: string[] = sortVersionsDesc(
+  RAW_RELEASED_DOC_VERSIONS
+);

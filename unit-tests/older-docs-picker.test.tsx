@@ -61,13 +61,15 @@ describe("RELEASED_DOC_VERSIONS", () => {
     expect(RELEASED_DOC_VERSIONS.length).toBeGreaterThan(0);
   });
 
-  it("starts with the most recent stable version", () => {
-    expect(RELEASED_DOC_VERSIONS[0]).toBe("3.9.4");
+  it("starts with the highest version", () => {
+    const sorted = sortVersionsDesc([...RELEASED_DOC_VERSIONS]);
+    expect(RELEASED_DOC_VERSIONS[0]).toBe(sorted[0]);
   });
 
-  it("ends with the oldest version", () => {
+  it("ends with the lowest version", () => {
+    const sorted = sortVersionsDesc([...RELEASED_DOC_VERSIONS]);
     expect(RELEASED_DOC_VERSIONS[RELEASED_DOC_VERSIONS.length - 1]).toBe(
-      "3.1.2"
+      sorted[sorted.length - 1]
     );
   });
 

@@ -16,34 +16,26 @@
 // limitations under the License.
 //
 
-import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { readdirSync } from "fs";
 import { resolve } from "path";
-import mdx from "fumadocs-mdx/vite";
-import * as MdxConfig from "./source.config";
-import { releasedDocsVersionsPlugin } from "./plugins/released-docs-versions";
+import type { Plugin } from "vite";
 
-export default defineConfig({
-  plugins: [releasedDocsVersionsPlugin(), mdx(MdxConfig), react(), tsconfigPaths()],
-  test: {
-    globals: true,
-    environment: "happy-dom",
-    setupFiles: ["./unit-tests/setup.ts"],
-    css: true,
-    pool: "threads",
-    exclude: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/e2e-tests/**",
-      "**/playwright-report/**",
-      "**/test-results/**"
-    ]
-  },
-  resolve: {
-    alias: {
-      "@/.source": resolve(__dirname, ".source"),
-      "@": resolve(__dirname, "app")
+const VIRTUAL_ID = "virtual:released-docs-versions";
+const RESOLVED_ID = "\0" + VIRTUAL_ID;
+
+export function releasedDocsVersionsPlugin(): Plugin {
+  return {
+    name: "released-docs-versions",
+    resolveId(id) {
+      if (id === VIRTUAL_ID) return RESOLVED_ID;
+    },
+    load(id) {
+      if (id !== RESOLVED_ID) return;
+      const dir = resolve(__dirname, "../public/released-docs");
+      const folders = readdirSync(dir, { withFileTypes: true })
+        .filter((d) => d.isDirectory() && d.name.startsWith("r"))
+        .map((d) => d.name.slice(1)); // strip leading "r"
+      return `export const RAW_RELEASED_DOC_VERSIONS = ${JSON.stringify(folders)};`;
     }
-  }
-});
+  };
+}

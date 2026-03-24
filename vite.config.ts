@@ -23,6 +23,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { resolve } from "path";
 import mdx from "fumadocs-mdx/vite";
 import * as MdxConfig from "./source.config";
+import { releasedDocsVersionsPlugin } from "./plugins/released-docs-versions";
 
 // Create custom logger to filter out benign warnings
 const logger = createLogger();
@@ -43,8 +44,15 @@ logger.warn = (msg, options) => {
   originalWarn(msg, options);
 };
 
+
 export default defineConfig({
-  plugins: [mdx(MdxConfig), tailwindcss(), reactRouter(), tsconfigPaths()],
+  plugins: [
+    releasedDocsVersionsPlugin(),
+    mdx(MdxConfig),
+    tailwindcss(),
+    reactRouter(),
+    tsconfigPaths()
+  ],
   resolve: {
     alias: {
       "@/.source": resolve(__dirname, ".source"),
