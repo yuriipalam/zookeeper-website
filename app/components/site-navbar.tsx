@@ -32,11 +32,17 @@ import {
   CollapsibleContent,
   CollapsibleTrigger
 } from "@/ui/collapsible";
-import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  ChevronRight,
+  ExternalLink
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "@/components/link";
-import { asfLinks, documentationLinks, projectLinks, docsLinks } from "./links";
+import { asfLinks, documentationLinks, projectLinks } from "./links";
+import { OlderDocsVersionList } from "@/components/docs/older-docs-picker";
 import { ThemeToggle } from "./theme-toggle";
 
 const navLinkClass =
@@ -158,6 +164,19 @@ function ProjectMenu() {
   );
 }
 
+function OlderDocsSubMenu() {
+  return (
+    <DropdownMenuSub>
+      <DropdownMenuSubTrigger>
+        Older docs
+      </DropdownMenuSubTrigger>
+      <DropdownMenuSubContent className="w-56 p-0">
+        <OlderDocsVersionList />
+      </DropdownMenuSubContent>
+    </DropdownMenuSub>
+  );
+}
+
 function DocsMenu() {
   return (
     <DropdownMenu>
@@ -202,18 +221,7 @@ function DocsMenu() {
           )
         )}
         <DropdownMenuSeparator />
-        {docsLinks.map((item) => (
-          <DropdownMenuItem key={item.label} asChild>
-            <Link
-              to={item.to}
-              target={item.external ? "_blank" : "_self"}
-              aria-label={item.label}
-            >
-              {item.label}
-              {item.external && <ExternalLink className="size-4" />}
-            </Link>
-          </DropdownMenuItem>
-        ))}
+        <OlderDocsSubMenu />
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -350,6 +358,20 @@ function MobileMenu() {
   );
 }
 
+function MobileOlderDocsSection() {
+  return (
+    <Collapsible className="w-full">
+      <CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex w-full items-center justify-between py-1.5 text-left text-sm">
+        Older docs
+        <ChevronRight className="h-3 w-3 rotate-90 transition-transform group-data-[state=closed]:rotate-0" />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="w-full pt-1 pl-3">
+        <OlderDocsVersionList />
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+
 function MobileDocsSection({ onLinkClick }: { onLinkClick: () => void }) {
   return (
     <Collapsible className="w-full">
@@ -371,7 +393,7 @@ function MobileDocsSection({ onLinkClick }: { onLinkClick: () => void }) {
               {link.external && <ExternalLink className="ml-1 h-3 w-3" />}
             </Link>
           ) : (
-            <Collapsible className="w-full">
+            <Collapsible key={link.label} className="w-full">
               <CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex w-full items-center justify-between py-1.5 text-left text-sm">
                 {link.label}
                 <ChevronRight
@@ -395,20 +417,7 @@ function MobileDocsSection({ onLinkClick }: { onLinkClick: () => void }) {
             </Collapsible>
           )
         )}
-        <div className="border-border/40 my-2 border-t pt-2">
-          {docsLinks.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              target={item.external ? "_blank" : "_self"}
-              className="text-muted-foreground hover:text-foreground flex items-center py-1 text-sm"
-              aria-label={item.label}
-            >
-              {item.label}
-              {item.external && <ExternalLink className="size-4" />}
-            </Link>
-          ))}
-        </div>
+        <MobileOlderDocsSection />
       </CollapsibleContent>
     </Collapsible>
   );
@@ -522,19 +531,6 @@ function NoJSDocsMenu() {
             </details>
           )
         )}
-        <div className="bg-muted border-border/40 -mx-1 my-1 h-px" />
-        {docsLinks.map((item) => (
-          <Link
-            key={item.label}
-            to={item.to}
-            target={item.external ? "_blank" : "_self"}
-            aria-label={item.label}
-            className="hover:bg-accent hover:text-accent-foreground relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none"
-          >
-            {item.label}
-            {item.external && <ExternalLink className="size-4" />}
-          </Link>
-        ))}
       </div>
     </details>
   );
@@ -660,20 +656,6 @@ function NoJSMobileDocsSection() {
             </details>
           )
         )}
-        <div className="border-border/40 my-2 border-t pt-2">
-          {docsLinks.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              target={item.external ? "_blank" : "_self"}
-              className="text-muted-foreground hover:text-foreground flex cursor-pointer items-center py-1 text-sm"
-              aria-label={item.label}
-            >
-              {item.label}
-              {item.external && <ExternalLink className="size-4" />}
-            </Link>
-          ))}
-        </div>
       </div>
     </details>
   );

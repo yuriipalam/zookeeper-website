@@ -34,6 +34,7 @@ import { Card, Cards } from "fumadocs-ui/components/card";
 import { Callout } from "fumadocs-ui/components/callout";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Link } from "@/components/link";
+import { OlderDocsPicker } from "@/components/docs/older-docs-picker";
 import type { MDXComponents } from "mdx/types";
 
 // Extend default MDX components to include shared UI blocks globally.
@@ -146,7 +147,11 @@ export function DocsPage({ loaderData }: { loaderData: DocsLoaderData }) {
   const layoutOptions = baseOptions();
 
   return (
-    <DocsLayout {...layoutOptions} tree={tree as PageTree.Root}>
+    <DocsLayout
+      {...layoutOptions}
+      tree={tree as PageTree.Root}
+      sidebar={{ banner: <OlderDocsPicker /> }}
+    >
       <Content tree={tree as PageTree.Root} />
     </DocsLayout>
   );

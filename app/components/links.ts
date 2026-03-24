@@ -127,10 +127,3 @@ export const asfLinks: LinkType[] = [
   }
 ];
 
-const zkDocVersions = ["3.9.5", "3.8.6", "3.7.2"];
-
-export const docsLinks: LinkType[] = zkDocVersions.map((version) => ({
-  label: `${version} Documentation`,
-  to: `https://zookeeper.apache.org/doc/r${version}/`,
-  external: true
-}));
