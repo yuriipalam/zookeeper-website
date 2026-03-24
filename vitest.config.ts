@@ -23,6 +23,7 @@ import { resolve } from "path";
 import mdx from "fumadocs-mdx/vite";
 import * as MdxConfig from "./source.config";
 import { releasedDocsVersionsPlugin } from "./plugins/released-docs-versions";
+import { CURRENT_VERSION } from "./app/lib/current-version";
 
 export default defineConfig({
   plugins: [
@@ -31,6 +32,9 @@ export default defineConfig({
     react(),
     tsconfigPaths()
   ],
+  define: {
+    __CURRENT_VERSION__: JSON.stringify(CURRENT_VERSION)
+  },
   test: {
     globals: true,
     environment: "happy-dom",

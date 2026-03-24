@@ -32,15 +32,15 @@ import { RELEASED_DOC_VERSIONS } from "@/lib/released-docs-versions";
  *  sidebar popover and the navbar sub-menu. */
 export function OlderDocsVersionList() {
   return (
-    <Command>
+    <Command filter={(value, search) => (value.includes(search) ? 1 : 0)}>
       <CommandInput placeholder="Search version..." />
       <CommandList>
         <CommandEmpty>No versions found</CommandEmpty>
         <CommandGroup>
           {RELEASED_DOC_VERSIONS.map((version) => (
-            <a href={`/released-docs/r${version}/index.html`}>
-              <CommandItem key={version}>{version}</CommandItem>
-            </a>
+            <CommandItem key={version} value={version} asChild>
+              <a href={`/released-docs/r${version}/index.html`}>{version}</a>
+            </CommandItem>
           ))}
         </CommandGroup>
       </CommandList>

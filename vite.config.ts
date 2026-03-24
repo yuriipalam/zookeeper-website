@@ -24,6 +24,7 @@ import { resolve } from "path";
 import mdx from "fumadocs-mdx/vite";
 import * as MdxConfig from "./source.config";
 import { releasedDocsVersionsPlugin } from "./plugins/released-docs-versions";
+import { CURRENT_VERSION } from "./app/lib/current-version";
 
 // Create custom logger to filter out benign warnings
 const logger = createLogger();
@@ -57,6 +58,9 @@ export default defineConfig({
       "@/.source": resolve(__dirname, ".source"),
       "@": resolve(__dirname, "app")
     }
+  },
+  define: {
+    __CURRENT_VERSION__: JSON.stringify(CURRENT_VERSION)
   },
   customLogger: logger
 });

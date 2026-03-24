@@ -27,3 +27,5 @@ declare module "*.mdx" {
 declare module "virtual:released-docs-versions" {
   export const RAW_RELEASED_DOC_VERSIONS: string[];
 }
+
+declare const __CURRENT_VERSION__: string;

@@ -71,7 +71,22 @@ type DocsLoaderData = { path: string; url: string; tree: unknown };
 
 const renderer = toClientRenderer(
   docs.doc,
-  ({ toc, default: Mdx, frontmatter }, { tree }: { tree: PageTree.Root }) => {
+  (
+    {
+      toc,
+      default: Mdx,
+      frontmatter,
+      pageTitle,
+      pageDescription
+    }: {
+      toc: any;
+      default: any;
+      frontmatter: { title?: string; description?: string };
+      pageTitle?: string;
+      pageDescription?: string;
+    },
+    { tree }: { tree: PageTree.Root }
+  ) => {
     const route = useParams()["*"];
     const baseGithubPath = "zookeeper-docs/app/pages/_docs/docs/_mdx/";
 
@@ -83,6 +98,8 @@ const renderer = toClientRenderer(
     const mdxFileRoute = `${trimmedRoute === "" ? "index" : trimmedRoute}.mdx`;
     const isGrouppedRoute =
       !!trimmedRoute && grouppedRoutes.includes(trimmedRoute);
+    const displayTitle = pageTitle ?? frontmatter.title;
+    const displayDescription = pageDescription ?? frontmatter.description;
 
     // Use default Link component for all links (external links are handled by Link component)
     const CustomLink = ({ href, children, ...rest }: any) => {
@@ -93,7 +110,6 @@ const renderer = toClientRenderer(
       );
     };
 
-    // Merge custom link component with base components
     const mdxComponents = {
       ...baseMdxComponents,
       a: CustomLink
@@ -101,13 +117,11 @@ const renderer = toClientRenderer(
 
     return (
       <FumaDocsPage toc={toc} tableOfContent={{ style: "clerk" }}>
-        <title>{frontmatter.title + " | Zookeeper"}</title>
-        <meta name="description" content={frontmatter.description} />
+        <title>{displayTitle + " | Zookeeper"}</title>
+        <meta name="description" content={displayDescription} />
 
-        <div className="no-print">
-          <FumaDocsTitle>{frontmatter.title}</FumaDocsTitle>
-          <FumaDocsDescription>{frontmatter.description}</FumaDocsDescription>
-        </div>
+        <FumaDocsTitle>{displayTitle}</FumaDocsTitle>
+        <FumaDocsDescription>{displayDescription}</FumaDocsDescription>
         <FumaDocsBody>
           <Mdx components={mdxComponents} />
           {route !== undefined && isGrouppedRoute && (

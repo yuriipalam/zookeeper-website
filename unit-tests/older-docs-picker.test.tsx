@@ -159,9 +159,8 @@ describe("OlderDocsPicker", () => {
       const items = screen.getAllByRole("option");
       expect(items.length).toBeGreaterThan(0);
       items.forEach((item) => {
-        // The <a> is nested inside the CommandItem div
-        const anchor = item.querySelector("a");
-        expect(anchor?.getAttribute("href")).toMatch(
+        // With asChild, the <a> IS the option element
+        expect(item.getAttribute("href")).toMatch(
           /^\/released-docs\/r[\d.].+\/index\.html$/
         );
       });
