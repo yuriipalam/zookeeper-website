@@ -34,6 +34,7 @@ The official website for Apache ZooKeeper, built with modern web technologies to
   - [Building for Production](#building-for-production)
   - [Maven Integration](#maven-integration)
   - [Deployment](#deployment)
+  - [Publishing a New ZooKeeper Release](#publishing-a-new-zookeeper-release)
   - [Troubleshooting](#troubleshooting)
 
 ---
@@ -181,7 +182,7 @@ my-react-router-app/
 ├── public/                       # Static files (copied as-is to build/)
 │   ├── favicon.ico               # Website icon
 │   ├── images/                   # Image assets
-|   └── ...
+│   └── ...
 │
 ├── node_modules/                 # Dependencies (like Maven's .m2 directory)
 ├── package.json                  # Project metadata and dependencies (like pom.xml)
@@ -333,10 +334,10 @@ The project uses [Vitest](https://vitest.dev/) and [Playwright](http://playwrigh
 npm test
 
 # Run unit tests once (for CI/CD)
-npm run test:run
+npm run test:unit:run
 
 # Run unit tests with UI
-npm run test:ui
+npm run test:unit:ui
 
 # Run e2e tests (requires `npm run build` first)
 npm run test:e2e
@@ -429,9 +430,9 @@ When you run `mvn site`, the website module automatically:
    - `npm run lint` - ESLint code quality checks
    - `npm run typecheck` - TypeScript type checking
    - `npm run test:unit:run` - Vitest unit tests
+   - `npm run build` - Production build
    - `npx playwright install` - Installs Playwright browsers
    - `npm run test:e2e` - Playwright e2e tests
-   - `npm run build` - Production build
 
    `npm run ci-skip-tests` executes:
    - `npm run fumadocs-init` - Initialize Fumadocs
@@ -485,13 +486,84 @@ mvn clean install -DskipSite
 
 ### Deployment
 
-#### Static Hosting
+The website source lives on the **`website`** branch of the [apache/zookeeper](https://github.com/apache/zookeeper) repository. The live production site at [zookeeper.apache.org](https://zookeeper.apache.org) is served from the **`asf-site`** branch. Any commit pushed to `asf-site` is immediately reflected on the live site via Apache's gitpubsub infrastructure.
 
-Since this site uses Static Site Generation (SSG), you can deploy the `build/client/` directory to any static file host:
+#### Basic workflow
 
-- **Apache HTTP Server**: Copy `build/client/` contents to your web root
-- **Nginx**: Copy `build/client/` contents to your web root
-- **GitHub Pages**: Push `build/client/` to `gh-pages` branch
+1. Make changes on the `website` branch.
+2. Run the CI pipeline locally to verify everything passes.
+3. Build the production bundle — the output ends up in `build/client/`.
+4. Replace the contents of `asf-site` with the new `build/client/` and push.
+
+```bash
+# 1. Clone / switch to the website source branch
+git clone -b website https://github.com/apache/zookeeper.git
+cd zookeeper
+
+# 2. Edit content, then verify
+npm run ci
+
+# 3. Commit the source changes
+git add <changed files>
+git commit -m "Update website content"
+git push origin website
+
+# 4. Publish: switch to asf-site and replace content
+git checkout asf-site
+rm -rf content
+mkdir -p content
+cp -R build/client/. content/
+git add content
+git commit -m "Publish website <date>"
+git push origin asf-site
+```
+
+Once `asf-site` is pushed the updates are live within minutes.
+
+---
+
+### Publishing a New ZooKeeper Release
+
+When a new ZooKeeper version is released, update the **current version** identifier and archive the previous release's generated documentation.
+
+#### Step 1 — Archive the outgoing documentation
+
+The built HTML of the outgoing release docs must be preserved so users can still access them via the "Older docs" picker in the sidebar and navbar. Each archived version lives in its own folder under `public/released-docs/`, named `r<version>` (e.g. `r3.9.4`).
+
+Copy the fully-rendered HTML documentation into that folder:
+
+```bash
+# Example: archiving 3.9.4 before bumping to 3.9.5
+mkdir -p public/released-docs/r3.9.4
+cp -R <path-to-3.9.4-docs-html>/* public/released-docs/r3.9.4/
+```
+
+> The "Older docs" picker reads folder names from `public/released-docs/` at build time — no configuration file needs to be updated.
+
+#### Step 2 — Bump `CURRENT_VERSION`
+
+Open `app/lib/current-version.ts` and update the version string:
+
+```typescript
+// app/lib/current-version.ts
+export const CURRENT_VERSION = "3.9.5"; // ← change to the new version
+```
+
+This single constant drives the version shown across the current docs experience, including:
+
+- The docs overview page title and description (`3.9.5 Overview`, `Official Apache ZooKeeper 3.9.5 documentation…`)
+- Other components that reference `CURRENT_VERSION`
+
+#### Step 3 — Update the in-app documentation
+
+The current release's documentation source lives in `app/pages/_docs/docs/_mdx/`. Update or replace the MDX files there to reflect the new release.
+
+#### Step 4 — Build and publish
+
+```bash
+npm run ci          # verify everything passes
+# then follow the deployment steps above to push to asf-site
+```
 
 ### Troubleshooting
 
